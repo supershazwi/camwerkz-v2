@@ -1,0 +1,457 @@
+<template name="bookingCreateInvoice">
+
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button-positive" text=false}}
+  {{/contentFor}}
+  
+  {{#contentFor "headerButtonRight"}}
+    <button class="button button-positive button-clear" data-ion-modal="bookingLog" style="">See Log</button>
+  {{/contentFor}}
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title" style="">Create Invoice</h1>
+  {{/contentFor}}
+  
+  {{#ionView}}
+    {{#ionContent}}
+      <div class="row" style="margin-top: 20px;">
+        <div class="col" style="padding: 0px 15px 0px 15px;">
+          <h3 style="margin-bottom: 0px;">Invoice Number</h3>
+          <h4 style="color: #666;">2139018</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-50" style="padding: 15px;">
+      <div class="list">
+        <div class="item item-divider" style="background-color: #374140; color: white; border-color: #374140;">
+            Administrative Details
+        </div>
+        {{#with booking}}
+        <div class="item">
+          Created By
+          <p>{{bookingCreatedBy}} - {{bookingCreatedAt}}</p>
+        </div>
+        <div class="item">
+          All Involved Users
+          {{#each involvedUsers}}
+            <p>{{this}}</p>
+          {{/each}}
+        </div>
+        {{/with}}
+      </div>
+    </div>
+    <div class="col-50" style="padding: 15px;">
+      <div class="list">
+        <div class="item item-divider" style="background-color: #374140; color: white; border-color: #374140;">
+            Customer Details
+        </div>
+        {{#with booking}}
+        <div class="item" id="customerName">
+          <p>Name</p>
+          <div id="showCustomerName">
+            <p>{{customerName}} <span style="font-size: 15px; text-decoration: underline;" id="editCustomerName">Edit</span></p>
+          </div>
+          <div id="selectCustomerName" class="control-group" style="width: 100%; display: none;">
+            <select id="customerSearch2" class="contacts" placeholder="Pick some people..."></select>
+            <button class="button button-stable" id="saveCustomerName">Save</button> <button class="button button-clear button-positive" id="cancelCustomerName">Cancel</button>
+          </div>
+        </div>
+        <div class="item">
+          Company 
+          <p>{{customerCompany}}</p>
+        </div>
+        <div class="item">
+          Contact 
+          <p>{{customerNumber}}</p>
+          <p>{{customerEmail}}</p>
+        </div>
+        {{/with}}
+      </div>
+        </div>
+      </div>  
+      {{#each groups}}
+      <div class="row">
+        <div class="col" style="padding: 15px;">
+          <div class="list" style="margin-bottom: 0px; padding-bottom: 0px;">
+            <div class="item item-divider" style="background-color: #374140; color: white; border-color: #374140;">
+                Equipment Details - Group {{groupId}}
+                <button class="button button-clear pull-right addBookingItem" id="{{id}}" style="color: white;">
+                  Add Equipment
+                </button>
+                <button class="button button-clear pull-right dots">
+                  •
+                </button>
+                <button class="button button-clear pull-right addBookingDates" id="{{id}}" style="color: white;">
+                  Add Dates ({{noOfDates}})
+                </button>
+                {{#if extraGroup}}
+                <button class="button button-clear pull-right dots">
+                  •
+                </button>
+                <button class="button button-clear pull-right removeGroup" id="{{id}}" style="color: white;">
+                  Remove Group
+                </button>
+                {{/if}}
+            </div>
+          </div>
+          <div class="list" style="padding: 0px; text-align: center;">
+            <div class="row" style="padding: 0px;">
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%;">
+                <div class="row" style="padding: 0px;">
+                  <div class="col">
+                    <strong>Status</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 20%;">
+                <div class="row" style="padding: 0px;">
+                  <div class="col">
+                    <strong>Equipment</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 40%">
+                <div class="row" style="padding: 0px;">
+                  <div class="col" style="border-bottom: 1px solid #dddddd;">
+                    <strong>Quantity</strong>
+                  </div>
+                </div>
+                <div class="row" style="padding: 0px; margin-top: 0px;">
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+                    Booked
+                  </div>
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+                    Add
+                  </div>
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+                    Minus
+                  </div>
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+                    Remove
+                  </div>
+                </div>
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 30%;">
+                <div class="row" style="padding: 0px;">
+                  <div class="col" style="border-bottom: 1px solid #dddddd;">
+                    <strong>Rental Cost</strong>
+                  </div>
+                </div>
+                <div class="row" style="padding: 0px; margin-top: 0px;">
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+                    Rate
+                  </div>
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+                    Discount
+                  </div>
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+                    Sub Amt
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{#each items}}
+            <div class="row" style="padding: 0px;">
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%; background-color: white;">
+                <div class="row" style="padding: 0px; margin-top: 0px;">
+                  <div class="col status" style="border: 1px solid #dddddd; padding: 5px; height: 52px; background-color: {{statusColor}}">
+                    <p style="margin: 0px; height: 100%; margin-top: 0px; color: black;"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 20%;">
+                <div class="row" style="padding: 0px; margin-top: 0px;">
+                  <div class="col equipment" style="border: 1px solid #dddddd; padding: 5px; height: 52px;" id="{{id}}_{{brand}}_{{item}}" data-ion-modal="serialNoSelect">
+                    <p style="margin: 0px; height: 50%;">{{brand}} {{item}}</p>
+                    {{#if naExist}}<span style="color: #374140;">| {{noOfNa}}</span> <i class="icon ion-ios-circle-filled" style="color: #374140;"></i> <span style="color: #374140;">|</span>{{/if}}
+                    {{#if packedExist}}<span style="color: #FFB03B;">| {{noOfPacked}}</span> <i class="icon ion-bag" style="color: #FFB03B;"></i> <span style="color: #FFB03B;">|</span>{{/if}}
+                    {{#if inExist}}<span style="color: #468966;">| {{noOfIn}}</span> <i class="icon ion-arrow-down-a" style="color: #468966;"></i> <span style="color: #468966;">|</span>{{/if}}
+                    {{#if outExist}}<span style="color: #B64926;">| {{noOfOut}}</span> <i class="icon ion-arrow-up-a" style="color: #B64926;"></i> <span style="color: #B64926;">|</span>{{/if}}
+                    {{#if missingExist}}<span style="color: #EA2E49;">| {{noOfMissing}}</span> <i class="icon ion-help" style="color: #EA2E49;"></i> <span style="color: #EA2E49;">|</span>{{/if}}
+                    {{#if damagedExist}}<span style="color: #8A0917;">| {{noOfDamaged}}</span> <i class="icon ion-settings" style="color: #8A0917;"></i> <span style="color: #8A0917;">|</span>{{/if}}
+                  </div>
+                </div>
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 40%;">
+                <div class="row" style="padding: 0px; margin-top: 0px;">
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px; height: 52px;">
+                    <p style="margin: 0px; height: 100%; margin-top: 10px;">{{booked}}/{{total}}</p>
+                  </div>
+                  <div class="col" style="border: 1px solid #dddddd; padding: 2px 5px 5px 5px; height: 52px;">
+                    <button class="button button-clear button-positive add" id="{{id}}">
+                      {{> ionIcon icon='ios-plus-empty'}}
+                    </button>
+                  </div>    
+                  <div class="col" style="border: 1px solid #dddddd; padding: 2px 5px 5px 5px; height: 52px;">
+                    <button class="button button-clear button-positive minus" id="{{id}}">
+                      {{> ionIcon icon='ios-minus-empty'}}
+                    </button>
+                  </div>
+                  <div class="col" style="border: 1px solid #dddddd; padding: 2px 5px 5px 5px; height: 52px;">
+                    <button class="button button-clear button-positive remove" id="{{id}}">
+                      {{> ionIcon icon='ios-close-empty'}}
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 30%;">
+                <div class="row" style="padding: 0px; margin-top: 0px;">
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px; height: 52px;">
+                    <p style="margin: 0px; height: 100%; margin-top: 10px;">{{#if discountExist}}{{originalPrice}}{{else}}{{rate}}{{/if}}</p>
+                  </div>
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px; height: 52px;">
+                    <p style="margin: 0px; height: 100%; margin-top: 10px;">{{discount}}</p>
+                  </div>
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px; height: 52px;">
+                    <p style="margin: 0px; height: 100%; margin-top: 10px;">{{#if differentQuantity}}{{totalDiscountPrice}} + {{totalOriginalPrice}}{{else}}{{subAmount}}{{/if}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{/each}}
+            <div class="row" style="padding: 0px;">
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 70%">
+                
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 30%;">
+                <div class="row" style="padding: 0px; margin-top: 0px;">
+                  <div class="col-33" style="border: 1px solid #dddddd; padding: 5px;">
+                    Sub Discount: 
+                  </div>
+                  <div class="col-33" style="border: 1px solid #dddddd; padding: 5px;">
+                    {{subDiscount}}
+                  </div>
+                  <div class="col-33" style="border: 1px solid #dddddd; padding: 5px;">
+                    -
+                  </div>
+                </div>
+              </div>
+            </div> 
+            <div class="row" style="padding: 0px;">
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 70%">
+                
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 30%;">
+                <div class="row" style="padding: 0px; margin-top: 0px;">
+                  <div class="col-66" style="border: 1px solid #dddddd; padding: 5px;">
+                    Sub Total: 
+                  </div>
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+                    {{subTotal}}
+                  </div>
+                </div>
+              </div>
+            </div>   
+          </div>
+        </div>
+      </div>
+      {{/each}}
+      <div class="row">
+        <div class="col" style="padding: 15px;">
+          <button class="button button-block button-stable" id="addGroup">
+            Add Group
+          </button>
+        </div>
+      </div>
+      {{#with booking}}
+      <div class="row">
+        <div class="col-33" style="padding: 15px;">
+          <div class="list">
+            <div class="item item-divider" style="background-color: #468966; color: white; border-color: #468966; text-align: center;">
+                Total
+            </div>
+            <div class="item" style="text-align:center; height: 150px;">
+              <p style="color: #468966; font-size: 40px; line-height: 40px; margin-top: 38px;">{{totalPrice}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-33" style="padding: 15px;">
+          <div class="list">
+            <div class="item item-divider" style="background-color: #2980B9; color: white; border-color: #2980B9; text-align: center;">
+                Payment
+            </div>
+            {{#if paymentExists}}
+              <div class="item" style="text-align:center; height: 150px;">
+                <p style="color: #2980B9; font-size: 40px; line-height: 40px; margin-top: 38px;">Nil</p>
+              </div>
+            {{else}}
+            {{#each payment}}
+            <div class="item">
+               <h2 style="white-space: normal;">{{amount}}</h2>
+               <p>{{type}} <span style="float:right; z-index: 2000;" class="removePayment" id="{{id}}">Remove</span></p>
+            </div>
+            {{/each}}
+            {{/if}}
+          </div>
+        </div>
+        <div class="col-33" style="padding: 15px;">
+          <div class="list">
+            <div class="item item-divider" style="background-color: #E74C3C; color: white; border-color: #E74C3C; text-align: center;">
+                Balance Due
+            </div>
+            <div class="item" style="text-align:center; height: 150px;">
+              <p style="color: #E74C3C; font-size: 40px; line-height: 40px; margin-top: 38px;">{{balanceDue}}</p>
+              {{#if zeroTotal}}
+              <button class="button button-small button-stable" style="margin-top: 8px;" id="recordPayment" data-ion-modal="recordPayment"> 
+                Record Payment
+              </button>
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </div> 
+      {{/with}}
+      <div class="row">
+        <div class="col-50" style="padding: 15px;">
+          <div class="list">
+            <div class="item item-divider" style="background-color: #374140; color: white; border-color: #374140;">
+                General Remarks
+            </div>
+            {{#each bookingRemark}}
+              <li class="item item-checkbox {{remarkChecked}} remark" id="{{id}}">
+                 <label class="checkbox" style="width: 85%;">
+                   {{#if checkboxChecked}}
+                    <input type="checkbox" checked>
+                   {{else}}
+                    <input type="checkbox">
+                   {{/if}}
+                 </label>
+                 <h2 style="white-space: normal;">#{{remarkId}} - {{remark}}</h2>
+                 <p>{{createdBy}} - {{createdAt}} <span style="float:right; z-index: 2000;" class="removeRemark" id="{{id}}">Remove</span></p>
+              </li>
+            {{/each}}
+            <div class="item">
+              <textarea rows="4" placeholder="Type remarks here" id="remark" style="width: 100%;"></textarea>
+              <button class="button button-block button-stable" id="addRemark" {{addRemarkDisabled}}>
+                Add Remark
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-50" style="padding: 15px;">
+          <div class="list">
+            <div class="item item-divider" style="background-color: #374140; color: white; border-color: #374140;">
+              Remarks Requiring Acknowledgement
+            </div>
+            {{#if acknowledgeRemarksExist}}
+            {{#each bookingRemarkRequiringAcknowledgement}}
+              <li class="item item-checkbox remarkAcknowledge hello" id="{{id}}" data-ion-modal="{{viewRemark}}">
+                <label class="checkbox" style="width: 85%;">
+                   {{#if checkboxAcknowledgeChecked}}
+                    
+                   {{else}}
+                    <input type="checkbox">
+                   {{/if}}
+                 </label>
+                 <h2 style="white-space: normal;">#{{remarkId}} - {{remark}} 
+                 {{#if resolved}}
+                  <span style="float:right; color: #468966;">Resolved</span>
+                 {{else}}
+                  <span style="float:right; color: #DE4F4F;">Unresolved</span>
+                 {{/if}}
+                 </h2>
+                 <p>{{createdBy}} - {{createdAt}} <span style="float:right; z-index: 2000;" data-action="showAcknowledgeRemarkDeleteConfirm" id="{{id}}">Remove</span></p>
+                 {{#if signed}}
+                 <p>Signed by {{signedBy}} - {{signedAt}}</p>
+                 {{/if}}
+              </li>
+            {{/each}}
+            {{else}}
+              <li class="item" style="text-align:center;">
+                 <p style="color: #374140; font-size: 40px; line-height: 40px;">Nil</p>
+              </li>
+            {{/if}}
+            <div class="item">
+              <button class="button button-block button-stable" id="signRemark" {{signAbled}} data-ion-modal="signRemark">
+                Sign Remarks
+              </button>
+              <a href="/bookings/{{bookingId}}/createInvoice" class="button button-block button-positive" id="createInvoice" {{signAbled}}>
+                Create Invoice
+              </a>
+            </div>
+          </div>
+        </div>
+      </div> 
+      <div class="row">
+        <div class="col-50" style="padding: 15px;">
+          <div class="list">
+            <div class="item item-divider" style="background-color: #374140; color: white; border-color: #374140;">
+              Staff Sign In
+            </div>
+            {{#if staffSignInExist}}
+            {{#each staffSignIn}}
+              <li class="item remarkSignIn" id="{{id}}" data-ion-modal="viewStaffSignIn">
+                 <h2 style="white-space: normal;">#{{remarkId}} - {{staffSignInRemark}}
+                 {{#if staffSignInResolved}}
+                    <span style="float:right; color: #468966;">Resolved</span>
+                   {{else}}
+                    <span style="float:right; color: #DE4F4F;">Unresolved</span>
+                   {{/if}}
+                 </h2>
+                 <p>{{createdBy}} - {{createdAt}}</p>
+                 {{#if signed}}
+                 <p>Signed by {{signedBy}} - {{signedAt}}</p>
+                 {{/if}}
+              </li>
+            {{/each}}
+            {{else}}
+              <li class="item" style="text-align:center;">
+                 <p style="color: #374140; font-size: 40px; line-height: 40px;">Nil</p>
+              </li>
+            {{/if}}
+            <div class="item">
+              <button class="button button-block button-stable" id="staffSignInRemark" {{staffSignInAbled}} data-ion-modal="signStaffSignInRemark">
+                Sign Remarks
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-50" style="padding: 15px;">
+          <div class="list">
+            <div class="item item-divider" style="background-color: #374140; color: white; border-color: #374140;">
+              Customer Sign Out
+            </div>
+            {{#if customerSignOutExist}}
+            {{#each customerSignOut}}
+              <li class="item remarkSignOut" id="{{id}}" data-ion-modal="viewCustomerSignOut">
+                 <h2 style="white-space: normal;">#{{remarkId}} - {{customerSignOutRemark}}
+                 {{#if customerSignOutResolved}}
+                    <span style="float:right; color: #468966;">Resolved</span>
+                   {{else}}
+                    <span style="float:right; color: #DE4F4F;">Unresolved</span>
+                   {{/if}}
+                 </h2>
+                 <p>{{createdBy}} - {{createdAt}}</p>
+                 {{#if signed}}
+                 <p>Signed by {{signedBy}} - {{signedAt}}</p>
+                 {{/if}}
+              </li>
+            {{/each}}
+            {{else}}
+              <li class="item" style="text-align:center;">
+                 <p style="color: #374140; font-size: 40px; line-height: 40px;">Nil</p>
+              </li>
+            {{/if}}
+            <div class="item">
+              <button class="button button-block button-stable" id="signRemark" {{customerSignOutAbled}} data-ion-modal="signCustomerSignOutRemark">
+                Sign Remarks
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>   
+      <div class="row" style="height: 200px;">
+        <div class="col" style="height: 100%; padding: 15px;">
+          <button class="button button-block button-stable" style="height: 150px; font-size: 2em;" id="cancelBooking" data-action="showDeleteConfirm">
+            Cancel Booking
+          </button>
+        </div>
+        <div class="col" style="height: 100%; padding: 15px;">
+          <button class="button button-block button-stable" style="height: 150px; font-size: 2em;" id="confirmBooking">
+            Send to QuickBooks
+          </button>
+        </div>
+      </div>
+    {{/ionContent}}
+  {{/ionView}}
+</template>

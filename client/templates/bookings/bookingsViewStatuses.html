@@ -1,0 +1,177 @@
+  <template name="bookingsViewStatuses">
+    {{#contentFor "headerButtonLeft"}}
+      {{>ionNavBackButton class="button-positive" text=false}}
+    {{/contentFor}}
+
+    {{#contentFor "headerTitle"}}
+      <h1 class="title">OVERALL SERIAL NUMBERS</h1>
+    {{/contentFor}}
+
+    {{#ionView}}
+      {{#ionContent}}
+        {{#if Template.subscriptionsReady}}
+        {{#each groups}}
+        <div class="item" style="text-align: center;">
+            <h1 style="color:#2B3A42; text-overflow: ellipsis;overflow: hidden;white-space: normal;">- - - GROUP {{groupgroupid}} - - -</h1>
+        </div>
+        <div class="list" style="margin-bottom: 0px;">
+          {{#each bookingLineItems}}
+            {{#if custom}}
+            <li class="item item checkSerialNo" id="li_{{serialNo}}" style="background: #35203B;">
+            <button class="button button-stable button-small" style="font-size: 20px;background-color: #35203B;border: 1px solid #35203B; color: white; margin-left: -15px; text-align: left; margin-right: 5px;">
+              Group {{groupCounter}} - {{brand}} {{item}} - {{noOfItems}} item(s) - CUSTOM
+            </button>
+            </li>
+            {{else}}
+            <li class="item item checkSerialNo" id="li_{{serialNo}}" style="background: {{categoryBackground}};">
+            <button class="button button-stable button-small" style="font-size: 20px;background-color: {{categoryBackground}};border: 1px solid {{categoryBackground}}; color: white; margin-left: -15px; text-align: left; margin-right: 5px;">
+              Group {{groupCounter}} - {{brand}} {{item}} - {{noOfItems}} item(s)
+            </button>
+            </li>
+            {{/if}}
+
+            {{#each unclashableSerialNumbers}}
+              <li class="item">
+              <button class="button button-stable button-small" style="font-size: 20px;background-color: white;border: 1px solid white;margin-left: -15px; text-align: left; margin-right: 5px;">
+                {{serialNo}}
+              </button>
+                {{#if isDamaged}}
+              <button class="button button-stable button-small status" style="margin-top: 0px;z-index: 1000; float:right; border-color: #8A0917; background-color: #8A0917; color: white;" id="{{serialNo}}_Damaged_{{itemId}}_{{groupId}}">
+                Damaged
+              </button>
+              {{else}}
+              <button class="button button-stable button-small status" style="margin-top: 0px;z-index: 1000; float:right;" id="{{serialNo}}_Damaged_{{itemId}}_{{groupId}}">
+                Damaged
+              </button>
+              {{/if}}
+
+              {{#if isMissing}}
+              <button class="button button-stable button-small status" style="margin-top: 0px;z-index: 1000; float:right; margin-right: 25px; border-color: #EA2E49; background-color: #EA2E49; color: white;" id="{{serialNo}}_Missing_{{itemId}}_{{groupId}}">
+                Missing
+              </button>
+              {{else}}
+              <button class="button button-stable button-small status" style="margin-top: 0px;z-index: 1000; float:right; margin-right: 25px;" id="{{serialNo}}_Missing_{{itemId}}_{{groupId}}">
+                Missing
+              </button>
+              {{/if}}
+
+              {{#if isIn}}
+              <button class="button button-stable button-small status" style="margin-top: 0px;z-index: 1000; float:right; margin-right: 25px; border-color: #468966; background-color: #468966; color: white;" id="{{serialNo}}_In_{{itemId}}_{{groupId}}">
+                In
+              </button>
+              {{else}}
+              <button class="button button-stable button-small status" style="margin-top: 0px;z-index: 1000; float:right; margin-right: 25px;" id="{{serialNo}}_In_{{itemId}}_{{groupId}}">
+                In
+              </button>
+              {{/if}}
+
+              {{#if isOut}}
+              <button class="button button-stable button-small status" style="margin-top: 0px;z-index: 1000; float:right; margin-right: 25px; border-color: #B64926; background-color: #B64926; color: white;" id="{{serialNo}}_Out_{{itemId}}_{{groupId}}">
+                Out
+              </button>
+              {{else}}
+              <button class="button button-stable button-small status" style="margin-top: 0px;z-index: 1000; float:right; margin-right: 25px;" id="{{serialNo}}_Out_{{itemId}}_{{groupId}}">
+                Out
+              </button>
+              {{/if}}
+
+              {{#if isPacked}}
+              <button class="button button-stable button-small status" style="margin-top: 0px;z-index: 1000; float:right; margin-right: 25px; border-color: #FFB03B; background-color: #FFB03B; color: white;" id="{{serialNo}}_Packed_{{itemId}}_{{groupId}}">
+                Packed
+              </button>
+              {{else}}
+              <button class="button button-stable button-small status" style="margin-top: 0px;z-index: 1000; float:right; margin-right: 25px;" id="{{serialNo}}_Packed_{{itemId}}_{{groupId}}">
+                Packed
+              </button>
+              {{/if}}
+
+              {{#if isNA}}
+              <button class="button button-stable button-small status" style="margin-top: 0px;z-index: 1000; float:right; margin-right: 25px; border-color: #374140; background-color: #374140; color: white;" id="{{serialNo}}_N/A_{{itemId}}_{{groupId}}">
+                N/A
+              </button>
+              {{else}}
+              <button class="button button-stable button-small status" style="margin-top: 0px;z-index: 1000; float:right; margin-right: 25px;" id="{{serialNo}}_N/A_{{itemId}}_{{groupId}}">
+                N/A
+              </button>
+              {{/if}}
+              </li>
+            {{/each}}
+            {{#each clashableSerialNumbers}}
+              <li class="item">
+                <button class="button button-stable button-small" style="font-size: 20px;background-color: white;border: 1px solid white;margin-left: -15px; text-align: left; margin-right: 5px;">
+                {{serialNo}}
+              </button>
+                {{#if isDamaged}}
+              <button class="button button-stable button-small status" style="margin-top: 0px;z-index: 1000; float:right; border-color: #8A0917; background-color: #8A0917; color: white;" id="{{serialNo}}_Damaged_{{itemId}}_{{groupId}}">
+                Damaged
+              </button>
+              {{else}}
+              <button class="button button-stable button-small status" style="margin-top: 0px;z-index: 1000; float:right;" id="{{serialNo}}_Damaged_{{itemId}}_{{groupId}}">
+                Damaged
+              </button>
+              {{/if}}
+
+              {{#if isMissing}}
+              <button class="button button-stable button-small status" style="margin-top: 0px;z-index: 1000; float:right; margin-right: 25px; border-color: #EA2E49; background-color: #EA2E49; color: white;" id="{{serialNo}}_Missing_{{itemId}}_{{groupId}}">
+                Missing
+              </button>
+              {{else}}
+              <button class="button button-stable button-small status" style="margin-top: 0px;z-index: 1000; float:right; margin-right: 25px;" id="{{serialNo}}_Missing_{{itemId}}_{{groupId}}">
+                Missing
+              </button>
+              {{/if}}
+
+              {{#if isIn}}
+              <button class="button button-stable button-small status" style="margin-top: 0px;z-index: 1000; float:right; margin-right: 25px; border-color: #468966; background-color: #468966; color: white;" id="{{serialNo}}_In_{{itemId}}_{{groupId}}">
+                In
+              </button>
+              {{else}}
+              <button class="button button-stable button-small status" style="margin-top: 0px;z-index: 1000; float:right; margin-right: 25px;" id="{{serialNo}}_In_{{itemId}}_{{groupId}}">
+                In
+              </button>
+              {{/if}}
+
+              {{#if isOut}}
+              <button class="button button-stable button-small status" style="margin-top: 0px;z-index: 1000; float:right; margin-right: 25px; border-color: #B64926; background-color: #B64926; color: white;" id="{{serialNo}}_Out_{{itemId}}_{{groupId}}">
+                Out
+              </button>
+              {{else}}
+              <button class="button button-stable button-small status" style="margin-top: 0px;z-index: 1000; float:right; margin-right: 25px;" id="{{serialNo}}_Out_{{itemId}}_{{groupId}}">
+                Out
+              </button>
+              {{/if}}
+
+              {{#if isPacked}}
+              <button class="button button-stable button-small status" style="margin-top: 0px;z-index: 1000; float:right; margin-right: 25px; border-color: #FFB03B; background-color: #FFB03B; color: white;" id="{{serialNo}}_Packed_{{itemId}}_{{groupId}}">
+                Packed
+              </button>
+              {{else}}
+              <button class="button button-stable button-small status" style="margin-top: 0px;z-index: 1000; float:right; margin-right: 25px;" id="{{serialNo}}_Packed_{{itemId}}_{{groupId}}">
+                Packed
+              </button>
+              {{/if}}
+
+              {{#if isNA}}
+              <button class="button button-stable button-small status" style="margin-top: 0px;z-index: 1000; float:right; margin-right: 25px; border-color: #374140; background-color: #374140; color: white;" id="{{serialNo}}_N/A_{{itemId}}_{{groupId}}">
+                N/A
+              </button>
+              {{else}}
+              <button class="button button-stable button-small status" style="margin-top: 0px;z-index: 1000; float:right; margin-right: 25px;" id="{{serialNo}}_N/A_{{itemId}}_{{groupId}}">
+                N/A
+              </button>
+              {{/if}}
+              </li>
+            {{/each}}
+          {{/each}}
+        </div>
+      {{/each}}
+      {{else}}
+      <div class="row">
+        <div class="col">
+          Loading...
+        </div>
+      </div>
+      {{/if}}
+      {{/ionContent}}
+  {{/ionView}}
+  </template>

@@ -1,0 +1,15 @@
+<template name="customerSearch">
+  {{#ionModal focusFirstInput=true title="Search Customer"}}
+    <div class="list">
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          {{> ionIcon icon="ios-search" class="placeholder-icon"}}
+          <input type="text" placeholder="Search Customer" value="{{searchCustomerQuery}}">
+        </label>
+      </div>
+      {{#each customers}}
+        {{> _customerItem customer=this path="customers.show"}}
+      {{/each}}
+    </div>
+  {{/ionModal}}
+</template>		

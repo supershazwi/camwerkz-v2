@@ -1,0 +1,15 @@
+<template name="inventorySearch">
+  {{#ionModal focusFirstInput=true title="Search Inventory"}}
+    <div class="list">
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          {{> ionIcon icon="ios-search" class="placeholder-icon"}}
+          <input type="text" placeholder="Search Inventory" value="{{searchInventoryQuery}}">
+        </label>
+      </div>
+      {{#each inventory}}
+        {{> _inventoryItem inventoryItem=this path="inventoryItem.show"}}
+      {{/each}}
+    </div>
+  {{/ionModal}}
+</template>		

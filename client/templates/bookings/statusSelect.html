@@ -1,0 +1,68 @@
+<template name="statusSelect">
+  {{#ionModal title="Select Status"}}
+    <form>
+      <div class="content overflow-scroll">
+        <div class="row" style="height: 33%;">
+          <div class="col" style="height: 100%;">
+            <div style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;">
+                <div id="N/A" class="status" style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background: #374140; border: 5px solid #374140;">
+                  <div style=" #position: relative; #top: -50%">
+                    <h1 style="color: white; margin-bottom: 0px;" id="N/A">N/A</h1>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="col" style="height: 100%;">
+            <div style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;">
+                <div id="Packed" class="status" style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background: #468966; border: 5px solid #468966;">
+                  <div style=" #position: relative; #top: -50%">
+                    <h1 style="color: white; margin-bottom: 0px;" id="Packed">PACKED</h1>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="height: 33%;">
+          <div class="col" style="height: 100%;">
+            <div style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;">
+                <div id="Out" class="status" style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background: #B64926; border: 5px solid #B64926;">
+                  <div style=" #position: relative; #top: -50%">
+                    <h1 style="color: white; margin-bottom: 0px;" id="Out">OUT</h1>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="col" style="height: 100%;">
+            <div style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;">
+                <div id="In" class="status" style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background: #468966; border: 5px solid #468966;">
+                  <div style=" #position: relative; #top: -50%">
+                    <h1 style="color: white; margin-bottom: 0px;" id="In">IN</h1>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="height: 33%;">
+          <div class="col" style="height: 100%;">
+            <div style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;">
+                <div id="Missing" class="status" style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background: #EA2E49; border: 5px solid #EA2E49;">
+                  <div style=" #position: relative; #top: -50%">
+                    <h1 style="color: white; margin-bottom: 0px;" id="Missing">MISSING</h1>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="col" style="height: 100%;">
+            <div style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;">
+                <div id="Damaged" class="status" style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background: #8A0917; border: 5px solid #8A0917;">
+                  <div style=" #position: relative; #top: -50%">
+                    <h1 style="color: white; margin-bottom: 0px;" id="Damaged">DAMAGED</h1>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  {{/ionModal}}
+</template>

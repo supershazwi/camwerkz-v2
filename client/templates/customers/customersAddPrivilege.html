@@ -1,0 +1,47 @@
+<template name="customersAddPrivilege">
+
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button-positive" text=false}}
+  {{/contentFor}}
+  
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Add Customer Privilege</h1>
+  {{/contentFor}}
+  
+  {{#ionView}}
+    {{#ionContent}}
+      {{#ionList}}
+        <label class="item item-input item-stacked-label" style="padding-right: 15px;" id="packageName">
+          <span class="input-label {{nameStatus}}">Name {{#if packageNameDuplicate}}- Please enter a unique package name.{{/if}}</span>
+          <input type="text" class="form-control" id="privilegeSearch" style="color: #666;">
+        </label>
+        <label class="item item-input newPrivilege">
+          <span class="input-label">Discount Type</span>
+          <select class="ion-input-select" id="discountOptions">
+            <option value="selectBrand">Select Discount Type</option>
+              <option value="cash">Cash</option>
+              <option value="percentage">Percentage</option>
+          </select>
+        </label>
+        <label class="item item-input item-stacked-label newPrivilege">
+          <span class="input-label">Discount Value</span>
+          <input type="text" class="form-control" id="discountValue" placeholder="Discount Value" style="color: #666;">
+        </label>
+        <label class="item item-input item-stacked-label newPrivilege">
+          <span class="input-label" style="padding-bottom: 0px; width: 100%;">Details</span>
+          <textarea rows="4" placeholder="Package Details" id="details" style="color: #666;"></textarea>
+        </label>
+        <label class="item item-input item-stacked-label" id="showNotice">
+          <span class="input-label">Notice</span>
+          <input type="text" value="Don't attempt to add new privileges that do not currently exist. This customer will only be added to existing privileges that you've selected." style="color: red; background: white;" disabled>
+        </label>
+
+        <div class="button-bar">
+          <button class="button button-full button-stable button-large" style="margin-top: 1px;" id="addPrivilege" type="submit" {{isDisabled}}>
+          Add New Privilege
+        </button>
+        </div>
+      {{/ionList}}
+    {{/ionContent}}
+  {{/ionView}}
+</template>

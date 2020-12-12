@@ -1,0 +1,48 @@
+<template name="privileges">
+
+  {{#contentFor "headerButtonLeft"}}
+    <button class="button button-clear pull-left button-positive" data-ion-modal="privilegeSearch">
+      {{> ionIcon icon='ios-search'}}
+    </button>
+  {{/contentFor}}
+
+  {{#contentFor "headerButtonRight"}}
+    <a href="/privileges/create" class="button button-clear pull-right button-positive">
+      {{> ionIcon icon='ios-plus-empty'}}
+    </a>
+  {{/contentFor}}
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Privilege List</h1>
+  {{/contentFor}}
+
+  {{#ionView}}
+    {{#ionContent class="fixed"}}
+      <div class="row" style="position: fixed; z-index: 1000; background-color: white; border-bottom: 1px solid #ddd;">
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-clear button-dark">
+            Sort By
+          </button>
+        </div>
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-outline button-dark" id="sortName">
+            Name
+          </button>
+        </div>
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+        </div>
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+        </div>
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+        </div>
+      </div>
+      <hr />
+      {{#ionList class="fixed-list"}}
+        {{#each privileges}}
+          {{> _privilegeItem privilege=this path="privileges.show"}}
+        {{/each}}
+      {{/ionList}}
+    {{/ionContent}}
+  {{/ionView}}
+
+</template>

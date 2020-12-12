@@ -1,0 +1,78 @@
+<template name="privilegesShow">
+
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button-positive" text=false}}
+  {{/contentFor}}
+  
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Privilege Detail</h1>
+  {{/contentFor}}
+  
+  {{#contentFor "headerButtonRight"}}
+    <button class="button button-positive button-clear" data-ion-modal="privilegeLog">See Privilege Log</button>
+  {{/contentFor}}
+  
+  {{#ionView}}
+    {{#ionContent}}
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="item item-text-wrap" style="text-align:center;">
+              {{#with privilege}}
+              <h2>{{name}}</h2>
+              <p>-</p>
+              <p>Discount Value: {{discountValue}}% off</p>
+              <p>Details: {{details}}</p>
+              {{/with}}
+              <br/>
+              <div class="button-bar">
+                <a href="/privileges/{{privilegeId}}/edit" id="editPrivilege" class="button">Edit Privilege</a>
+                <a href="#" id="removePrivilege" class="button" data-action="showDeleteConfirm">Remove Privilege</a>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>  
+      <div class="row" style="padding: 0px 5px 0px 5px;">
+        <div class="col">
+          <h3 style="text-align: center;">Scope</h3>
+        </div>
+      </div>
+      <div class="row" style="padding: 0px 21px 21px 21px;">
+        <div class="col" style="border: 2px solid #3498DB; padding-top: 28px; padding-bottom: 15px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">
+          <div class="row" style="padding: 0px 5px 0px 5px;">
+            <div class="col">
+              <div class="row" style="padding: 0px 5px 0px 5px; margin-top: -22px;">
+                <div class="col" style="padding-bottom: 0px;">
+                  <a href="/privileges/{{privilegeId}}/editCustomers" class="button button-block button-stable" id="addByIndividual" style="background-color: #3498DB; border-color: #2980B9; color: #ECF0F1;">
+                    Edit Customers
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <ul class="list" style="margin: -10px 10px 0px 10px;">
+                {{#if customersExist}}
+                  <li>
+                    <p style="color: #666; float: right;" class="removeAllCustomers" id="removeAllCustomers" data-action="removeAllCustomers">Remove All</p>
+                  </li>
+                  {{#each customer}} 
+                  <li class="item">
+                     <strong>{{name}}</strong> {{company}}
+                     <p style="color: #666; float: right;" class="removeCustomer" id="{{_id}}">Remove</p>
+                  </li>
+                  {{/each}}
+                {{else}}
+                  <h3 style="color: #666; text-align: center; margin-top: 10px;">There are currently no customers.</h3>
+                {{/if}}
+              </ul>
+            </div>
+          </div> 
+        </div>
+      </div> 
+    {{/ionContent}}
+  {{/ionView}}
+</template>

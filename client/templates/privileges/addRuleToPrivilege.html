@@ -1,0 +1,59 @@
+<template name="addRuleToPrivilege">
+  {{#ionModal customTemplate=true}}
+   <div class="bar bar-header bar-stable">
+        <h2 class="title">Edit Rule</h2>
+        <button data-dismiss="modal" class="button button-positive button-clear" id="submit">Submit</button>
+      </div>
+      <div class="content overflow-scroll">
+        <div class="list" style="height: 100%;">
+          {{#each categories}}
+          <div class="row categories" style="height: 33.3%; padding-top: 0px;">
+            {{#each this}} 
+            <div class="col" style="height: 100%;">
+              <div style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;">
+                  <div style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background: #272a32; border: 5px solid #272a32;" class="category" id="{{this}}">
+                    <div style=" #position: relative; #top: -50%">
+                      <h1 style="color: white; margin-bottom: 0px;" id="{{this}}">{{this}}</h1>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+          {{/each}}
+          
+          {{#each brands}}
+          <div class="row brands" id="brands" style="height: 33.3%; margin-top: 1px;">
+            {{#each this}} 
+            <div class="col" style="height: 100%;">
+              <div style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;">
+                  <div style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background: #272a32; border: 5px solid #272a32;" class="brand" id="{{this}}">
+                    <div style=" #position: relative; #top: -50%">
+                      <h1 style="color: white; margin-bottom: 0px;" id="{{this}}">{{this}}</h1>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+          {{/each}}          
+          <div class="equipments" style="display: none; padding-top: 0px; margin-top: -6px;">
+            <div class="list" style="padding: 0px;">
+              {{#each equipments}}
+              <li class="item item-checkbox" id="{{_id}}">
+                 <label class="checkbox">
+                   {{#if checkboxChecked}}
+                    <input type="checkbox" checked>
+                   {{else}}
+                    <input type="checkbox">
+                   {{/if}}
+                 </label>
+                 <strong>{{brand}}</strong> {{item}}
+              </li>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      </div>
+  {{/ionModal}}
+</template>   

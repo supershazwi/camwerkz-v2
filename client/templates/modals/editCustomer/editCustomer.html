@@ -1,0 +1,39 @@
+<template name="editCustomer">
+  {{#ionModal title="Personal Information"}}
+    {{#with customer}}
+    <form>
+      <div class="content overflow-scroll">
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label {{nameStatus}}" style="padding-bottom: 0px; width: 100%;">Name {{#if nameDuplicate}}- Please enter a unique name.{{/if}}</span>
+          <input type="text" class="form-control" id="name" placeholder="e.g John Smith" value="{{name}}" style="color: #666;">
+          <input type="hidden" class="form-control" id="name2" placeholder="e.g John Smith" value="{{name}}" style="color: #666;">
+        </div>
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label" style="padding-bottom: 0px;">Company</span>
+          <input type="text" class="form-control" id="company" placeholder="e.g VideoEzy Pte. Ltd." value="{{company}}" style="color: #666;">
+        </div>
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label {{emailStatus}}" style="padding-bottom: 0px; width: 100%;">Email {{#if emailDuplicate}}- Please enter a unique email.{{/if}}</span>
+          <input type="email" class="form-control" id="email" placeholder="e.g john@videoezy.com" value="{{email}}" style="color: #666;">
+        </div>
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label" style="padding-bottom: 0px;">Contact</span>
+          <input type="text" class="form-control" id="contact" placeholder="Contact Number" value="{{contact}}" style="color: #666;">
+          <input type="hidden" class="form-control" id="id" value="{{_id}}" style="color: #666;">
+          <input type="hidden" class="form-control" id="quickbooksId" value="{{quickbooksId}}" style="color: #666;">
+        </div>
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label" style="padding-bottom: 0px;">Last edited by</span>
+          <p style="color: #666; padding: 4px 0px 4px 0px;">{{updatedBy}}<br/>{{updatedAt}}</p> 
+        </div>
+        <button class="button button-full button-balanced" style="margin-top: 0px;" type="submit" {{isDisabled}}>
+          Update Customer
+        </button>
+        <button class="button button-full button-clear button-assertive" id="deleteCustomer" style="margin-top: 0px;" data-action="showDeleteConfirm">
+          Delete Customer
+        </button>
+      </div>
+    </form>
+    {{/with}}
+  {{/ionModal}}
+</template>

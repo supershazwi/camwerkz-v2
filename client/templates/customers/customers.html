@@ -1,0 +1,207 @@
+<template name="customers">
+
+
+  <!-- {{#contentFor "headerButtonRight"}}
+    <button class="button button-clear pull-right button-positive" id="hello" data-ion-modal="newCustomer">
+      {{> ionIcon icon='ios-plus-empty'}}
+    </button>
+  {{/contentFor}} -->
+
+
+<button class="button button-clear pull-right button-positive" style="float:left; z-index: 5000; color: #2B3A42;">
+    Logged in as: {{username}}
+  </button>
+
+
+  <a href="/customers/create" class="button button-clear pull-right button-positive" style="float:right; z-index: 5000;">
+      Add Customer
+    </a>
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Customer List</h1>
+  {{/contentFor}}
+
+  {{#ionView}}
+    {{#ionContent class="fixed"}}
+      <div class="row" style="position: fixed; z-index: 1000; background-color: white; border-bottom: 1px solid #ddd;">
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-clear button-dark">
+            Search By
+          </button>
+        </div>
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          {{#if nameClicked}}
+          <button class="button button-block button-outline button-dark dark-invert" id="name">
+            Name
+          </button>
+          {{else}}
+          <button class="button button-block button-outline button-dark" id="name">
+            Name
+          </button>
+          {{/if}}
+        </div>
+        {{#if companyClicked}}
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-outline button-dark dark-invert" id="company">
+            Company
+          </button>
+        </div>
+        {{else}}
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-outline button-dark" id="company">
+            Company
+          </button>
+        </div>
+        {{/if}}
+        {{#if numberClicked}}
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-outline button-dark dark-invert" id="number">
+            Number
+          </button>
+        </div>
+        {{else}}
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-outline button-dark" id="number">
+            Number
+          </button>
+        </div>
+        {{/if}}
+        {{#if addressClicked}}
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-outline button-dark dark-invert" id="address">
+            Address
+          </button>
+        </div>
+        {{else}}
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-outline button-dark" id="address">
+            Address
+          </button>
+        </div>
+        {{/if}}
+        {{#if emailClicked}}
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-outline button-dark dark-invert" id="email">
+            Email
+          </button>
+        </div>
+        {{else}}
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-outline button-dark" id="email">
+            Email
+          </button>
+        </div>
+        {{/if}}
+      </div>
+      <div class="row" style="padding: 5px 0px 5px 0px; margin-top: 83px;">
+        <div class="col" style="padding: 0px;">
+          {{#if nameClicked}}
+            <div class="item item-input-inset">
+              <label class="item-input-wrapper">
+                {{> ionIcon icon="ios-search" class="placeholder-icon"}}
+                <input type="text" placeholder="Search by name" id="customerQuery" value="{{searchCustomerQuery}}" style="width: 100%;">
+              </label>
+            </div>
+          {{/if}}
+          {{#if companyClicked}}
+            <div class="item item-input-inset">
+              <label class="item-input-wrapper">
+                {{> ionIcon icon="ios-search" class="placeholder-icon"}}
+                <input type="text" placeholder="Search by company" id="customerCompanyQuery" value="{{searchCustomerCompanyQuery}}" style="width: 100%;">
+              </label>
+            </div>
+          {{/if}}
+          {{#if numberClicked}}
+            <div class="item item-input-inset">
+              <label class="item-input-wrapper">
+                {{> ionIcon icon="ios-search" class="placeholder-icon"}}
+                <input type="text" placeholder="Search by number" id="customerNumberQuery" value="{{searchCustomerNumberQuery}}" style="width: 100%;">
+              </label>
+            </div>
+          {{/if}}
+          {{#if addressClicked}}
+            <div class="item item-input-inset">
+              <label class="item-input-wrapper">
+                {{> ionIcon icon="ios-search" class="placeholder-icon"}}
+                <input type="text" placeholder="Search by address" id="customerAddressQuery" value="{{searchCustomerAddressQuery}}" style="width: 100%;">
+              </label>
+            </div>
+          {{/if}}
+          {{#if emailClicked}}
+            <div class="item item-input-inset">
+              <label class="item-input-wrapper">
+                {{> ionIcon icon="ios-search" class="placeholder-icon"}}
+                <input type="text" placeholder="Search by email" id="customerEmailQuery" value="{{searchCustomerEmailQuery}}" style="width: 100%;">
+              </label>
+            </div>
+          {{/if}}
+        {{#ionList}}
+        {{#each customers}}
+          {{> _customerItem customer=this path="customers.show"}}
+        {{/each}}
+        {{#if noInput}}
+        <div class="item loadMore item-avatar">
+      
+            <a class="load-more button button-clear button-positive" href="#">Type in search bar to search for customers (Min. 3 chars)</a>
+          
+           </div>
+           {{/if}}
+      {{/ionList}}
+        </div>
+      </div>
+    {{/ionContent}}
+  {{/ionView}}
+  <!-- 
+  {{#ionView}}
+    {{#ionContent class="fixed"}}
+      <div class="row" style="position: fixed; z-index: 1000; background-color: white; border-bottom: 1px solid #ddd;">
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-clear button-dark">
+            Sort By
+          </button>
+        </div>
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-outline button-dark" id="sortName">
+            Name
+          </button>
+        </div>
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-outline button-dark" id="sortCompany">
+            Company
+          </button>
+        </div>
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-outline button-dark" id="totalValue">
+            Value
+          </button>
+        </div>
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-outline button-dark" id="balance">
+            Balance
+          </button>
+        </div>
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-outline button-dark" id="noOfBookings">
+            Bookings
+          </button>
+        </div>
+      </div>
+      <hr />
+      {{#ionList class="fixed-list"}}
+        {{#each customers}}
+          {{> _customerItem customer=this path="customers.show"}}
+        {{/each}}
+        {{#if nextPath}}
+          {{#ionItem avatar=true class="loadMore"}}
+            <a class="load-more button button-clear button-positive" href="{{nextPath}}" onClick="IonNavigation.skipTransitions = true; return true;">Load more</a>
+          {{/ionItem}}
+          {{else}}
+          {{#unless ready}}
+            {{> spinner}}
+          {{/unless}}
+        {{/if}}
+      {{/ionList}}
+    {{/ionContent}}
+  {{/ionView}} -->
+
+</template>

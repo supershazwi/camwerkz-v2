@@ -1,0 +1,31 @@
+<template name="newPackage">
+  {{#ionModal title="Add New Package"}}
+    <form>
+      <div class="content overflow-scroll">
+      	<div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label {{packageStatus}}" style="padding-bottom: 0px; width: 100%;">Name {{#if packageDuplicate}}- Please enter a unique package.{{/if}}</span>
+          <input type="text" class="form-control" id="item" placeholder="e.g Canon 5D Mk III" style="color: #666;">
+      	</div>
+      	<div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label" style="padding-bottom: 0px;">Category</span>
+          <input type="text" class="form-control" id="category" placeholder="e.g Camera" style="color: #666;">
+      	</div>
+      	<div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label {{serialNoStatus}}" style="padding-bottom: 0px; width: 100%;">Serial Number {{#if serialNoDuplicate}}- Please enter a unique serial number.{{/if}}</span>
+          <input type="text" class="form-control" id="serialNo" placeholder="e.g 11231286" style="color: #666;">
+      	</div>
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label" style="padding-bottom: 0px; width: 100%;">Rate ($/Day)</span>
+          <input type="text" class="form-control" id="rate" placeholder="e.g 50" style="color: #666;">
+        </div>
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label" style="padding-bottom: 0px; width: 100%;">Quantity</span>
+          <input type="text" class="form-control" id="quantity" placeholder="e.g 10" style="color: #666;">
+        </div>
+        <button class="button button-full button-balanced" style="margin-top: 0px;" type="submit">
+          Add New Item
+        </button>
+      </div>
+    </form>
+  {{/ionModal}}
+</template>

@@ -1,0 +1,19 @@
+<template name="_otherItem">
+  {{#with other}}
+    {{#ionItem path=../path}}
+      <h2>Invoice: {{_id}}</h2>
+      <p>
+        <strong>{{customerName}}</strong> {{customerCompany}}
+      </p>
+      <p>
+        {{noOfItems}} item(s)
+      </p>
+      <p>
+        {{total}}
+      </p>
+      <p>
+        {{createdAt}}
+      </p>
+    {{/ionItem}}
+  {{/with}}
+</template>

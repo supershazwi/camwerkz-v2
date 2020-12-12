@@ -1,0 +1,105 @@
+<template name="home">
+
+ <!--  <button class="button button-clear pull-right button-positive" style="float:left; z-index: 5000; color: #2B3A42;">
+	  Logged in as: {{username}}
+	</button>  -->
+
+	
+
+{{#contentFor "headerButtonLeft"}}
+   {{> loginButtons}}
+  {{/contentFor}}
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Home</h1>
+  {{/contentFor}}
+
+  <button class="button button-clear pull-right button-positive" id="logout" style="float:right; z-index: 5000;">
+ Logout
+</button>
+  
+  {{#ionView}}
+    {{#ionContent}}
+    <div class="row" style="height: 33.3%;">
+		<div class="col" style="height: 100%;">
+			<div id="notifications" style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;">
+			    <div style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background: #2E0927; border: 5px solid #2E0927;">
+			      <div style=" #position: relative; #top: -50%">
+			        <h1 style="color: white; margin-bottom: 0px;">NOTIFICATIONS</h1>
+			      </div>
+			    </div>
+			</div>
+		</div>
+		<div class="col" style="height: 100%;">
+			<div id="others" style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;">
+			    <div style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background: #B64926; border: 5px solid #B64926;">
+			      <div style=" #position: relative; #top: -50%">
+			        <h1 style="color: white; margin-bottom: 0px;">OTHERS</h1>
+			      </div>
+			    </div>
+			</div>
+		</div>
+	</div>
+    <div class="row" style="height: 33.3%;">
+		<div class="col" style="height: 100%;">
+			<div id="quotations" style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;">
+			    <div style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background: #2980B9; border: 5px solid #2980B9;">
+			      <div style=" #position: relative; #top: -50%">
+			        <h1 style="color: white; margin-bottom: 0px;">QUOTATIONS</h1>
+			      </div>
+			    </div>
+			</div>
+		</div>
+		<div class="col" style="height: 100%;">
+			<div id="bookings" style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;">
+			    <div style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background: #E74C3C; border: 5px solid #E74C3C;">
+			      <div style=" #position: relative; #top: -50%">
+			        <h1 style="color: white; margin-bottom: 0px;">BOOKINGS</h1>
+			      </div>
+			    </div>
+			</div>
+		</div>
+	</div>
+	<div class="row" style="height: 33.3%;">
+		<div class="col" style="height: 100%;">
+			<div id="customers" style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;">
+			    <div style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background: #468966; border: 5px solid #468966;">
+			      <div style=" #position: relative; #top: -50%">
+			        <h1 style="color: white; margin-bottom: 0px;">CUSTOMERS</h1>
+			      </div>
+			    </div>
+			</div>
+		</div>
+		<div class="col" style="height: 100%;">
+			<div id="inventory" style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;">
+			    <div style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background:#FFB03B; border: 5px solid #FFB03B;">
+			      <div style=" #position: relative; #top: -50%">
+			        <h1 style="color: white; margin-bottom: 0px;">INVENTORY</h1>
+			      </div>
+			    </div>
+			</div>
+		</div>
+	</div>
+	<div class="row" style="height: 33.3%;">
+		<div class="col" style="height: 100%;">
+			<div id="privileges" style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;">
+			    <div style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background: #2B3A42; border: 5px solid #2B3A42;">
+			      <div style=" #position: relative; #top: -50%">
+			        <h1 style="color: white; margin-bottom: 0px;">PRIVILEGES</h1>
+			      </div>
+			    </div>
+			</div>
+		</div>
+		<div class="col" style="height: 100%;">
+			<div id="logs" style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;">
+			    <div style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background: #00A388; border: 5px solid #00A388;">
+			      <div style=" #position: relative; #top: -50%">
+			        <h1 style="color: white; margin-bottom: 0px;">LOGS</h1>
+			      </div>
+			    </div>
+			</div>
+		</div>
+	</div>
+    {{/ionContent}}
+  {{/ionView}}
+</template>

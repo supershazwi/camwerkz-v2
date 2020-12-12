@@ -1,0 +1,22 @@
+<template name="bookingsViewSignature">
+{{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button-positive" text=false}}
+  {{/contentFor}}
+  
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">VIEW SIGNATURE</h1>
+  {{/contentFor}}
+  
+  {{#ionView}}
+    {{#ionContent}}
+        <label class="item item-input">
+          <span class="input-label">Signed By {{signedBy}} at {{signedAt}}</span>
+        </label>
+        <div id="signature-pad" class="m-signature-pad">
+          <div class="m-signature-pad--body">
+            <canvas style="width: 600; height: 600;"></canvas>
+          </div>
+        </div>
+    {{/ionContent}}
+  {{/ionView}}
+</template>   

@@ -1,0 +1,176 @@
+<template name="notifications">
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Notifications List</h1>
+  {{/contentFor}}
+  {{#ionView}}
+    {{#ionContent}}
+      <div class="row">
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <div class="list">
+            <div class="item item-divider" style="background-color: #E74C3C; color: white; border-color: #E74C3C; text-align: center; text-overflow: ellipsis;overflow: hidden;white-space: normal;">
+              Clashed Bookings
+              <p style="color: white; text-overflow: ellipsis;overflow: hidden;white-space: normal;">(Bookings with items that have rental issues)</p>
+            </div>
+            {{#if clashedBookingsTemplateClicked}}
+              {{> clashedBookingsTemplate}}
+            {{else}}
+              <li class="item clash-item">
+              Click to Load
+              </li>
+            {{/if}}
+          </div>
+          <div class="list">
+            <div class="item item-divider" style="background-color: #7e0b80; color: white; border-color: #7e0b80; text-align: center; text-overflow: ellipsis;overflow: hidden;white-space: normal;">
+              Outstanding Unacknowledged Bookings
+              <p style="color: white; text-overflow: ellipsis;overflow: hidden;white-space: normal;">(Bookings that have not been signed)</p>
+            </div>
+            {{#if unacknowledgedBookingsTemplateClicked}}
+              {{> unacknowledgedBookingsTemplate}}
+            {{else}}
+              <li class="item unacknowledge-item">
+              Click to Load
+              </li>
+            {{/if}}
+          </div>
+          
+
+
+         
+          
+          
+        </div>
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <div class="list">
+            <div class="item item-divider" style="background-color: #2980B9; color: white; border-color: #2980B9; text-align: center; text-overflow: ellipsis;overflow: hidden;white-space: normal;">
+              Bookings to Return
+              <p style="color: white; text-overflow: ellipsis;overflow: hidden;white-space: normal;">(Bookings that have to be returned TODAY and not labelled IN yet)</p>
+            </div>
+            {{#if returnBookingsTemplateClicked}}
+              {{> returnBookingsTemplate}}
+            {{else}}
+              <li class="item return-item">
+              Click to Load
+              </li>
+            {{/if}}
+          </div>
+          <div class="list">
+            <div class="item item-divider" style="background-color: #2980B9; color: white; border-color: #2980B9; text-align: center; text-overflow: ellipsis;overflow: hidden;white-space: normal;">
+              Overdue Bookings
+              <p style="color: white; text-overflow: ellipsis;overflow: hidden;white-space: normal;">(Past bookings (plus 2 days after last usage date) that have items that are not labelled IN)</p>
+            </div>
+            {{#if overdueBookingsTemplateClicked}}
+              {{> overdueBookingsTemplate}}
+            {{else}}
+              <li class="item overdue-item">
+              Click to Load
+              </li>
+            {{/if}}
+            <!-- {{#if overdueBookings}}
+            {{#each overdueBookings}}
+            <li class="item invoice" id="{{_id}}">
+               <h2 style="white-space: normal;">Invoice Id: {{quickbooksInvoiceId}}</h2>
+                <h2 style="white-space: normal;">Customer: {{customerName}}</h2>
+                {{#each displayDates}}
+                  <div>
+                    <br/>Group {{groupId}}
+                    {{#each dateArray}}
+                      <p>{{printedDates}}</p>
+                    {{/each}}
+                  </div>
+                  {{/each}}
+            </li>
+            {{/each}}
+            {{else}}
+            <li class="item" id="{{_id}}" style="text-align: center;">
+                <h2 style="white-space: normal; color: #2980B9; font-size: 40px; line-height: 40px;">{{> ionIcon icon='checkmark-circled'}}</h2>
+            </li>
+            {{/if}} -->
+          </div>
+         
+          <div class="list">
+            <div class="item item-divider" style="background-color: #374140; color: white; border-color: #374140; text-align: center; text-overflow: ellipsis;overflow: hidden;white-space: normal;">
+              Bookings w Unrecorded Payments
+              <p style="color: white; text-overflow: ellipsis;overflow: hidden;white-space: normal;">(Past bookings that do not have recorded payments)</p>
+            </div>
+            {{#if unpaidBookingsTemplateClicked}}
+              {{> unpaidBookingsTemplate}}
+            {{else}}
+              <li class="item unpaid-item">
+              Click to Load
+              </li>
+            {{/if}}
+          </div>
+          
+        </div>
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <div class="list">
+            <div class="item item-divider" style="background-color: #374140; color: white; border-color: #374140; text-align: center; text-overflow: ellipsis;overflow: hidden;white-space: normal;">
+              Bookings To Pack
+              <p style="color: white; text-overflow: ellipsis;overflow: hidden;white-space: normal;">(Bookings TODAY that have items that are not labelled PACKED or OUT)</p>
+            </div>
+            {{#if packBookingsTemplateClicked}}
+              {{> packBookingsTemplate}}
+            {{else}}
+              <li class="item pack-item">
+              Click to Load
+              </li>
+            {{/if}}
+          </div>
+          <div class="list">
+            <div class="item item-divider" style="background-color: #468966; color: white; border-color: #468966; text-align: center; text-overflow: ellipsis;overflow: hidden;white-space: normal;">
+              Ready for Collection
+              <p style="color: white; text-overflow: ellipsis;overflow: hidden;white-space: normal;">(Bookings TODAY that have been packed & not yet labelled OUT)</p>
+            </div>
+            {{#if readyBookingsTemplateClicked}}
+              {{> readyBookingsTemplate}}
+            {{else}}
+              <li class="item ready-item">
+              Click to Load
+              </li>
+            {{/if}}
+          </div>
+          <div class="list">
+            <div class="item item-divider" style="background-color: #374140; color: white; border-color: #374140; text-align: center; text-overflow: ellipsis;overflow: hidden;white-space: normal;">
+              Uncollected Bookings
+              <p style="color: white; text-overflow: ellipsis;overflow: hidden;white-space: normal;">(Bookings in the past (yesterday onwards) that have not been collected)</p>
+            </div>
+            {{#if uncollectedBookingsTemplateClicked}}
+              {{> uncollectedBookingsTemplate}}
+            {{else}}
+              <li class="item uncollect-item">
+              Click to Load
+              </li>
+            {{/if}}
+          </div>
+
+          <div class="list">
+            <div class="item item-divider" style="background-color: #FF530D; color: white; border-color: #FF530D; text-align: center; text-overflow: ellipsis;overflow: hidden;white-space: normal;">
+              Unresolved Bookings
+              <p style="color: white; text-overflow: ellipsis;overflow: hidden;white-space: normal;">(Bookings that have remarks not resolved)</p>
+            </div>
+            {{#if unresolvedBookingsTemplateClicked}}
+              {{> unresolvedBookingsTemplate}}
+            {{else}}
+              <li class="item unresolve-item">
+              Click to Load
+              </li>
+            {{/if}}
+          </div>
+        
+        </div>
+      </div>
+      <!-- <div class="list">
+      {{#each notifications}}
+        <a class="item item-icon-right" href="http://localhost:3000/{{path}}">
+          {{> ionIcon icon="ios-arrow-forward" class="positive"}} 
+          {{subject}}
+          <br />
+          <button class="button button-small button-assertive" style="margin-top: 10px;">
+            Customers
+          </button>
+        </a>
+      {{/each}}
+      </div> -->
+    {{/ionContent}}
+  {{/ionView}}
+</template>

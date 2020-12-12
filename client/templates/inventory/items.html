@@ -1,0 +1,33 @@
+<template name="items">
+
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button-positive" text=false}}
+  {{/contentFor}}
+
+  <!-- {{#contentFor "headerButtonRight"}}
+    <button class="button button-clear pull-right button-positive" data-ion-modal="newInventory">
+      {{> ionIcon icon='ios-plus-empty'}}
+    </button>
+  {{/contentFor}} -->
+
+  {{#contentFor "headerButtonRight"}}
+    <a href="/inventory/create" class="button button-clear pull-right button-positive">
+      {{> ionIcon icon='ios-plus-empty'}}
+    </a>
+  {{/contentFor}}
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">{{brand}} {{category}} List</h1>
+  {{/contentFor}}
+
+  {{#ionView}}
+    {{#ionContent}}
+        {{#ionList}}
+        {{#each items}}
+          {{> _inventoryItem inventoryItem=this path="inventoryItem.show"}}
+        {{/each}}
+      {{/ionList}}
+    {{/ionContent}}
+  {{/ionView}}
+
+</template>

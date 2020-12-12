@@ -1,0 +1,42 @@
+<template name="packages">
+
+  {{#contentFor "headerButtonLeft"}}
+    <button class="button button-clear pull-left button-positive" data-ion-modal="packageSearch">
+      {{> ionIcon icon='ios-search'}}
+    </button>
+  {{/contentFor}}
+
+  {{#contentFor "headerButtonRight"}}
+    <button class="button button-clear pull-right button-positive" data-ion-modal="newPackage">
+      {{> ionIcon icon='ios-plus-empty'}}
+    </button>
+  {{/contentFor}}
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Packages List</h1>
+  {{/contentFor}}
+
+  {{#ionView}}
+    {{#ionContent}}
+      <div class="row">
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-outline" id="items">
+            Items
+          </button>
+        </div>
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-positive" id="packages">
+            Packages
+          </button>
+        </div>
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-outline" id="repairs">
+            Under Repair
+          </button>
+        </div>
+      </div>
+      <hr />
+    {{/ionContent}}
+  {{/ionView}}
+
+</template>

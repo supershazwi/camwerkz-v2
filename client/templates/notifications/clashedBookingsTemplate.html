@@ -1,0 +1,59 @@
+<template name="clashedBookingsTemplate">
+
+  {{#if Template.subscriptionsReady}}
+    <!-- This is displayed when all data is ready. -->
+    <li class="item item-toggle">
+         Show Hidden
+         <label class="toggle toggle-assertive">
+            {{#if clashHidden}}
+           <input type="checkbox" id="toggleHidden" checked>
+           {{else}}
+           <input type="checkbox" id="toggleHidden">
+           {{/if}}
+           <div class="track">
+             <div class="handle"></div>
+           </div>
+         </label>
+      </li>
+    {{#if clashedBookingsExist}}
+      {{#each clashedBookings}}
+      <li class="item invoice" id="{{invoiceId}}" style="background-color: {{redTransparent}};">
+         <h2 style="white-space: normal;">Invoice Id: {{quickbooksInvoiceId}}
+
+         </h2>
+          {{#with bookingCustomer}}
+          <h2 style="white-space: normal;">{{name}} {{company}}</h2>
+          {{/with}}
+          {{#each displayDates}}
+          <div>
+            <br/>Group {{clashedGroupId}}
+            {{#each dateArray}}
+              <p>{{clashedPrintedDates}}</p>
+            {{/each}}
+          </div>
+          {{/each}}
+          {{#if hidden}}
+          <button class="button button-clear button-block button-stable showClash" id="{{_id}}" style="z-index: 5000; line-height: 16px; font-size: 16px;min-height: 0px; margin: 10px 0px 0px 0px; padding: 0px; {{redTransparent}}">
+            Show
+          </button>
+          <!-- <span style="float: right; color: #666;z-index: 5000;" class="showClash" id="{{_id}}">Show</span> -->
+          {{else}}
+          <button class="button button-clear button-block button-stable hideClash" id="{{_id}}" style="z-index: 5000; line-height: 16px; font-size: 16px;min-height: 0px; margin: 10px 0px 0px 0px; padding: 0px;">
+            Hide
+          </button>
+          <!-- <span style="float: right; color: #666;z-index: 5000;" class="hideClash" id="{{_id}}">Hide</span> -->
+          {{/if}}
+      </li>
+      {{/each}}
+    {{else}}
+      <li class="item" id="{{itemId}}" style="text-align: center;">
+          <h2 style="white-space: normal; color: #E74C3C; font-size: 40px; line-height: 40px;">{{> ionIcon icon='checkmark-circled'}}</h2>
+      </li>
+    {{/if}}
+  {{else}}
+    <li class="item" id="{{_id}}" style="text-align: center;">
+          Loading...
+      </li>
+  {{/if}}
+
+</template>

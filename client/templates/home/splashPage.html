@@ -1,0 +1,47 @@
+<template name="splashPage">
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">LOGIN/SIGN UP</h1>
+  {{/contentFor}}
+  
+  {{#ionView}}
+    {{#ionContent class="splashPage"}}
+    <div class="row" style="height: 33.3%;">
+		<div class="col-33 col-50 col-offset-25" style="height: 100%; text-align: center;">
+			<img src="/images/camwerkzlogo.png" style="margin-top: 150px;"/>
+			<div class="list card">
+			  <div class="item item-body" style="padding: 0px;">
+			    <div class="list">
+				  <label class="item item-input" >
+				    <input type="text" name="username" id="username" placeholder="username (e.g Jason) - ONLY FOR SIGNUP">
+				  </label>
+				  <label class="item item-input" >
+				    <input type="text" name="email" id="email" placeholder="Email (e.g Jason@camwerkz.com)">
+				  </label>
+				  <label class="item item-input" >
+				    <input type="password" name="password" id="password" placeholder="Password">
+				  </label>
+				</div>
+			  </div>
+			  {{#if error}}
+			  <div class="item">
+			  	<p style="color: red;">{{errorMessage}}</p>
+			  </div>
+			  {{/if}}
+			  <div class="item">
+			    <div class="list">
+			    	<div class="button-bar">
+					  <a class="button button-balanced" id="login">Login</a>
+					  <a class="button button-positive" id="signUp">Sign Up</a>
+					</div>
+					<button class="button button-block button-clear button-stable" id="forgetPassword">
+					  Forgot Password
+					</button>
+				</div>
+			  </div>
+			</div>
+		</div>
+	</div>
+    {{/ionContent}}
+  {{/ionView}}
+</template>

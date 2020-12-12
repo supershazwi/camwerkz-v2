@@ -1,0 +1,60 @@
+<template name="editInventoryItem">
+  {{#ionModal title="Item Information"}}
+    {{#with itemInfo}}
+    <form>
+      <div class="content overflow-scroll">
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label {{itemStatus}}" style="padding-bottom: 0px; width: 100%;">Name {{#if itemDuplicate}}- Please enter a unique item.{{/if}}</span>
+          <input type="text" class="form-control" id="item" value="{{item}}" placeholder="e.g 5D Mk III" style="color: #666;">
+        </div>
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label" style="padding-bottom: 0px;">Brand <button id="undoAddBrand" class="button button-clear button-positive" style="display: none; min-height: 0px; line-height: 19px;">Undo</button></span>
+          <select class="ion-input-select" style="margin-top: 10px; margin-bottom: 10px;" id="brandOptions">
+            {{#each brandOptions}}
+              <option value="{{this}}">{{this}}</option>
+            {{/each}}
+              <option value="addBrand">Add New Brand</option>
+          </select>
+          <input type="text" class="form-control" id="newBrand" placeholder="e.g Canon" style="color: #666; display:none;">
+        </div>
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label" style="padding-bottom: 0px;">Category <button id="undoAddCategory" class="button button-clear button-positive" style="display: none; min-height: 0px; line-height: 19px;">Undo</button></span>
+          <select class="ion-input-select" style="margin-top: 10px; margin-bottom: 10px;" id="categoryOptions">
+            {{#each categoryOptions}}
+              <option value="{{this}}">{{this}}</option>
+            {{/each}}
+              <option value="addCategory">Add New Category</option>
+          </select>
+          <input type="text" class="form-control" id="newCategory" placeholder="e.g Cameras" style="color: #666; display:none;">
+        </div>
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label {{serialNoStatus}}" style="padding-bottom: 0px; width: 100%;">Serial Number(s)</span>
+          <input type="text" class="form-control" id="serialNo" placeholder="e.g 11231286" value="{{serialNo}}" style="color: #666;">
+        </div>
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label" style="padding-bottom: 0px; width: 100%;">Quantity</span>
+          <input type="text" class="form-control" id="quantity" value="{{itemQuantity}}" style="color: #666; background-color: white;" disabled>
+        </div>
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label" style="padding-bottom: 0px; width: 100%;">Rate ($/Day)</span>
+          <input type="text" class="form-control" id="rate" value="{{rate}}" placeholder="e.g 50" style="color: #666;">
+        </div>
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label" style="padding-bottom: 0px; width: 100%;">Price ($)</span>
+          <input type="text" class="form-control" id="price" value="{{price}}" placeholder="e.g 50" style="color: #666;">
+        </div>
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label" style="padding-bottom: 0px; width: 100%;">Supplier</span>
+          <input type="text" class="form-control" id="supplier" value="{{supplier}}" placeholder="e.g 50" style="color: #666;">
+        </div>
+        <button class="button button-full button-balanced" style="margin-top: 0px;" type="submit">
+          Update Item
+        </button>
+        <button class="button button-full button-clear button-assertive" id="deleteInventoryItem" style="margin-top: 0px;" data-action="showDeleteConfirm">
+          Delete Item
+        </button>
+      </div>
+    </form>
+    {{/with}}
+  {{/ionModal}}
+</template>

@@ -1,0 +1,507 @@
+<template name="otherPrintShow">
+
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button-positive" text=false}}
+  {{/contentFor}}
+  
+  <button class="button button-dark button-clear" id="printInvoice" style="float:right; z-index: 5000;">Print Invoice</button>
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title" style="">Print Invoice</h1>
+  {{/contentFor}}
+  
+  
+
+  {{#ionView}}
+    {{#ionContent class="my-class" id="my-id"}}
+    {{#if Template.subscriptionsReady}}
+    <div class="row" style="margin-top: 10px; display: flex; padding: 5px; width: 100%;">
+      <div class="col" style="text-align: center; text-decoration: underline; width: 100%; -webkit-box-flex: 1; flex: 1; display: block; padding: 5px;">
+        <h3 style="margin-bottom: 10px; color: #000; font-weight: 500; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">INVOICE ACKNOWLEDGEMENT</h3>
+      </div>
+    </div>
+     <div class="row" style="display: flex; padding: 5px; width: 100%;">
+       <div class="col-66" style="-webkit-box-flex: 0; flex: 0 0 66.6666%; max-width: 66.6666%; margin: 0; padding: 0; border: 0; vertical-align: baseline; font: inherit; font-size: 100%;">
+         <div class="row" style="display: flex; padding: 5px; width: 100%; margin: 0; border: 0; vertical-align: baseline; font: inherit; font-size: 100%;">
+           <div class="col-50" style="padding: 0px 15px 0px 15px; -webkit-box-flex: 0; flex: 0 0 40%; max-width: 50%; margin: 0; border: 0; vertical-align: baseline; font: inherit; font-size: 100%;">
+             <div class="list" style="padding-left: 1px; padding-right: 1px; position: relative; padding-top: 1px; padding-bottom: 1px; margin: 0; border: 0; vertical-align: baseline; font: inherit; font-size: 100%;">
+             <div class="item item-divider" style="background-color: #374140; color: white; border-color: #374140; padding: 5px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; position: relative; z-index: 2; display: block;  border-width: 1px; border-style: solid; font-size: 16px;">
+                 <span style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Invoice Number</span>
+             </div>
+             <div class="item" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 5px; border: 1px solid #ddd;">
+               <span style="font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">{{quickbooksInvoiceId}}</span>    
+             </div>
+             </div>
+           </div>
+           <div class="col-50" style="padding: 0px 15px 0px 0px; -webkit-box-flex: 0; flex: 0 0 50%; max-width: 50%;">
+             <div class="list" style="padding-left: 1px; padding-right: 1px; position: relative; padding-top: 1px; padding-bottom: 1px; margin: 0; border: 0; vertical-align: baseline; font: inherit; font-size: 100%;">
+             <div class="item item-divider" style="background-color: #374140; color: white; border-color: #374140; padding: 5px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; position: relative; z-index: 2; display: block;  border-width: 1px; border-style: solid; font-size: 16px;">
+                 <span style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Project Name</span>
+             </div>
+             <div class="item" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 5px; border: 1px solid #ddd;">
+               <span style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">{{projectName}}</span>    
+             </div>
+             </div>
+           </div> 
+         </div>
+         <div class="row" style="display: flex; padding: 5px; width: 100%;">
+           <div class="col" style="padding: 0px 15px 0px 15px; -webkit-box-flex: 0;">
+             <div class="list" style="padding-left: 1px; padding-right: 1px; position: relative; padding-top: 1px; padding-bottom: 1px; margin: 0; border: 0; vertical-align: baseline; font: inherit; font-size: 100%;">
+             <div class="item item-divider" style="background-color: #374140; color: white; border-color: #374140; padding: 5px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; position: relative; z-index: 2; display: block;  border-width: 1px; border-style: solid; font-size: 16px;">
+                 <span style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Important Details</span>
+             </div>
+             <div class="item" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0px 5px 0px 0px; border: 1px solid #ddd;">
+               <ul style="margin-left: -25px; margin-top: 10px; margin-bottom: 10px;">
+                 <li style="font-size: 10px;text-overflow: ellipsis; overflow: hidden; white-space: normal; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">• All equipment must be returned between 9.30am - 10.30am on the following day after usage.</li>
+                 <li style="font-size: 10px;text-overflow: ellipsis; overflow: hidden; white-space: normal; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">• Extension of usage is subjected to availability of equipment.</li>
+                 <li style="font-size: 10px;text-overflow: ellipsis; overflow: hidden; white-space: normal; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">• A late return fee of 1/2 day rental shall be chargeable after 10.30am and full day rate shall be chargeable after 12 noon.</li>
+               </ul>
+             </div>
+             </div>
+           </div>
+         </div>
+         <div class="row" style="display: flex; padding: 5px; width: 100%;">
+           <div class="col" style="padding: 0px 15px 0px 15px; -webkit-box-flex: 0; width: 100%;">
+             <div class="list" style="padding-left: 1px; padding-right: 1px; position: relative; padding-top: 1px; padding-bottom: 1px; margin: 0; border: 0; vertical-align: baseline; font: inherit; font-size: 100%;">
+             <div class="item item-divider" style="background-color: #374140; color: white; border-color: #374140; padding: 5px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; position: relative; z-index: 2; display: block;  border-width: 1px; border-style: solid; font-size: 16px;">
+                 <span style="font-size: 10px;font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Other Details</span>
+             </div>
+             <div class="item" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0px 5px 0px 0px; border: 1px solid #ddd;">
+               <ul style="margin-left: -25px; margin-top: 10px; margin-bottom: 10px;">
+                 <li style="font-size: 10px;text-overflow: ellipsis; overflow: hidden; white-space: normal; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Location: </li>
+                 <li style="font-size: 10px;text-overflow: ellipsis; overflow: hidden; white-space: normal; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Blk 115A Commonwealth Drive #05-07/08/09 Singapore 149596</li>
+
+                 <li style="margin-top: 5px; font-size: 10px;text-overflow: ellipsis; overflow: hidden; white-space: normal; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Operating Hours: </li>
+                 <li style="font-size: 10px;text-overflow: ellipsis; overflow: hidden; white-space: normal; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Monday - Friday: 9.30am - 6.30pm</li>
+                 <li style="font-size: 10px;text-overflow: ellipsis; overflow: hidden; white-space: normal; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Saturday &amp; Sunday: 9.30am - 3.30pm</li>
+                 <li style="font-size: 10px;text-overflow: ellipsis; overflow: hidden; white-space: normal; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Public Holiday: Closed (By special arrangement only)</li>
+
+                 <li style="margin-top: 5px; font-size: 10px;text-overflow: ellipsis; overflow: hidden; white-space: normal; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Enquiry: </li>
+                 <li style="font-size: 10px;text-overflow: ellipsis; overflow: hidden; white-space: normal; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">For quotation &amp; advanced booking, kindly email us: admin@camwerkz.com</li>
+
+                 <li style="margin-top: 5px; font-size: 10px;text-overflow: ellipsis; overflow: hidden; white-space: normal; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Office: +65 6474 4787 Mobile: +65 9040 6463 Fax: +65 6474 4052</li>
+               </ul>
+             </div>
+             </div>
+           </div>
+         </div>
+       </div>
+       <div class="col-33" style="padding: 15px; text-align: center;">
+         <img style="height: 120px;" src="http://www.mdis.edu.sg/viewpic.aspx?file=media%5C2642_fi_358.jpg">
+         <img style="height: 120px;" src="http://reptech.com.sg/wp/wp-content/uploads/2014/01/PSME-500-Logo_Colour.jpg">
+       </div>
+     </div>
+     <div class="row" style="display: flex; padding: 0px 5px 5px 10px; width: 100%;">
+      <div class="col-50" style="padding: 0px 0px 0px 15px; -webkit-box-flex: 0; flex: 0 0 44.4%; max-width: 50%; margin: 0; border: 0; vertical-align: baseline; font: inherit; font-size: 100%;">
+        <div class="row">
+          <div class="col">
+                <div class="list" style="padding-left: 1px; padding-right: 1px; position: relative; padding-top: 1px; padding-bottom: 1px; margin: 0; border: 0; vertical-align: baseline; font: inherit; font-size: 100%;">
+                <div class="item item-divider" style="background-color: #374140; color: white; border-color: #374140; padding: 5px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; position: relative; z-index: 2; display: block;  border-width: 1px; border-style: solid; font-size: 16px;">
+                    <span style="font-size: 10px;font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Administrative Details</span>
+                </div>
+                {{#with other}}
+                <div class="item" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 10px 15px 0px 15px; border: 1px solid #ddd;">
+                  <span style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Created By</span>
+                  <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif; margin-top: 0px;">{{otherCreatedBy}} - {{otherCreatedAt}}</p>    
+                </div>
+                <div class="item" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 10px 15px 0px 15px; border: 1px solid #ddd;">
+                  <span style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">All Involved Users</span>
+                  {{#each involvedUsers}}
+                    <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif; margin-top: 0px; ">{{this}}</p>
+                  {{/each}}
+                      
+                </div>
+                {{/with}}
+                </div>
+          </div>
+        </div>
+         
+        </div>
+        <div class="col-50" style="padding: 0px 0px 0px 10px; -webkit-box-flex: 0; flex: 0 0 50%; max-width: 50%; margin: 0; border: 0; vertical-align: baseline; font: inherit; font-size: 100%;">
+          <div class="list" style="padding-left: 1px; padding-right: 1px; position: relative; padding-top: 1px; padding-bottom: 1px; margin: 0; border: 0; vertical-align: baseline; font: inherit; font-size: 100%;">
+          <div class="item item-divider" style="background-color: #36175E; color: white; border-color: #36175E; padding: 5px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; position: relative; z-index: 2; display: block;  border-width: 1px; border-style: solid; font-size: 16px;">
+              <span style="font-size: 10px;font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Customer Details</span>
+          </div>
+          {{#with other}}
+          <div class="item" id="customerName" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 10px 15px 0px 15px; border: 1px solid #ddd;">
+            <span style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Name</span>
+              
+            {{#if customerName}}
+            <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif; margin-top: 0px;">{{customerName}}</p> 
+
+            {{else}}
+            <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif; margin-top: 0px;">Nil</p> 
+            {{/if}}
+               
+          </div>
+
+          <div class="item" id="customerName" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 10px 15px 0px 15px; border: 1px solid #ddd;">
+            <span style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Company</span>
+              
+            {{#if customerCompany}}
+            <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif; margin-top: 0px;">{{customerCompany}}</p> 
+
+            {{else}}
+            <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif; margin-top: 0px;">Nil</p> 
+            {{/if}}
+               
+          </div>
+
+          <div class="item" id="customerName" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 10px 15px 0px 15px; border: 1px solid #ddd;">
+            <span style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">IC Status</span>
+              
+            {{#if icStatus}}
+              {{#if ic}}
+              <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif; margin-top: 0px; margin-bottom: 0px;">{{ic}}</p>
+              {{else}}
+              <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif; margin-top: 0px; margin-bottom: 0px;">IC not entered into profile</p>
+              {{/if}}
+              <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif; margin-top: 0px;">OK</p>
+            {{else}}
+              {{#if ic}}
+              <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif; margin-top: 0px; margin-bottom: 0px;">{{ic}}</p>
+              {{else}}
+              <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif; margin-top: 0px; margin-bottom: 0px;">IC not entered into profile</p>
+              {{/if}}
+              <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif; margin-top: 0px;">NOT OK - Photo not taken</p>
+            {{/if}}               
+          </div>
+
+          <div class="item" id="customerName" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 10px 15px 0px 15px; border: 1px solid #ddd;">
+            <span style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Contact</span>
+              
+            {{#if customerNumber}}
+            <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif; margin-top: 0px; margin-bottom: 0px;">{{customerNumber}}</p>
+            {{else}}
+            <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif; margin-top: 0px; margin-bottom: 0px; color: red;">NOT OK (number)</p>
+            {{/if}}
+            {{#if customerEmail}}
+            <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif; margin-top: 0px;">{{customerEmail}}</p>
+            {{else}}
+            <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif; margin-top: 0px; color: red;">NOT OK (email)</p>
+            {{/if}}            
+          </div>
+
+          <div class="item" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 10px 15px 0px 15px; border: 1px solid #ddd;">
+            <span style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Address</span>
+            {{#if customerAddress}}
+            <p style="font-size: 10px; text-overflow: ellipsis;overflow: hidden;white-space: normal; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif; margin-top: 0px;">{{customerAddress}}</p>
+            {{else}}
+            <p style="font-size: 10px; color: red; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif; margin-top: 0px;">NOT OK</p>
+            {{/if}}  
+              
+          </div>
+          {{/with}}
+          </div>
+        </div>
+      </div> 
+
+
+      {{#with invoiceDetails}}
+      <div class="row" style="display: flex; padding: 0px 5px 5px 10px; width: 100%;">
+        <div class="col" style="width: 100%; padding: 15px; -webkit-box-flex: 0;margin: 0; border: 0; vertical-align: baseline; font: inherit; font-size: 100%;">
+          <div class="list" style="padding-left: 1px; padding-right: 1px; position: relative; padding-top: 1px; padding-bottom: 1px; margin: 0; border: 0; vertical-align: baseline; font: inherit; font-size: 100%;">
+          <div class="item item-divider" style="background-color: #374140; color: white; border-color: #374140; padding: 5px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; position: relative; z-index: 2; display: block;  border-width: 1px; border-style: solid; font-size: 16px;">
+              <span style="font-size: 10px;font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Invoice Details</span>
+          </div>
+          </div>
+          <div class="list" style="padding-left: 1px; padding-right: 1px; position: relative; padding-top: 1px; padding-bottom: 1px; margin: 0; border: 0; vertical-align: baseline; font: inherit; font-size: 100%; margin-top: -1px;">
+            <div class="row" style="padding: 0px; display: flex;">
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 20%;">
+                <div class="row" style="padding: 0px;">
+                  <div class="col" style="text-align: center;">
+                    <strong style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Category</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 30%;">
+                <div class="row" style="padding: 0px;">
+                  <div class="col" style="text-align: center;">
+                    <strong style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Item</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 20%">
+                <div class="row" style="padding: 0px;">
+                  <div class="col" style="text-align: center;">
+                    <strong style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Quantity</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 30%;">
+                <div class="row" style="padding: 0px;">
+                  <div class="col" style="text-align: center;">
+                    <strong style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Cost</strong>
+                  </div>
+                </div> 
+                <div class="row" style="padding: 0px; margin-top: 0px; display: flex;">
+                  <div class="col" style="text-align: center; border: 1px solid #dddddd; padding: 5px; width: 100%;">
+                    <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;margin: 0px;">Price</p>
+                  </div>
+                  <div class="col" style="text-align: center; border: 1px solid #dddddd; padding: 5px; width: 100%;">
+                    <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;margin: 0px;">Discount</p>
+                  </div>
+                  <div class="col" style="text-align: center; border: 1px solid #dddddd; padding: 5px; width: 100%;">
+                    <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;margin: 0px;">Sub Amt</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{#each invoiceLineItems}}
+            <div class="row" style="padding: 0px; display: flex;">
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 20%;">
+                <div class="row" style="padding: 0px;">
+                  <div class="col" style="text-align: center;">
+                    <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">{{category}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 30%;">
+                <div class="row" style="padding: 0px;">
+                  <div class="col" style="text-align: center;">
+                    <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">{{item}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 20%">
+                <div class="row" style="padding: 0px;">
+                  <div class="col" style="text-align: center;">
+                    <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">{{quantity}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 30%;">
+                <div class="row" style="padding: 0px; margin-top: 0px; display: flex;">
+                  <div class="col" style="text-align: center; border: 1px solid #dddddd; padding: 5px; width: 100%;">
+                    <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;margin: 0px;">{{price}}</p>
+                  </div>
+                  <div class="col" style="text-align: center; border: 1px solid #dddddd; padding: 5px; width: 100%;">
+                    <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;margin: 0px;">{{discount}}</p>
+                  </div>
+                  <div class="col" style="text-align: center; border: 1px solid #dddddd; padding: 5px; width: 100%;">
+                    <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;margin: 0px;">{{subAmount}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{/each}}
+
+            <div class="row" style="padding: 0px; display: flex; height: 35px;">
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 70%">
+                
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 30%;">
+                <div class="row" style="padding: 0px; margin-top: 0px; display: flex; height: 35px;">
+                  <div class="col" style="text-align: center; border: 1px solid #dddddd; padding: 5px; width: 100%;">
+                    <p style="font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;margin: 5px 0px 0px 0px; font-size: 10px; ">Discount:</p>
+                  </div>
+                  <div class="col" style="text-align: center; border: 1px solid #dddddd; padding: 5px; width: 100%;">
+                    <p style="font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;margin: 5px 0px 0px 0px; font-size: 10px; ">{{subDiscount}}</p>
+                  </div>
+                  <div class="col" style="text-align: center; border: 1px solid #dddddd; padding: 5px; width: 100%;">
+                    <p style="font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;margin: 5px 0px 0px 0px; font-size: 10px; ">{{finalInvoiceTotal}}</p>
+                  </div>
+                </div>
+              </div>
+            </div> 
+            
+
+            <div class="row" style="padding: 0px; display: flex; height: 35px;">
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 70%">
+                
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 30%;">
+                <div class="row" style="padding: 0px; margin-top: 0px; display: flex;  height: 35px;">
+                  <div class="col-66" style="text-align: center; border: 1px solid #dddddd; padding: 5px; width: 100%; -webkit-box-flex: 0; flex: 0 0 60%; max-width: 66.6666%;">
+                    <p style="font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;margin: 5px 0px 0px 0px;font-size: 10px;">Sub Total:</p>
+                  </div>
+                  <div class="col-33" style="text-align: center; padding: 5px; width: 100%; -webkit-box-flex: 0; flex: 0 0 29.5%; max-width: 33.3333%;">
+                    <p style="font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;margin: 5px 0px 0px 0px;font-size: 10px;">{{subTotal}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>  
+
+            
+          </div>
+        </div>
+      </div>
+      {{/with}} 
+
+    
+    <p style="margin: 0px;">
+      {{#with other}}
+      <div class="row" style="display: flex; padding: 0px 10px; width: 100%;">
+        <div class="col-33" style="padding: 15px; -webkit-box-flex: 0; flex: 0 0 30%; max-width: 33.3%; margin: 0; border: 0; vertical-align: baseline; font: inherit; font-size: 100%;">
+          <div class="list" style="padding-left: 1px; padding-right: 1px; position: relative; padding-top: 1px; padding-bottom: 1px; margin: 0; border: 0; vertical-align: baseline; font: inherit; font-size: 100%;">
+          <div class="item item-divider" style="background-color: #468966; color: white; border-color: #468966; padding: 5px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; position: relative; z-index: 2; display: block;  border-width: 1px; border-style: solid; font-size: 16px; text-align: center;">
+              <span style="font-size: 10px;font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Cost Breakdown</span>
+          </div>
+          <div class="item" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0px 15px 0px 15px; border: 1px solid #ddd; text-align:center;">   
+                <p style="color: #468966; margin-top: 10px; font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Sub Total: {{finalSubTotal}}</p>
+                <p style="color: #468966; margin-top: 0px; font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">GST: {{gst}}</p>
+                <p style="color: #468966; margin-top: 0px; margin-bottom: 10px; font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Total: {{finalTotal}}</p>
+                </div>
+          </div>
+        </div>
+        <div class="col-33" style="padding: 15px; -webkit-box-flex: 0; flex: 0 0 30%; max-width: 33.3%; margin: 0; border: 0; vertical-align: baseline; font: inherit; font-size: 100%;">
+          <div class="list" style="padding-left: 1px; padding-right: 1px; position: relative; padding-top: 1px; padding-bottom: 1px; margin: 0; border: 0; vertical-align: baseline; font: inherit; font-size: 100%;">
+        
+          <div class="item item-divider" style="background-color: #2980B9; color: white; border-color: #2980B9; padding: 5px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; position: relative; z-index: 2; display: block;  border-width: 1px; border-style: solid; font-size: 16px; text-align: center;">
+              <span style="font-size: 10px;font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Payment</span>
+          </div>
+          {{#if paymentExists}}
+              <div class="item" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0px 15px 0px 15px; border: 1px solid #ddd; text-align:center; ">   
+                <p style="color: #468966; margin-top: 10px; font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Nil</p>
+                </div>
+          {{else}}
+            {{#each payment}}
+              <div class="item" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0px 15px 0px 15px; border: 1px solid #ddd;">
+                <p style="font-size: 10px;margin: 10px 0px 0px 0px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;"><span style="color:#2980B9;">{{amount}}</span></p>
+               {{#if serialNoExists}}
+               <p style="font-size: 10px;margin: 0px 0px 0px 0px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;"><span style="color:#2980B9;">{{type}}</span></p>
+               <p style="font-size: 10px;margin: 0px 0px 10px 0px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;"><span style="color:#2980B9;">{{serialNo}}</span></p>
+
+               {{else}}
+               <p style="font-size: 10px;margin: 0px 0px 10px 0px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;"><span style="color:#2980B9;">{{type}}</span></p>
+
+               {{/if}}
+            </div>
+            {{/each}}
+          {{/if}}
+          </div>
+        </div>
+        <div class="col-33" style="padding: 15px; -webkit-box-flex: 0; flex: 0 0 28%; max-width: 33.3%; margin: 0; border: 0; vertical-align: baseline; font: inherit; font-size: 100%;">
+          <div class="list" style="padding-left: 1px; padding-right: 1px; position: relative; padding-top: 1px; padding-bottom: 1px; margin: 0; border: 0; vertical-align: baseline; font: inherit; font-size: 100%;">
+          <div class="item item-divider" style="background-color: #E74C3C; color: white; border-color: #E74C3C; padding: 5px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; position: relative; z-index: 2; display: block;  border-width: 1px; border-style: solid; font-size: 16px; text-align: center;">
+              <span style="font-size: 10px;font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Balance Due</span>
+          </div>
+                <div class="item" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0px 15px 0px 15px; border: 1px solid #ddd; text-align:center; ">   
+                  <p style="color: #E74C3C; margin-top: 10px; font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">{{balanceDue}}</p>
+                  </div>
+          </div>
+        </div>
+
+      </div> 
+      {{/with}}
+      </p>
+
+      <div class="row" style="display: flex; padding: 0px 10px; width: 100%;">
+      <div class="col-50" style="padding: 0px 0px 0px 15px; -webkit-box-flex: 0; flex: 0 0 47%; max-width: 50%; margin: 0; border: 0; vertical-align: baseline; font: inherit; font-size: 100%;">
+        <div class="list">
+            <div class="item item-divider" style="background-color: #374140; color: white; border-color: #374140; padding: 5px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; position: relative; z-index: 2; display: block;  border-width: 1px; border-style: solid; font-size: 16px; text-align: center;">
+              <span style="font-size: 10px;font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">General Remarks</span>
+          </div>
+          {{#if generalRemarksExist}}
+
+          {{#each remarks}}
+              <div class="item" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0px 15px 0px 15px; border: 1px solid #ddd;">
+                <p style="font-size: 10px;margin: 10px 0px 0px 0px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;"><span>#{{remarkId}} - {{remark}}</span></p>
+               <p style="font-size: 10px;margin: 0px 0px 10px 0px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;"><span>{{createdBy}} - {{createdAt}}</span></p>
+            </div>
+          {{/each}}
+          {{else}}
+         <div class="item" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0px 15px 0px 15px; border: 1px solid #ddd; text-align:center; ">   
+                <p style="color: #468966; margin-top: 10px; font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Nil</p>
+                </div>
+
+          {{/if}}
+          
+        </div>
+      </div>
+        </div> 
+                <div class="row" style="display: flex; padding: 0px 10px; width: 100%; margin-bottom: -10px;">
+                  <div class="col" style="width: 100%; padding: 0px 15px 0px 15px; -webkit-box-flex: 0;margin: 0; border: 0; vertical-align: baseline; font: inherit; font-size: 100%;">
+                  {{#if customerSignOutExists}}
+                  <h3 style="font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Customer's Declaration</h3>
+                    <div class="list"  style="padding-left: 1px; padding-right: 1px; position: relative; padding-top: 1px; padding-bottom: 1px; margin: 0; border: 0; vertical-align: baseline; font: inherit; font-size: 100%;">
+                    
+                          
+                          {{#each customerSignOut}}
+                        <div class="item item-divider" style="margin-top: 10px; background-color: #374140; color: white; border-color: #374140; padding: 5px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; position: relative; z-index: 2; display: block;  border-width: 1px; border-style: solid; font-size: 16px;">
+                        <span style="font-size: 10px;font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Signature {{signatureId}}</span>
+                    </div>
+                          <div class="item" id="customerName" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 10px 15px 0px 15px; border: 1px solid #ddd;">
+                        <span style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Name</span>
+                        <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif; margin-top: 0px;">{{signedBy}}</p>
+                      </div>
+                      <div class="item" id="customerName" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 10px 15px 0px 15px; border: 1px solid #ddd;">
+                        <span style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">IC</span>
+                        <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif; margin-top: 0px;">{{ic}}</p>
+                      </div>
+                      <div class="item" id="customerName" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 10px 15px 0px 15px; border: 1px solid #ddd;">
+                        <span style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Number</span>
+                        <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif; margin-top: 0px;">{{number}}</p>
+                      </div>
+                      <div class="item" id="customerName" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 10px 15px 0px 15px; border: 1px solid #ddd;">
+                        <span style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Items Signed</span>
+                        <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif; margin-top: 0px; overflow: hidden; text-overflow: ellipsis; white-space: normal;">{{#each itemsSigned}}
+                                [{{itemName}}: {{serialNumbersSigned}}]  
+                              {{/each}}</p>
+                      </div>
+                      <div class="item" id="customerName" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 10px 15px 0px 15px; border: 1px solid #ddd;">
+                        <span style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Date Signed</span>
+                        <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif; margin-top: 0px;">{{signedAt}}</p>
+                      </div>
+                      <div class="item" id="customerName" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 10px 15px 0px 15px; border: 1px solid #ddd;">
+                        <img src="{{image}}" style="height: 50px;"/>
+                      </div>
+                      {{/each}}
+
+                        
+
+                          
+                       
+                   
+
+                          
+                        
+                    </div>
+                    {{/if}}
+                    <!-- {{#if staffSignInExists}}
+                    <h2 style="font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Staff's Declaration</h2>
+                    <div class="list"  style="padding-left: 1px; padding-right: 1px; position: relative; padding-top: 1px; padding-bottom: 1px; margin: 0; border: 0; vertical-align: baseline; font: inherit; font-size: 100%;">
+                    
+
+                          {{#each staffSignIn}}
+                        <div class="item item-divider" style="margin-top: 10px;background-color: #374140; color: white; border-color: #374140; padding: 5px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; position: relative; z-index: 2; display: block;  border-width: 1px; border-style: solid; font-size: 16px;">
+                        <span style="font-size: 10px;font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Signature {{signatureId}}</span>
+                    </div>
+                      <div class="item" id="customerName" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 10px 15px 0px 15px; border: 1px solid #ddd;">
+                        <span style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Name</span>
+                        <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif; margin-top: 0px;">{{signedBy}}</p>
+                      </div>
+                      <div class="item" id="customerName" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 10px 15px 0px 15px; border: 1px solid #ddd;">
+                        <span style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Items Signed</span>
+                        <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif; margin-top: 0px; overflow: hidden; text-overflow: ellipsis; white-space: normal;">{{#each itemsSigned}}
+                                [{{itemName}}: {{serialNumbersSigned}}]  
+                              {{/each}}</p>
+                      </div>
+                      <div class="item" id="customerName" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 10px 15px 0px 15px; border: 1px solid #ddd;">
+                        <span style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;">Date Signed</span>
+                        <p style="font-size: 10px; font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif; margin-top: 0px;">{{signedAt}}</p>
+                      </div>
+                      {{/each}}
+                      
+                        
+
+                          
+                       
+                   
+
+                          
+                        
+                    </div>
+                    {{/if}} -->
+                  </div>
+                </div>
+    {{else}}
+      <div class="row">
+        <div class="col">
+          Loading...
+        </div>
+      </div>
+    {{/if}}
+    {{/ionContent}}
+  {{/ionView}}
+</template>

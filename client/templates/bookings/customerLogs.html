@@ -1,0 +1,36 @@
+<template name="customerLogs">
+
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button-positive" text=false}}
+  {{/contentFor}}
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title" style="">Customer Log</h1>
+  {{/contentFor}}
+
+  {{#ionView}}
+    {{#ionContent}}
+      {{#if Template.subscriptionsReady}}
+      {{#ionList}}
+        {{#each customerLogs}}
+          <div class="item">
+              <p style="color:#2B3A42; text-overflow: ellipsis;overflow: hidden;white-space: normal;">{{content}}</p>
+              <p>{{owner}} - {{dateTime}}</p>
+          </div>
+        {{/each}}
+        {{#if nextPath}}
+          {{#ionItem avatar=true class="loadMore"}}
+            <a class="load-more button button-clear button-positive" href="{{nextPath}}" onClick="IonNavigation.skipTransitions = true; return true;">Load more</a>
+          {{/ionItem}}
+        {{/if}}
+      {{/ionList}}
+      {{else}}
+      <div class="row">
+        <div class="col">
+          Loading...
+        </div>
+      </div>
+      {{/if}}
+    {{/ionContent}}
+  {{/ionView}}
+</template>

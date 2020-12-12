@@ -1,0 +1,188 @@
+<template name="quotations">
+  <button class="button button-clear pull-right button-positive" style="float:left; z-index: 5000; color: #2B3A42;">
+    Logged in as: {{username}}
+  </button>
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Quotation List</h1>
+  {{/contentFor}}
+
+  <button class="button button-clear pull-right button-positive" id="addQuotation" style="float:right; z-index: 5000;">
+      Add Quotation
+    </button>
+  {{#ionView}}
+    {{#ionContent class="fixed"}}
+      <div class="row" style="position: fixed; z-index: 1000; background-color: white; border-bottom: 1px solid #ddd;">
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          {{#if nameClicked}}
+          <button class="button button-block button-outline button-dark dark-invert" id="name">
+            Name
+          </button>
+          {{else}}
+          <button class="button button-block button-outline button-dark" id="name">
+            Name
+          </button>
+          {{/if}}
+        </div>
+        {{#if companyClicked}}
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-outline button-dark dark-invert" id="company">
+            Company
+          </button>
+        </div>
+        {{else}}
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-outline button-dark" id="company">
+            Company
+          </button>
+        </div>
+        {{/if}}
+        {{#if numberClicked}}
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-outline button-dark dark-invert" id="number">
+            Number
+          </button>
+        </div>
+        {{else}}
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-outline button-dark" id="number">
+            Number
+          </button>
+        </div>
+        {{/if}}
+        {{#if addressClicked}}
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-outline button-dark dark-invert" id="address">
+            Address
+          </button>
+        </div>
+        {{else}}
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-outline button-dark" id="address">
+            Address
+          </button>
+        </div>
+        {{/if}}
+        {{#if emailClicked}}
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-outline button-dark dark-invert" id="email">
+            Email
+          </button>
+        </div>
+        {{else}}
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-outline button-dark" id="email">
+            Email
+          </button>
+        </div>
+        {{/if}}
+      </div>
+      <div class="row" style="padding: 5px 0px 5px 0px; margin-top: 83px;">
+        <div class="col" style="padding: 0px;">
+          {{#if nameClicked}}
+            <div class="item item-input-inset">
+              <label class="item-input-wrapper">
+                {{> ionIcon icon="ios-search" class="placeholder-icon"}}
+                <input type="text" placeholder="Search by name" id="customerQuery" value="{{searchCustomerQuery}}" style="width: 100%;">
+              </label>
+            </div>
+          {{/if}}
+          {{#if companyClicked}}
+            <div class="item item-input-inset">
+              <label class="item-input-wrapper">
+                {{> ionIcon icon="ios-search" class="placeholder-icon"}}
+                <input type="text" placeholder="Search by company" id="customerCompanyQuery" value="{{searchCustomerCompanyQuery}}" style="width: 100%;">
+              </label>
+            </div>
+          {{/if}}
+          {{#if numberClicked}}
+            <div class="item item-input-inset">
+              <label class="item-input-wrapper">
+                {{> ionIcon icon="ios-search" class="placeholder-icon"}}
+                <input type="text" placeholder="Search by number" id="customerNumberQuery" value="{{searchCustomerNumberQuery}}" style="width: 100%;">
+              </label>
+            </div>
+          {{/if}}
+          {{#if addressClicked}}
+            <div class="item item-input-inset">
+              <label class="item-input-wrapper">
+                {{> ionIcon icon="ios-search" class="placeholder-icon"}}
+                <input type="text" placeholder="Search by address" id="customerAddressQuery" value="{{searchCustomerAddressQuery}}" style="width: 100%;">
+              </label>
+            </div>
+          {{/if}}
+          {{#if emailClicked}}
+            <div class="item item-input-inset">
+              <label class="item-input-wrapper">
+                {{> ionIcon icon="ios-search" class="placeholder-icon"}}
+                <input type="text" placeholder="Search by email" id="customerEmailQuery" value="{{searchCustomerEmailQuery}}" style="width: 100%;">
+              </label>
+            </div>
+          {{/if}}
+          {{#if qbIdClicked}}
+            <div class="item item-input-inset">
+              <label class="item-input-wrapper">
+                {{> ionIcon icon="ios-search" class="placeholder-icon"}}
+                <input type="text" placeholder="Search by Quickbooks Id" id="qbIdQuery" value="{{searchQBQuery}}" style="width: 100%;">
+              </label>
+            </div>
+          {{/if}}
+        {{#ionList}}
+        <div class="item item-input-inset" style="display: none;" id="qbinvoiceid">
+          <label class="item-input-wrapper">
+            <input type="text" placeholder="Enter Quickbooks Invoice ID here" id="qbinvoiceidtext" style="width: 100%;">
+          </label>
+          <button class="button button-small button-dark" id="submitqbinvoiceid">
+            Submit
+          </button>
+        </div>
+        {{#each bookings}}
+        <a class="item booking" href="/bookings/{{_id}}" id="{{_id}}">
+        {{#with bookingCustomer}}
+        <h2>{{name}} {{company}}</h2>
+        {{/with}}
+          <!-- {{#if void}}
+          <h2>
+            Quickbooks Id: <span style="text-decoration: line-through;">{{quickbooksInvoiceId}}</span> <span style="color: red;">VOID</span>
+          </h2>
+          {{else}}
+          <h2>
+            Quickbooks Id: {{quickbooksInvoiceId}}
+          </h2>
+          {{/if}} -->
+          <h2>
+            Quickbooks Id: <span style="color: #E74C3C;">{{quickbooksInvoiceId}}</span>
+          </h2>
+          <br/>
+
+          {{#if datesExist}}
+            {{#each dates}}
+              Group {{dateGroupId}}
+              {{#each dateArray}}
+                <h2>{{startDate}}
+                {{#if gotEndDate}}
+                - {{endDate}}
+                {{/if}}
+                </h2>
+              {{/each}}
+            {{/each}}
+          {{else}}
+            <h2>No dates selected.</h2>
+          {{/if}}
+
+        </a>
+      {{/each}}
+      {{#if noInput}}
+        <div class="item loadMore item-avatar">
+      
+            <a class="load-more button button-clear button-positive" href="#">Type in search bar to search for quotations (Min. 3 chars)</a>
+          
+           </div>
+           {{/if}}
+        {{/ionList}}
+        </div>
+      </div>
+    {{/ionContent}}
+  {{/ionView}}
+
+</template>

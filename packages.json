@@ -1,0 +1,6 @@
+{
+  "node-quickbooks": "1.0.17",
+  "fibers": "1.0.5",
+  "cordova-plugin-print-pdf": "4.0.1",
+  "webshot" : "0.17.0"
+}

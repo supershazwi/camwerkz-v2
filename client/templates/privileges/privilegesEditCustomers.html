@@ -1,0 +1,58 @@
+<template name="privilegesEditCustomers">
+
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button-positive" text=false}}
+  {{/contentFor}}
+  
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Edit Privileged Customers</h1>
+  {{/contentFor}}
+
+  <button class="button button-clear pull-right button-positive" id="submit" style="float:right; z-index: 5000;">
+      Submit
+    </button>
+  
+  {{#ionView}}
+    {{#ionContent}}
+      {{#ionList}}
+        <div class="list">
+            <div class="item item-input-inset" style="">
+              <label class="item-input-wrapper">
+                {{> ionIcon icon="ios-search" class="placeholder-icon"}}
+                <input type="text" placeholder="Search Customer" id="searchCustomer" value="{{searchCustomerQuery}}">
+              </label>
+            </div>
+           <!--  <li class="item item-checkbox" id="checkAllCustomers">
+               <label class="checkbox">
+                 {{#if allCustomersChecked}}
+                  <input type="checkbox" id="checkAllCustomersCheckbox" checked>
+                 {{else}}
+                  <input type="checkbox" id="checkAllCustomersCheckbox">
+                 {{/if}}
+               </label>
+               <strong>All customers</strong>
+            </li> -->
+            {{#if noInput}}
+            <div class="item loadMore item-avatar">
+      
+            <a class="load-more button button-clear button-positive" href="#">Type in search bar to search for customers (Min. 3 chars)</a>
+          
+           </div>
+           {{/if}}
+            {{#each customers}}
+              <li class="item item-checkbox" id="{{_id}}">
+                 <label class="checkbox">
+                   {{#if checkboxChecked}}
+                    <input type="checkbox" id="checkbox_{{_id}}" checked>
+                   {{else}}
+                    <input id="checkbox_{{_id}}" type="checkbox">
+                   {{/if}}
+                 </label>
+                 <strong>{{name}}</strong> {{company}}
+              </li>
+            {{/each}}
+          </div>
+      {{/ionList}}
+    {{/ionContent}}
+  {{/ionView}}
+</template>

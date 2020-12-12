@@ -1,0 +1,36 @@
+<template name="appLayout">
+<head>
+  <link href='http://fonts.googleapis.com/css?family=Roboto:700' rel='stylesheet' type='text/css'>
+  <style type='text/css' rel='stylesheet'>
+  
+  </style>
+</head>
+  {{#ionBody}}
+    {{> ionNavBar}}
+
+    {{#ionNavView}}
+      {{> yield}}
+    {{/ionNavView}}
+
+    {{#if isAndroid}}
+      {{#ionTabs style="android"}}
+        {{> ionTab title="Customers" path="customers" icon="android-time"}}
+        {{> ionTab title="Trending" path="trending" icon="android-star"}}
+        {{> ionTab title="Recent" path="recent" icon="android-time"}}
+      {{/ionTabs}}
+    {{else}}
+      {{#ionTabs style="ios"}}
+        {{> ionTab title="Home" path="home" iconOff="ios-home-outline" iconOn="ios-home" class="tab-item-positive"}}
+        {{> ionTab title="Notifications" path="notifications" iconOff="ios-checkmark-outline" iconOn="ios-checkmark" class="tab-item-positive"}}
+        {{> ionTab title="Calendar" path="calendars" iconOff="ios-calendar-outline" iconOn="ios-calendar" class="tab-item-positive"}}
+        {{> ionTab title="Quotations" path="quotations" iconOff="ios-box-outline" iconOn="ios-box" class="tab-item-positive"}}
+        {{> ionTab title="Bookings" path="bookings" iconOff="ios-box-outline" iconOn="ios-box" class="tab-item-positive"}}
+        {{> ionTab title="Others" path="others" iconOff="ios-box-outline" iconOn="ios-box" class="tab-item-positive"}}
+        {{> ionTab title="Customers" path="customers" iconOff="ios-contact-outline" iconOn="ios-contact" class="tab-item-positive"}}
+        {{> ionTab title="Inventory" path="inventory" iconOff="ios-filing-outline" iconOn="ios-filing" class="tab-item-positive"}}
+        {{> ionTab title="Privileges" path="privileges" iconOff="ios-star-outline" iconOn="ios-star" class="tab-item-positive"}}
+      {{/ionTabs}}
+    {{/if}}
+  {{/ionBody}}
+
+</template>

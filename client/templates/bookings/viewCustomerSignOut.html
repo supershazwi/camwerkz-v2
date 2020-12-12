@@ -1,0 +1,17 @@
+  <template name="viewCustomerSignOut">
+    {{#ionModal customTemplate=true}}
+    <div class="bar bar-header bar-stable">
+      <h2 class="title">Pending Items Unsigned</h2>
+      <button class="button button-positive button-clear" id="close">Close</button>
+    </div>
+    <div class="content overflow-scroll">
+      <div class="list" style="margin-top: 43px;">
+        {{#each pendingItems}}
+          <li class="item">
+            {{item}}
+          </li>
+        {{/each}}
+    </div>
+  </div>
+  {{/ionModal}}
+  </template>   

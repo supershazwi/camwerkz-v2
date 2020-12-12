@@ -1,0 +1,108 @@
+  <template name="othersSerialNoSelect">
+    {{#contentFor "headerButtonLeft"}}
+      {{>ionNavBackButton class="button-positive" text=false}}
+    {{/contentFor}}
+
+    {{#contentFor "headerTitle"}}
+      <h1 class="title">Select Serial Number for {{selectedEquipment}}</h1>
+    {{/contentFor}}
+    
+    {{#ionView}}
+      {{#ionContent}}
+        <div class="list" >
+          {{#each serialNumbers}}
+          <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd; display:none;" id="addRemark_{{serialNo}}">
+            <span class="input-label" style="padding-bottom: 0px; width: 100%;">Remark for #{{serialNo}}</span>
+            <textarea rows="4" placeholder="Type remarks here" id="remark_{{serialNo}}" style="width: 100%;"></textarea>
+            <button class="button button-stable button-small cancelRemark" style="width:50%; float: left;" id="{{serialNo}}">
+              Cancel
+            </button>
+            <button class="button button-positive button-small submitRemark" style="width:50%;" id="{{serialNo}}">
+              Add Remark
+            </button>
+          </div>
+          <div class="list" style="margin-bottom: 0px; display:none;" id="viewRemarks_{{serialNo}}">
+            <ul class="list" id="checkboxList" style="padding-left: 0px; padding-right: 0px; margin-top: -2px; margin-bottom: 0px;">
+              {{#if remarksExist}}
+              {{#each remarks}}
+              <li class="item item-checkbox checkRemark" id="{{id}}_{{serialNo}}_{{routeId}}" style="border-left: 1px; border-right: 1px; border-bottom: 0px; border-color: #ddd; text-decoration: {{textDecoration}}; ">
+                  {{#if remarkOpen}}
+                    <label class="checkbox" style="width: 85%;">
+                       <input type="checkbox">
+                     </label>
+                  {{else}}
+                    <label class="checkbox" style="width: 85%;">
+                     <input type="checkbox" checked>
+                   </label>
+                  {{/if}}
+                 <h2 style="white-space: normal;">{{remark}}</h2>
+                 <p>{{createdBy}} - {{createdAt}} <span style="float:right; z-index: 2000;" class="removeRemark" id="{{id}}_{{serialNo}}_{{routeId}}">Remove</span></p>
+              </li>
+              {{/each}}
+              {{else}}
+              <div style="text-align:center;">
+              <h3 style="white-space: normal; margin-top: 10px;">No remarks for #{{serialNo}}.</h3>
+              </div>
+              {{/if}}
+            </ul>
+            <div class="form-group" style="padding: 5px 15px 5px 15px;" id="addRemark_{{serialNo}}">
+              <button class="button button-stable button-small closeRemarks" style="width:100%;" id="{{serialNo}}">
+                Close Remarks
+              </button>
+            </div>
+          </div>
+          <li class="item item-checkbox checkSerialNo" id="li_{{serialNo}}">
+           <label class="checkbox" style="visibility: {{displayCheckbox}};">
+            {{#if checkboxChecked}}
+            <input type="checkbox" checked>
+            {{else}}
+            <input type="checkbox">
+            {{/if}}
+          </label>
+          <button class="button button-stable button-small" style="font-size: 20px;background-color: white;border: 1px solid white;margin-left: -15px; text-align: left; margin-right: 5px;">
+            {{serialNo}}
+            <br />
+            <p>{{status}}</p>
+          </button>
+          <button class="button button-stable button-small addRemark" style="z-index: 1000;margin-top: 15px;" id="{{serialNo}}">
+            Add Remark
+          </button>
+          <button class="button button-stable button-small viewRemark" style="z-index: 1000;margin-top: 15px;" id="{{serialNo}}">
+            View Remark ({{remarkCount}})
+          </button>
+
+          {{#if isDamaged}}
+          <button class="button button-stable button-small status" style="z-index: 1000; margin-top: 15px;float:right; border-color: #8A0917; background-color: #8A0917; color: white;" id="{{serialNo}}_Damaged">
+            Damaged
+          </button>
+          {{else}}
+          <button class="button button-stable button-small status" style="z-index: 1000; margin-top: 15px;float:right;" id="{{serialNo}}_Damaged">
+            Damaged
+          </button>
+          {{/if}}
+
+          {{#if isMissing}}
+          <button class="button button-stable button-small status" style="z-index: 1000; margin-top: 15px;float:right; margin-right: 5px; border-color: #EA2E49; background-color: #EA2E49; color: white;" id="{{serialNo}}_Missing">
+            Missing
+          </button>
+          {{else}}
+          <button class="button button-stable button-small status" style="z-index: 1000; margin-top: 15px;float:right; margin-right: 5px;" id="{{serialNo}}_Missing">
+            Missing
+          </button>
+          {{/if}}
+
+          {{#if isSale}}
+          <button class="button button-stable button-small status" style="z-index: 1000; margin-top: 15px;float:right; margin-right: 5px; border-color: #374140; background-color: #374140; color: white;" id="{{serialNo}}_Sale">
+            Sale
+          </button>
+          {{else}}
+          <button class="button button-stable button-small status" style="z-index: 1000; margin-top: 15px;float:right; margin-right: 5px;" id="{{serialNo}}_Sale">
+            Sale
+          </button>
+          {{/if}}
+        </li>
+        {{/each}}
+      </div>
+      {{/ionContent}}
+  {{/ionView}}
+  </template>   

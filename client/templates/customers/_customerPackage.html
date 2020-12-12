@@ -1,0 +1,12 @@
+<template name="_customerPackage">
+  {{#with customerPackage}}
+    {{#ionItem path=../path buttonRight=true class="item-icon-right"}}
+      <a href="#" id="{{_id}}" class="item item-icon-right">
+        {{> ionIcon icon='ios-arrow-right'}}
+        <h2 class="input-label">{{name}}</h2>
+        <p style="color: #666;">Start Date: {{customerPackageStartDate}}</p>     
+        <p style="color: #666;">End Date: {{customerPackageEndDate}}</p>   
+      </a>
+    {{/ionItem}}
+  {{/with}}
+</template>

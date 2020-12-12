@@ -1,0 +1,30 @@
+<template name="customersAddPackage">
+
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button-positive" text=false}}
+  {{/contentFor}}
+  
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Add Customer Package</h1>
+  {{/contentFor}}
+  
+  {{#ionView}}
+    {{#ionContent}}
+      {{#ionList}}
+        <label class="item item-input item-stacked-label">
+          <span class="input-label {{itemStatus}}">Name {{#if packageNameDuplicate}}- Please enter a unique package name.{{/if}}</span>
+          <input type="text" class="form-control" id="name" placeholder="e.g New Year Package" style="color: #666;">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label" style="padding-bottom: 0px; width: 100%;">Details</span>
+          <textarea rows="4" placeholder="Package Details" id="details" style="color: #666;"></textarea>
+        </label>
+        <div class="button-bar">
+          <button class="button button-full button-stable button-large" style="margin-top: 1px;" id="addPackage" type="submit" {{isDisabled}}>
+          Add New Package
+        </button>
+        </div>
+      {{/ionList}}
+    {{/ionContent}}
+  {{/ionView}}
+</template>

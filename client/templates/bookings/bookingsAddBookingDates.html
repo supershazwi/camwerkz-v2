@@ -1,0 +1,81 @@
+<template name="bookingsAddBookingDates">
+
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button-positive" text=false}}
+  {{/contentFor}}
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Add Booking Dates</h1>
+  {{/contentFor}}
+
+  {{#ionView}}
+    {{#ionContent}}
+      <div class="row">
+        <div class="col">
+          <div class="list">
+          <div class="item item-divider" style="background-color: #374140; color: white; border-color: #374140;">
+              Dates
+          </div>
+          {{#if Template.subscriptionsReady}}
+            {{#if datesExist}}
+            <div class="item">
+              {{#each dates}}
+              {{#with dateArray}}
+                <p>{{startDate}}
+                {{#if gotEndDate}}
+                - {{endDate}}
+                {{/if}}
+                </p>
+              {{/with}}
+              {{/each}}
+            </div>
+            {{else}}
+              <div class="item">
+                No dates selected.
+              </div>
+            {{/if}}
+          {{else}}
+            <div class="item" id="loading" style="height: 5000px;">
+            <p>Loading...</p>
+            </div>
+          {{/if}}
+          </div>
+          {{#unless Template.subscriptionsReady}}
+          <div id="blocker" style="height: 100000px">
+
+          </div>
+          {{/unless}}
+          {{#if checkingoverbooked}}
+            <div class="item item-divider" style="background-color: #36175E; color: white; border-color: #36175E; padding: 45px; text-align: center;">
+              Loading Changes
+            </div>
+          {{/if}}
+          <!-- <div id="shadow" style="background: white; position: fixed; z-index: 5000; height: 100%; width: 100%;">
+          </div> -->
+          <div id="scheduler" class="dhx_cal_container" style='width:100%; height:500px; visibility: {{checkNone}};'>
+            <div class="dhx_cal_navline">
+            <div class="dhx_cal_prev_button">&nbsp;</div>
+            <div class="dhx_cal_next_button">&nbsp;</div>
+            <div class="dhx_cal_today_button"></div>
+            <div class="dhx_cal_date"></div>
+            <div class="dhx_cal_tab" name="day_tab" style="right:332px;"></div>
+            <div class="dhx_cal_tab" name="week_tab" style="right:268px;"></div>
+            <div class="dhx_cal_tab" name="month_tab" style="right:204px;"></div>
+            <div class="dhx_cal_tab" name="year_tab" style="right:140px;"></div>
+            </div>
+            <div class="dhx_cal_header">
+            </div>
+            <div class="dhx_cal_data">
+            </div>
+          </div>
+          <!-- <button class="button button-clear button-block button-positive" id="clearCalendar">
+            Clear Calendar
+          </button> -->
+          <button class="button button-clear button-block button-positive" id="saveDates" style='visibility: {{checkNone}};'>
+            Save Dates
+          </button>
+        </div>
+      </div>
+    {{/ionContent}}
+  {{/ionView}}
+</template>

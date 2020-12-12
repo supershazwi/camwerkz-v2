@@ -1,0 +1,370 @@
+<template name="quotationsShow">
+
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button-positive" text=false}}
+  {{/contentFor}}
+  
+  {{#contentFor "headerButtonRight"}}
+    <button class="button button-positive button-clear" data-ion-modal="quotationLog">See Quotation Log</button>
+  {{/contentFor}}
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Make Quotation</h1>
+  {{/contentFor}}
+  
+  {{#ionView}}
+    {{#ionContent}}
+    <form>
+      <div class="row">
+        <div class="col" style="padding: 0px 15px 0px 15px;">
+          <button class="button button-block button-clear button-balanced" id="title">
+          This is a <strong>quotation</strong>.
+          </button>
+          <h3 style="margin-bottom: 0px;">Invoice Number: Nil</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-50" style="padding: 15px;">
+      <div class="list">
+        <div class="item item-divider">
+            Administrative Details
+        </div>
+        {{#with quotation}}
+        <div class="item">
+          Created By
+          <p>{{createdBy}} - {{createdAt}}</p>
+        </div>
+        <div class="item">
+          All Involved Users
+          {{#each involvedUsers}}
+            <p>{{this}}</p>
+          {{/each}}
+        </div>
+        {{/with}}
+      </div>
+    </div>
+    <div class="col-50" style="padding: 15px;">
+      <div class="list">
+        <div class="item item-divider">
+            Customer Details
+        </div>
+        {{#with quotation}}
+        <div class="item">
+          Name
+          <p>{{customerName}}</p>
+        </div>
+        <div class="item">
+          Company 
+          <p>{{customerCompany}}</p>
+        </div>
+        {{/with}}
+      </div>
+        </div>
+      </div>  
+      {{#each groups}}
+      <div class="row">
+        <div class="col" style="padding: 15px;">
+          <div class="list" style="margin-bottom: 0px; padding-bottom: 0px;">
+            <div class="item item-divider">
+                Equipment Details - Group {{groupId}}
+                <button class="button button-clear pull-right button-positive addQuotationItem" id="{{id}}" data-ion-modal="addQuotationItem">
+                  Add Equipment
+                </button>
+                <button class="button button-clear pull-right dots">
+                  •
+                </button>
+                <button class="button button-clear pull-right button-positive addQuotationDates" id="{{id}}" data-ion-modal="addQuotationDates">
+                  Add Dates ({{noOfDates}})
+                </button>
+                {{#if extraGroup}}
+                <button class="button button-clear pull-right dots">
+                  •
+                </button>
+                <button class="button button-clear pull-right button-positive removeGroup" id="{{id}}">
+                  Remove Group
+                </button>
+                {{/if}}
+            </div>
+          </div>
+          <div class="list" style="padding: 0px; text-align: center;">
+            <div class="row" style="padding: 0px;">
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%;">
+                <div class="row" style="padding: 0px;">
+                  <div class="col" style="border-bottom: 1px solid #dddddd;">
+                    <strong>Check</strong>
+                  </div>
+                </div>
+                <div class="row" style="padding: 0px; margin-top: 0px;">
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+                    Out
+                  </div>
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+                    Back
+                  </div>
+                </div>
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%;">
+                <div class="row" style="padding: 0px;">
+                  <div class="col">
+                    <strong>Category</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%;">
+                <div class="row" style="padding: 0px;">
+                  <div class="col">
+                    <strong>Item</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="col" style="border: 1px solid #dddddd; padding: 0px;">
+                <div class="row" style="padding: 0px;">
+                  <div class="col" style="border-bottom: 1px solid #dddddd;">
+                    <strong>Quantity</strong>
+                  </div>
+                </div>
+                <div class="row" style="padding: 0px; margin-top: 0px;">
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+                    Booked
+                  </div>
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+                    Add
+                  </div>
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+                    Minus
+                  </div>
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+                    Remove
+                  </div>
+                </div>
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 35%;">
+                <div class="row" style="padding: 0px;">
+                  <div class="col" style="border-bottom: 1px solid #dddddd;">
+                    <strong>Rental Cost</strong>
+                  </div>
+                </div>
+                <div class="row" style="padding: 0px; margin-top: 0px;">
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+                    Rate
+                  </div>
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+                    Discount
+                  </div>
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+                    Sub Amt
+                  </div>
+                </div>
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 5%;">
+                <div class="row" style="padding: 0px;">
+                  <div class="col">
+                    <strong>Status</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{#each items}}
+            <div class="row" style="padding: 0px;">
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%;">
+                <div class="row" style="padding: 0px; margin-top: 0px;">
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+                    <label class="checkbox" style="padding: 7px 7px 0px 7px;">
+                         <input type="checkbox" class="itemCheckbox" id="{{id}}-out" {{out}}>
+                       </label>
+                  </div>
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+                    <label class="checkbox" style="padding: 7px 7px 0px 7px;">
+                         <input type="checkbox" class="itemCheckbox" id="{{id}}-back" {{back}}>
+                       </label>
+                  </div>
+                </div>
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%;">
+                <div class="row" style="padding: 0px; margin-top: 0px;">
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px; height: 52px;">
+                    <p style="margin: 0px; margin-top: 8%;">{{category}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%;">
+                <div class="row" style="padding: 0px; margin-top: 0px;">
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px; height: 52px;">
+                    <p style="margin: 0px; margin-top: 8%;">{{item}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col" style="border: 1px solid #dddddd; padding: 0px;">
+                <div class="row" style="padding: 0px; margin-top: 0px;">
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px; height: 52px;">
+                    <p style="margin: 0px; margin-top: 12%;">{{booked}}/{{total}}</p>
+                  </div>
+                  <div class="col" style="border: 1px solid #dddddd; padding: 2px 5px 5px 5px; height: 52px;">
+                    <button class="button button-clear button-positive add" id="{{id}}">
+                      {{> ionIcon icon='ios-plus-empty'}}
+                    </button>
+                  </div>
+                  <div class="col" style="border: 1px solid #dddddd; padding: 2px 5px 5px 5px; height: 52px;">
+                    <button class="button button-clear button-positive minus" id="{{id}}">
+                      {{> ionIcon icon='ios-minus-empty'}}
+                    </button>
+                  </div>
+                  <div class="col" style="border: 1px solid #dddddd; padding: 2px 5px 5px 5px; height: 52px;">
+                    <button class="button button-clear button-positive remove" id="{{id}}">
+                      {{> ionIcon icon='ios-close-empty'}}
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 35%;">
+                <div class="row" style="padding: 0px; margin-top: 0px;">
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px; height: 52px;">
+                    <p style="margin: 0px; margin-top: 7%;">{{rate}} {{#if discountExist}}<span style="text-decoration: line-through;">{{originalPrice}}</span>{{/if}}</p>
+                  </div>
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px; height: 52px;">
+                    <p style="margin: 0px; margin-top: 7%;">{{discount}}</p>
+                  </div>
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px; height: 52px;">
+                    <p style="margin: 0px; margin-top: 7%;">{{#if differentQuantity}}{{totalDiscountPrice}} + {{totalOriginalPrice}}{{else}}{{subAmount}}{{/if}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 5%;">
+                <div class="row" style="padding: 0px; margin-top: 0px;">
+                  <div class="col" style="border: 1px solid #dddddd; padding: 2px 5px 5px 5px; height: 52px;">
+                    <button class="button button-clear button-balanced">
+                      {{> ionIcon icon='ios-circle-filled'}}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{/each}}
+            
+            <div class="row" style="padding: 0px;">
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 60%">
+                
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 35%;">
+                <div class="row" style="padding: 0px; margin-top: 0px;">
+                  <div class="col-66" style="border: 1px solid #dddddd; padding: 5px;">
+                    Sub Total: 
+                  </div>
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+                    {{subTotal}}
+                  </div>
+                </div>
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 5%;">
+                
+              </div>
+            </div>  
+            <div class="row" style="padding: 0px;">
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 60%">
+                
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 35%;">
+                <div class="row" style="padding: 0px; margin-top: 0px;">
+                  <div class="col-66" style="border: 1px solid #dddddd; padding: 5px;">
+                    Total (GST): 
+                  </div>
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+                    0.00
+                  </div>
+                </div>
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 5%;">
+                
+              </div>
+            </div>  
+            <div class="row" style="padding: 0px;">
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 60%">
+                
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 35%;">
+                <div class="row" style="padding: 0px; margin-top: 0px;">
+                  <div class="col-66" style="border: 1px solid #dddddd; padding: 5px;">
+                    Payment: 
+                  </div>
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+                    0.00
+                  </div>
+                </div>
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 5%;">
+                
+              </div>
+            </div>  
+            <div class="row" style="padding: 0px;">
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 60%">
+                
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 35%;">
+                <div class="row" style="padding: 0px; margin-top: 0px;">
+                  <div class="col-66" style="border: 3px solid green; padding: 5px;">
+                    Balance Due: 
+                  </div>
+                  <div class="col" style="border: 3px solid green; padding: 5px;">
+                    0.00
+                  </div>
+                </div>
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 5%;">
+                
+              </div>
+            </div>  
+          </div>
+        </div>
+      </div>
+      {{/each}}
+      <div class="row">
+        <div class="col" style="padding: 15px;">
+          <button class="button button-block button-stable" id="addGroup">
+            Add Group
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-50" style="padding: 15px;">
+          <div class="list">
+            <div class="item item-divider">
+                Remarks
+            </div>
+            {{#each quotationRemark}}
+              <li class="item item-checkbox {{remarkChecked}} remark" id="{{id}}">
+                 <label class="checkbox">
+                   {{#if checkboxChecked}}
+                    <input type="checkbox" checked>
+                   {{else}}
+                    <input type="checkbox">
+                   {{/if}}
+                 </label>
+                 <h2 style="white-space: normal;">#{{remarkId}} - {{remark}}</h2>
+                 <p>{{createdBy}} - {{createdAt}}</p>
+              </li>
+            {{/each}}
+            <div class="item">
+              <textarea rows="4" placeholder="Type remarks here" id="remark"></textarea>
+              <button class="button button-block button-stable" id="addRemark">
+                Add Remark
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>  
+      <div class="row" style="height: 200px;">
+        <div class="col" style="height: 100%; padding: 15px;">
+          <button class="button button-block button-stable" style="height: 150px; font-size: 2em;" id="cancelQuotation" data-action="showDeleteConfirm">
+            Cancel Quotation
+          </button>
+        </div>
+        <div class="col" style="height: 100%; padding: 15px;">
+          <button class="button button-block button-stable" style="height: 150px; font-size: 2em;">
+            Confirm Quotation
+          </button>
+        </div>
+      </div>
+    </form>
+    {{/ionContent}}
+  {{/ionView}}
+</template>

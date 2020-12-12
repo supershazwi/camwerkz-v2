@@ -1,0 +1,149 @@
+{
+  "dependencies": {
+    "cordova-plugin-print-pdf": {
+      "version": "4.0.1"
+    },
+    "fibers": {
+      "version": "1.0.5"
+    },
+    "node-quickbooks": {
+      "version": "1.0.17",
+      "dependencies": {
+        "moment": {
+          "version": "2.10.3"
+        },
+        "node-uuid": {
+          "version": "1.4.3"
+        },
+        "querystring": {
+          "version": "0.2.0"
+        },
+        "request": {
+          "version": "2.39.0",
+          "dependencies": {
+            "qs": {
+              "version": "0.6.6"
+            },
+            "json-stringify-safe": {
+              "version": "5.0.1"
+            },
+            "mime-types": {
+              "version": "1.0.2"
+            },
+            "forever-agent": {
+              "version": "0.5.2"
+            },
+            "tough-cookie": {
+              "version": "1.1.0"
+            },
+            "form-data": {
+              "version": "0.1.4",
+              "dependencies": {
+                "combined-stream": {
+                  "version": "0.0.7",
+                  "dependencies": {
+                    "delayed-stream": {
+                      "version": "0.0.5"
+                    }
+                  }
+                },
+                "mime": {
+                  "version": "1.2.11"
+                },
+                "async": {
+                  "version": "0.9.0"
+                }
+              }
+            },
+            "tunnel-agent": {
+              "version": "0.4.0"
+            },
+            "http-signature": {
+              "version": "0.10.1",
+              "dependencies": {
+                "assert-plus": {
+                  "version": "0.1.5"
+                },
+                "asn1": {
+                  "version": "0.1.11"
+                },
+                "ctype": {
+                  "version": "0.5.3"
+                }
+              }
+            },
+            "oauth-sign": {
+              "version": "0.3.0"
+            },
+            "hawk": {
+              "version": "1.1.1",
+              "dependencies": {
+                "hoek": {
+                  "version": "0.9.1"
+                },
+                "boom": {
+                  "version": "0.4.2"
+                },
+                "cryptiles": {
+                  "version": "0.2.2"
+                },
+                "sntp": {
+                  "version": "0.2.4"
+                }
+              }
+            },
+            "aws-sign2": {
+              "version": "0.5.0"
+            },
+            "stringstream": {
+              "version": "0.0.4"
+            }
+          }
+        },
+        "request-debug": {
+          "version": "0.0.1",
+          "dependencies": {
+            "clone": {
+              "version": "0.1.19"
+            }
+          }
+        },
+        "underscore": {
+          "version": "1.6.0"
+        },
+        "util": {
+          "version": "0.10.3",
+          "dependencies": {
+            "inherits": {
+              "version": "2.0.1"
+            }
+          }
+        }
+      }
+    },
+    "webshot": {
+      "version": "0.17.0",
+      "dependencies": {
+        "graceful-fs": {
+          "version": "3.0.8"
+        },
+        "cross-spawn": {
+          "version": "0.2.9",
+          "dependencies": {
+            "lru-cache": {
+              "version": "2.7.3"
+            }
+          }
+        },
+        "tmp": {
+          "version": "0.0.28",
+          "dependencies": {
+            "os-tmpdir": {
+              "version": "1.0.1"
+            }
+          }
+        }
+      }
+    }
+  }
+}

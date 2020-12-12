@@ -1,0 +1,59 @@
+<template name="addCustomerPackageItem">
+  {{#ionModal customTemplate=true}}
+   <div class="bar bar-header bar-stable">
+        <a href="#" id="backButton"><button  type="button" class="button button-positive button-clear"><i class="icon ion-ios-arrow-back"></i></button></a>
+        <h2 class="title">Search Equipment</h2>
+        <button data-dismiss="modal" class="button button-positive button-clear" id="close">Close</button>
+      </div>
+      <div class="content overflow-scroll">
+        <div class="list" style="height: 100%;">
+          <div class="item item-input-inset" style="margin-top: 43px; margin-bottom: 5px;">
+            <label class="item-input-wrapper">
+              {{> ionIcon icon="ios-search" class="placeholder-icon"}}
+              <input type="text" placeholder="Search Equipment" value="{{searchInventoryQuery}}">
+            </label>
+          </div>
+          {{#each categories}}
+          <div class="row categories" style="height: 33.3%; padding-top: 0px;">
+            {{#each this}} 
+            <div class="col" style="height: 100%;">
+              <div id="quotations" style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;">
+                  <div style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background: #272a32; border: 5px solid #272a32;" class="category" id="{{this}}">
+                    <div style=" #position: relative; #top: -50%">
+                      <h1 style="color: white; margin-bottom: 0px;" id="{{this}}">{{this}}</h1>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+          {{/each}}
+          {{#each brands}}
+          <div class="row brands" id="brands" style="height: 33.3%; margin-top: 1px;">
+            {{#each this}} 
+            <div class="col" style="height: 100%;">
+              <div id="quotations" style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;">
+                  <div style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background: #272a32; border: 5px solid #272a32;" class="brand" id="{{this}}">
+                    <div style=" #position: relative; #top: -50%">
+                      <h1 style="color: white; margin-bottom: 0px;" id="{{this}}">{{this}}</h1>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+          {{/each}}          
+          <div class="equipments" style="display: none; padding-top: 0px; margin-top: -6px;">
+            <div class="list" style="padding: 0px;">
+              {{#each equipments}}
+              <a href="#" class="item item-icon-right equipment" id="{{_id}}">
+                {{> ionIcon icon='ios-arrow-right' class="positive"}}
+                <h2 class="input-label" id="{{_id}}">{{item}}</h2> 
+              </a>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      </div>
+  {{/ionModal}}
+</template>		

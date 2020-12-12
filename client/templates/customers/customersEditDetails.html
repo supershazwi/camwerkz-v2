@@ -1,0 +1,76 @@
+<template name="customersEditDetails">
+
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button-positive" text=false}}
+  {{/contentFor}}
+  
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Edit Customer Detail</h1>
+  {{/contentFor}}
+  
+  {{#if pending}}
+  <div class="bar bar-subheader bar-royal">
+    <h2 class="title">CUSTOMER UPDATE PENDING</h2>
+  </div>
+  {{/if}}
+
+  {{#if error}}
+  <div class="bar bar-subheader bar-positive">
+    <h2 class="title">CUSTOMER UPDATE ERROR - {{messageError}}</h2>
+  </div>
+  {{/if}}
+  
+  {{#ionView}}
+    {{#ionContent}}
+      {{#if Template.subscriptionsReady}}
+      {{#ionList}}
+        {{#with customer}}
+        <div class="form-group" style="{{iferrororpending}} padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label {{nameStatus}}" style="padding-bottom: 0px; width: 100%;">First Name {{#if firstNameMax}}(max length 25 chars){{/if}}</span>
+          <input type="text" class="form-control" id="firstName" placeholder="e.g First Name" style="width: 100%;color: #666;" maxlength="25" value="{{firstName}}">
+        </div>
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label {{nameStatus}}" style="padding-bottom: 0px; width: 100%;">Middle Name {{#if middleNameMax}}(max length 25 chars){{/if}}</span>
+          <input type="text" class="form-control" id="middleName" placeholder="e.g Middle Name" style="width: 100%;color: #666;" maxlength="25" value="{{middleName}}">
+        </div>
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label {{nameStatus}}" style="padding-bottom: 0px; width: 100%;">Last Name {{#if lastNameMax}}(max length 25 chars){{/if}}</span>
+          <input type="text" class="form-control" id="lastName" placeholder="e.g Last Name" style="width: 100%;color: #666;" maxlength="25" value="{{lastName}}">
+        </div>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">IC Number</span>
+          <input type="text" placeholder="e.g S123XXXXG" value="{{ic}}" id="ic" style="width: 100%; color: #666;">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Company</span>
+          <input type="text" placeholder="e.g ABC Company" value="{{company}}" id="company" style="width: 100%; color: #666;">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label {{emailStatus}}" style="padding-bottom: 0px; width: 100%;">Email {{#if emailMax}}(max length 100 chars){{/if}} {{#if emailDuplicate}}- Please enter a unique email.{{/if}}</span>
+          <input type="text" placeholder="e.g john@abc.com" value="{{email}}" id="email" style="width: 100%; color: #666;" maxlength="100">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label" style="padding-bottom: 0px;">Contact {{#if contactMax}}(max length 21 chars){{/if}}</span>
+          <input type="text" placeholder="e.g 62353535" value="{{contact}}" id="contact" style="width: 100%; color: #666;" maxlength="21">
+        </label>
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label" style="padding-bottom: 0px;">Address</span>
+          <textarea rows="4" placeholder="Address here" id="address" style="width: 100%; color: #666;">{{address}}</textarea>
+        </div>
+        <div class="button-bar">
+          <button class="button button-full button-stable button-large" style="margin-top: 1px;" id="saveCustomerDetails" type="submit" {{isDisabled}}>
+          Save Customer Details
+        </button>
+        </div>
+        {{/with}}
+      {{/ionList}}
+      {{else}}
+        <div class="row">
+          <div class="col">
+            Loading...
+          </div>
+        </div>
+      {{/if}}
+    {{/ionContent}}
+  {{/ionView}}
+</template>

@@ -1,0 +1,15 @@
+<template name="newInventoryCategory">
+  {{#ionModal title="Add New Category"}}
+    <form>
+      <div class="content overflow-scroll">
+      	<div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label {{categoryStatus}}" style="padding-bottom: 0px; width: 100%;">Name {{#if categoryDuplicate}}- Please enter a unique category.{{/if}}</span>
+          <input type="text" class="form-control" id="category" placeholder="e.g Cameras" style="color: #666;">
+      	</div>
+        <button class="button button-full button-balanced" style="margin-top: 0px;" type="submit">
+          Add New Category
+        </button>
+      </div>
+    </form>
+  {{/ionModal}}
+</template>

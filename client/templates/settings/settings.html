@@ -1,0 +1,47 @@
+<template name="settings">
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Settings</h1>
+  {{/contentFor}}
+
+  {{#ionView}}
+    {{#ionContent}}
+      {{#ionList}}
+        {{#each users}}
+          <div class="card">
+		  <div class="item item-divider" style="background-color: #28152E; color: white;">
+		    {{username}}
+		  </div>
+		  <div class="item item-text-wrap">
+		    Verified 
+		    <label class="toggle toggle-balanced verified" id={{_id}} style="float:right; margin-top: -11px;">
+		       {{#if verified}}
+		       <input type="checkbox" checked>
+		       {{else}}
+		       <input type="checkbox">
+		       {{/if}}
+		       <div class="track">
+		         <div class="handle"></div>
+		       </div>
+		     </label>
+		  </div>
+		  <div class="item item-text-wrap">
+		    Admin
+		    <label class="toggle toggle-balanced admin" id={{_id}} style="float:right; margin-top: -11px;">
+		       {{#if admin}}
+		       <input type="checkbox" checked>
+		       {{else}}
+		       <input type="checkbox">
+		       {{/if}}
+		       <div class="track">
+		         <div class="handle"></div>
+		       </div>
+		     </label>
+		  </div>
+		</div>
+        {{/each}}
+      {{/ionList}}
+    {{/ionContent}}
+  {{/ionView}}
+
+</template>

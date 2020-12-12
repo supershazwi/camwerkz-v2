@@ -1,0 +1,37 @@
+<template name="editCustomerPackageItem">
+  {{#ionModal title="Edit Package Item"}}
+    {{#with itemClicked}}
+    <form>
+      <div class="content overflow-scroll">
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label" style="padding-bottom: 0px; width: 100%;">Name</span>
+          <input type="hidden" class="form-control" id="id" value="{{id}}" style="color: #666; background-color: white;" disabled>
+          <input type="text" class="form-control" id="item" value="{{item}}" style="color: #666; background-color: white;" disabled>
+        </div>
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label" style="padding-bottom: 0px; width: 100%;">Brand</span>
+          <input type="text" class="form-control" id="brand" value="{{brand}}" style="color: #666; background-color: white;" disabled>
+        </div>
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label" style="padding-bottom: 0px; width: 100%;">Category</span>
+          <input type="text" class="form-control" id="category" value="{{category}}" style="color: #666; background-color: white;" disabled>
+        </div>
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label" style="padding-bottom: 0px; width: 100%;">Rate</span>
+          <input type="text" class="form-control" id="rate" value="{{rate}}" style="color: #666;">
+        </div>
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label" style="padding-bottom: 0px; width: 100%;">Quantity</span>
+          <input type="text" class="form-control" id="quantity" value="{{quantity}}" style="color: #666;">
+        </div>
+        <button class="button button-full button-balanced" style="margin-top: 0px;" type="submit">
+          Update Package Item
+        </button>
+        <button class="button button-full button-clear button-assertive" id="deletePackageItem" style="margin-top: 0px;" data-action="showDeleteConfirm">
+          Delete Package Item
+        </button>
+      </div>
+    </form>
+    {{/with}}
+  {{/ionModal}}
+</template>

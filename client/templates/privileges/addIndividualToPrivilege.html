@@ -1,0 +1,41 @@
+<template name="addIndividualToPrivilege">
+  {{#ionModal focusFirstInput=true title="Add Individual" customTemplate=true}}
+  <div class="bar bar-header bar-stable">
+    <a href="#" id="backButton"><button  type="button" class="button button-positive button-clear"><i class="icon ion-ios-close-empty"></i></button></a>
+    <h2 class="title">Edit Customers</h2>
+    <button data-dismiss="modal" class="button button-positive button-clear" id="submit">Submit</button>
+  </div>
+  <div class="content overflow-scroll">
+    <div class="list">
+      <div class="item item-input-inset" style="margin-top: 42px;">
+        <label class="item-input-wrapper">
+          {{> ionIcon icon="ios-search" class="placeholder-icon"}}
+          <input type="text" placeholder="Search Customer" id="searchCustomer" value="{{searchCustomerQuery}}">
+        </label>
+      </div>
+      <li class="item item-checkbox" id="checkAllCustomers">
+         <label class="checkbox">
+           {{#if allCustomersChecked}}
+            <input type="checkbox" id="checkAllCustomersCheckbox" checked>
+           {{else}}
+            <input type="checkbox" id="checkAllCustomersCheckbox">
+           {{/if}}
+         </label>
+         <strong>All customers</strong>
+      </li>
+      {{#each customers}}
+        <li class="item item-checkbox" id="{{_id}}">
+           <label class="checkbox">
+             {{#if checkboxChecked}}
+              <input type="checkbox" checked>
+             {{else}}
+              <input type="checkbox">
+             {{/if}}
+           </label>
+           <strong>{{name}}</strong> {{company}}
+        </li>
+      {{/each}}
+    </div>
+  </div>
+  {{/ionModal}}
+</template>		

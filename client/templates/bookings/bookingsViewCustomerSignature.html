@@ -1,0 +1,33 @@
+<template name="bookingsViewCustomerSignature">
+{{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button-positive" text=false}}
+  {{/contentFor}}
+  
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">VIEW SIGNATURE</h1>
+  {{/contentFor}}
+  
+  {{#ionView}}
+    {{#ionContent}}
+        <label class="item item-input">
+          <span class="input-label">Signed By {{signedBy}} at {{signedAt}}</span>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">IC</span>
+          <input type="text" value="{{ic}}" disabled style="background: transparent;">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Number</span>
+          <input type="text" value="{{number}}" disabled style="background: transparent;">
+        </label>
+        <label class="item item-input">
+          <p style="text-overflow: ellipsis;overflow: hidden;white-space: normal; color: #DE4F4F;">Equipment collected in Order & Good Condition. As an individual or a representative of the company who sent me to collect the equipment, I agreed to abide by the Terms & Conditions stated by Camwerkz.</p>
+        </label>
+        <div id="signature-pad" class="m-signature-pad">
+          <div class="m-signature-pad--body">
+            <canvas style="width: 600; height: 600;"></canvas>
+          </div>
+        </div>
+    {{/ionContent}}
+  {{/ionView}}
+</template>   

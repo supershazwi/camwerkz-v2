@@ -1,0 +1,29 @@
+<template name="overbookedCalendars">
+
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button-positive" text=false}}
+  {{/contentFor}}
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Overbooked Calendar</h1>
+  {{/contentFor}}
+
+  {{#ionView}}
+    {{#ionContent}}
+    {{#if Template.subscriptionsReady}}
+    <div class="row">
+      <div class="col" style="padding: 10px 15px 0px 15px;">
+        {{> fullcalendar class="myCalendars" defaultView='month' height="100%" events=events header=header eventClick=onEventClicked firstDay="1"}}
+      </div>
+    </div>
+    {{else}}
+    <div class="row">
+      <div class="col">
+        Loading...
+      </div>
+    </div>
+    {{/if}}
+    {{/ionContent}}
+  {{/ionView}}
+
+</template>

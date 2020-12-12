@@ -1,0 +1,36 @@
+<template name="editPrivilege">
+  {{#ionModal title="Edit Privilege"}}
+    {{#with privilege}}
+    <form>
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label {{nameStatus}}" style="padding-bottom: 0px; width: 100%;">Name {{#if nameDuplicate}}- Please enter a unique name.{{/if}}</span>
+          <input type="text" class="form-control" id="name" placeholder="e.g Gold Member" value="{{name}}" style="color: #666;">
+          <input type="hidden" class="form-control" id="name2" placeholder="e.g Gold Member" value="{{name}}" style="color: #666;">
+        </div>
+        
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label" style="padding-bottom: 0px;">Discount Type</span>
+          <select class="ion-input-select" style="margin-top: 10px; margin-bottom: 10px;" id="discountOptions">
+            <option value="selectDiscount">Select Discount Type</option>
+              <option value="cash">Cash</option>
+              <option value="percentage">Percentage</option>
+          </select>
+        </div>
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label" style="padding-bottom: 0px;">Discount Value</span>
+          <input type="text" class="form-control" id="discountValue" placeholder="Discount Value" value="{{discountValue}}" style="color: #666;">
+        </div>
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label" style="padding-bottom: 0px; width: 100%;">Details</span>
+          <textarea rows="4" placeholder="Package Details" id="details" style="color: #666;" value="{{details}}"></textarea>
+        </div>
+        <button class="button button-full button-balanced" style="margin-top: 0px;" type="submit" {{isDisabled}}>
+          Update Privilege
+        </button>
+        <button class="button button-full button-clear button-assertive" id="deletePrivilege" style="margin-top: 0px;" data-action="showDeleteConfirm">
+          Delete Privilege
+        </button>
+    </form>
+    {{/with}}
+  {{/ionModal}}
+</template>

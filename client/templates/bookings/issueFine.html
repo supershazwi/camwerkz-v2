@@ -1,0 +1,21 @@
+<template name="issueFine">
+  {{#ionModal customTemplate=true}}
+   <div class="bar bar-header bar-stable">
+        <button data-dismiss="modal" class="button button-positive button-clear">Close</button>
+        <h2 class="title">Pick Items to Issue Invoice</h2>
+        <button class="button button-positive button-clear" id="createInvoice">Create Invoice</button>
+      </div>
+      <div class="content overflow-scroll">
+        <div class="list">
+          {{#each unresolved}}
+          <li class="item item-checkbox item" id="{{id}}" style="margin-top: 42px;">
+            <label class="checkbox" style="width: 85%;">
+                <input type="checkbox">
+             </label>
+             <h2 style="white-space: normal;">{{lineItem}}</h2>
+          </li>
+          {{/each}}
+        </div>
+      </div>
+  {{/ionModal}}
+</template>   

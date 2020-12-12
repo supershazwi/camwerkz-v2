@@ -1,0 +1,22 @@
+<template name="editCustomerPackage">
+  {{#ionModal title="Edit Customer Package"}}
+    {{#with customerPackage}}
+      <div class="content overflow-scroll">
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label {{packageNameStatus}}" style="padding-bottom: 0px; width: 100%;">Name {{#if packageNameDuplicate}}- Please enter a unique package name.{{/if}}</span>
+          <input type="text" class="form-control" id="name" value="{{name}}" placeholder="e.g New Year Package" style="color: #666;">
+        </div>
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label" style="padding-bottom: 0px; width: 100%;">Details</span>
+          <textarea rows="4" placeholder="Package Details" id="details" value="{{details}}" style="color: #666;"></textarea>
+        </div>
+        <button class="button button-full button-balanced" style="margin-top: 0px;" id="submit">
+          Update Customer Package
+        </button>
+        <button class="button button-full button-clear button-assertive" id="deleteCustomerPackage" style="margin-top: 0px;" data-action="showDeleteConfirm">
+          Delete Customer Package
+        </button>
+      </div>
+    {{/with}}
+  {{/ionModal}}
+</template>

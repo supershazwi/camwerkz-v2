@@ -1,0 +1,59 @@
+<template name="inventory">
+
+  {{#contentFor "headerButtonLeft"}}
+    <button class="button button-clear pull-left button-positive" data-ion-modal="inventorySearch">
+      {{> ionIcon icon='ios-search'}}
+    </button>
+  {{/contentFor}}
+
+  {{#contentFor "headerButtonRight"}}
+    <a href="/inventory/create" class="button button-clear pull-right button-positive">
+      {{> ionIcon icon='ios-plus-empty'}}
+    </a>
+  {{/contentFor}}
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Inventory List</h1>
+  {{/contentFor}}
+
+  {{#ionView}}
+    {{#ionContent}}
+      <div class="row">
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-positive" id="items">
+            Items
+          </button>
+        </div>
+        <!--
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-outline" id="packages">
+            Packages
+          </button>
+        </div>
+        -->
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-outline" id="repairs">
+            Out of Action
+          </button>
+        </div>
+      </div>
+      <hr />
+      {{#each categories}}
+      <div class="row" style="height: 33.3%; margin-top: 10px; margin-bottom: 10px;">
+        {{#each this}} 
+          <div class="col" style="height: 100%; padding: 10px 15px 0px 15px;">
+            <div id="{{this}}" class="category" style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;">
+                <div style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background: #272a32; border: 5px solid #272a32;">
+                  <div style=" #position: relative; #top: -50%">
+                    <h1 style="color: white; margin-bottom: 0px;">{{this}}</h1>
+                  </div>
+                </div>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+      {{/each}}
+    {{/ionContent}}
+  {{/ionView}}
+
+</template>

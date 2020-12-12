@@ -1,0 +1,30 @@
+<template name="othersViewCustomerSignature">
+{{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button-positive" text=false}}
+  {{/contentFor}}
+  
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">VIEW SIGNATURE</h1>
+  {{/contentFor}}
+  
+  {{#ionView}}
+    {{#ionContent}}
+        <label class="item item-input">
+          <span class="input-label">Signed By {{signedBy}} at {{signedAt}}</span>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">IC</span>
+          <input type="text" value="{{ic}}">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Number</span>
+          <input type="text" value="{{number}}">
+        </label>
+        <div id="signature-pad" class="m-signature-pad">
+          <div class="m-signature-pad--body">
+            <canvas style="width: 600; height: 600;"></canvas>
+          </div>
+        </div>
+    {{/ionContent}}
+  {{/ionView}}
+</template>   

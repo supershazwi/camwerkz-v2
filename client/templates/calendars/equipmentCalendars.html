@@ -1,0 +1,52 @@
+<template name="equipmentCalendars">
+
+  <button class="button button-clear pull-right button-positive" style="float:left; z-index: 5000; color: #2B3A42;">
+    Logged in as: {{username}}
+  </button>
+
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button-positive" text=false}}
+  {{/contentFor}}
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Equipment Calendar</h1>
+  {{/contentFor}}
+
+  {{#contentFor "headerButtonRight"}}
+    <button class="button button-clear button-positive" data-ion-popover="_myPopover">
+        {{> ionIcon icon='more'}}
+    </button>
+  {{/contentFor}}
+
+  {{#ionView}}
+    {{#ionContent}}
+    {{#if Template.subscriptionsReady}}
+    <div class="row">
+
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+
+          <div class="control-group" style="width: 100%; margin-bottom: 5px;">
+          <select id="equipmentSearch" class="contacts" placeholder="Pick equipment"></select>
+        </div>
+        
+        </div>
+  </div>
+  {{else}}
+  <div class="row">
+
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+
+          Equipment search bar loading...
+        
+        </div>
+  </div>
+  {{/if}}
+    <div class="row">
+      <div class="col" style="padding: 10px 15px 0px 15px;">
+        {{> fullcalendar id="myCalendar" class="myCalendars" defaultView='month' height="100%" events=events header=header eventClick=onEventClicked firstDay="1"}}
+      </div>
+    </div>
+    {{/ionContent}}
+  {{/ionView}}
+
+</template>

@@ -1,0 +1,102 @@
+<template name="inventoryItemShow">
+
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button-positive" text=false}}
+  {{/contentFor}}
+  
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Inventory Item Detail</h1>
+  {{/contentFor}}
+  
+  {{#contentFor "headerButtonRight"}}
+    <button class="button button-positive button-clear" data-ion-modal="inventoryItemLog">See Item Log</button>
+  {{/contentFor}}
+  
+  {{#ionView}}
+    {{#ionContent}}
+    {{#with inventoryItem}}
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="item item-text-wrap" style="text-align:center;">
+              
+              <h2>{{item}}</h2>
+              <p>{{brand}}</p>
+              <p>{{category}}</p>
+              <p>Rate: {{rate}}/day</p>
+              <p>Available Quantity: {{bookableQuantity}}</p>
+              <p>Total Quantity: {{quantity}}</p>
+              <p>-</p>
+              <p>Added on: {{createdAt}}</p>  
+              <p>Bought at: {{price}}</p>
+              <p>Supplier: {{supplier}}</p>
+              <br/>
+              <div class="button-bar">
+                <a href="/inventory/{{_id}}/edit" id="editInventoryItem" class="button">Edit Item</a>
+                <a href="#" id="removeInventoryItem" class="button" data-action="showDeleteConfirm">Remove Item</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>  
+      <div class="row">
+        <div class="col" style="padding: 0px 15px 15px 15px;">
+          {{#if overallAffectedBookingsExist}}
+          <div class="list">
+          <div class="item item-divider" style="background-color: #de4f4f; color: white; border-color: #de4f4f;">
+              Affected Bookings
+          </div>
+          {{#each serialNo}}
+            {{#if affectedBookingsExist}}
+              <div class="item">
+              <p>Serial No: {{serialNo}}</p>
+              <p>Status: {{status}}</p>
+              {{#each affectedBookings}}
+                <span style="color: #de4f4f; font-size: 14px;">Booking </span><a href="/bookings/{{invoiceId}}" style="color: #de4f4f; font-size: 14px;">{{invoiceId}} - Group {{serialGroup}}</a>
+                <br />
+              {{/each}}
+              </div>
+            {{/if}}
+          {{/each}}
+          </div>
+          {{/if}}
+          <div class="list">
+            <div class="item item-divider">
+                Individual Items
+            </div>
+            <ul class="list" style="padding-left: 0px; padding-right: 0px;">
+              {{#each serialNo}}
+              <li class="item" style="background-color: {{highlighted}};">
+                 <h2 style="white-space: normal; display: inline;">Serial No: {{serialNo}}</h2>
+                 <br /><br />
+                 <a class="button button-stable button-small addRemark" id="{{serialNo}}_{{id}}" href="/inventoryItem/{{currentId}}/addRemark">
+                    Add Remark
+                  </a>
+                  <button class="button button-stable button-small viewRemarks" id="{{serialNo}}_{{id}}" data-ion-modal="viewItemRemark">
+                    View Remarks ({{remarkCount}})
+                  </button>
+                  <button class="button button-small item-status {{isDamaged}}" style="float: right;" id="{{id}}_Damaged">
+                   Damaged - Waiting To Be Repaired
+                 </button>
+
+                 <button class="button button-small item-status {{isMissing}}" style="float: right; margin-right: 5px;" id="{{id}}_Missing">
+                   Missing
+                 </button>
+
+                 <button class="button button-small item-status {{isSentForRepair}}" style="float: right; margin-right: 5px;" id="{{id}}_Sent For Repair">
+                   Sent For Repair
+                 </button>
+
+                 <button class="button button-small item-status {{isAvailable}}" style="float: right; margin-right: 5px;" id="{{id}}_Available">
+                   Available
+                 </button>
+              </li>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+      </div> 
+    {{/with}}
+    {{/ionContent}}
+  {{/ionView}}
+</template>

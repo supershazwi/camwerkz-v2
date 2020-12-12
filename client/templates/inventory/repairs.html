@@ -1,0 +1,104 @@
+<template name="repairs">
+
+  {{#contentFor "headerButtonLeft"}}
+    <button class="button button-clear pull-left button-positive" data-ion-modal="repairSearch">
+      {{> ionIcon icon='ios-search'}}
+    </button>
+  {{/contentFor}} 
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Repair List</h1>
+  {{/contentFor}}
+
+  {{#ionView}}
+    {{#ionContent}}
+      <div class="row">
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-outline" id="items">
+            Items
+          </button>
+        </div>
+        <!--
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-outline" id="packages">
+            Packages
+          </button>
+        </div>
+        -->
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <button class="button button-block button-positive" id="repairs">
+            Out of Action
+          </button>
+        </div>
+      </div>
+      <hr style="margin-bottom: -1px;"/>
+
+      <div class="row">
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <div class="list">
+            <div class="item item-divider" style="background-color: #374140; color: white; border-color: #374140;">
+              Damaged - Waiting to be Sent For Repair
+            </div>
+            {{#if damagedExist}}
+            {{#each damaged}}
+            <li class="item inventoryItem" id="{{itemId}}_{{serialNo}}">
+               <h2 style="white-space: normal;">{{brand}} {{item}}</h2>
+                <p style="white-space: normal;">Serial No: {{serialNo}}</p>
+            </li>
+            {{/each}}
+            {{else}}
+              <li class="item inventoryItem" id="{{itemId}}_{{serialNo}}">
+                 <h2 style="white-space: normal;">No damaged items.</h2>
+              </li>
+            {{/if}}
+          </div>
+        </div>
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <div class="list">
+            <div class="item item-divider" style="background-color: #374140; color: white; border-color: #374140;">
+              Sent For Repair
+            </div>
+            {{#if sentForRepairsExist}}
+            {{#each sentForRepairs}}
+              <li class="item inventoryItem" id="{{itemId}}_{{serialNo}}">
+                 <h2 style="white-space: normal;">{{brand}} {{item}}</h2>
+                  <p style="white-space: normal;">Serial No: {{serialNo}}</p>
+              </li>
+            {{/each}}
+            {{else}}
+              <li class="item inventoryItem" id="{{itemId}}_{{serialNo}}">
+                 <h2 style="white-space: normal;">No items sent for repair.</h2>
+              </li>
+            {{/if}}
+          </div>
+        </div>
+        <div class="col" style="padding: 10px 15px 0px 15px;">
+          <div class="list">
+            <div class="item item-divider" style="background-color: #374140; color: white; border-color: #374140;">
+              Missing
+            </div>
+            {{#if missingExist}}
+            {{#each missing}}
+            <li class="item inventoryItem" id="{{itemId}}_{{serialNo}}">
+               <h2 style="white-space: normal;">{{brand}} {{item}}</h2>
+                <p style="white-space: normal;">Serial No: {{serialNo}}</p>
+            </li>
+            {{/each}}
+            {{else}}
+            <li class="item inventoryItem" id="{{itemId}}_{{serialNo}}">
+               <h2 style="white-space: normal;">No missing items.</h2>
+            </li>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+
+      <!-- {{#ionList}}
+        {{#each repairs}}
+          {{> _repairItem repairItem=this}}
+        {{/each}}
+      {{/ionList}} -->
+    {{/ionContent}}
+  {{/ionView}}
+
+</template>

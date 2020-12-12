@@ -1,0 +1,14 @@
+<template name="_customerItem">
+  {{#with customer}}
+    {{#ionItem path=../path buttonRight=true class="item-icon-right"}}
+      <h2>{{name}}</h2>
+      <p>
+        {{contact}}
+      </p>
+      <p>
+        {{company}}
+      </p>
+      {{> ionIcon icon="ios-arrow-forward" class="positive"}}
+    {{/ionItem}}
+  {{/with}}
+</template>

@@ -1,0 +1,9 @@
+<template name="_repairItem">
+  {{#with repairItem}}
+    {{#ionItem path="repairItem.show" buttonRight=true class="repair item-icon-right"}}
+      <h2>{{brand}} {{item}}</h2>
+      <p>Serial No: {{serialNo}}</p>
+      {{> ionIcon icon="ios-arrow-forward" class="positive"}}
+    {{/ionItem}}
+  {{/with}}
+</template>

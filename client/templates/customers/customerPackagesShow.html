@@ -1,0 +1,85 @@
+<template name="customerPackagesShow">
+
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button-positive" text=false}}
+  {{/contentFor}}
+  
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Customer Package Detail</h1>
+  {{/contentFor}}
+  
+  {{#contentFor "headerButtonRight"}}
+    <button class="button button-positive button-clear" data-ion-modal="customerPackageLog">See Customer Package Log</button>
+  {{/contentFor}}
+  
+  {{#ionView}}
+    {{#ionContent}}
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="item item-text-wrap" style="text-align:center;">
+              {{#with customerPackage}}
+              <h2>{{name}}</h2>
+              <p>Details: {{details}}</p>
+              {{/with}}
+              <br/>
+              <a><button class="button button-stable" data-ion-modal="addCustomerPackageItem">
+                Add Item
+              </button></a>
+              <a><button class="button button-stable" data-ion-modal="editCustomerPackage">
+                Edit Package Details
+              </button></a>
+            </div>
+          </div>
+           <div class="row">
+            <div class="col">
+              <button class="button button-block button-positive" id="items">
+                Items
+              </button>
+            </div>
+            <div class="col">
+              <button class="button button-block button-outline" id="usageHistory">
+                Usage History
+              </button>
+            </div>
+          </div>
+          <div id="itemsList">
+            {{#if itemsExist}}
+            <div class="list card itemCard">
+              {{#each items}}
+              <a href="#" class="item item-icon-right" data-ion-modal="editCustomerPackageItem">
+                {{> ionIcon icon='ios-arrow-right' class="positive"}}
+                <h2 class="input-label">{{item}}</h2>
+                <p style="color: #666;">Brand: {{brand}}</p>     
+                <p style="color: #666;">Category: {{category}}</p>     
+                <p style="color: #666;">Quantity: {{quantity}}</p>     
+                <p style="color: #666;">Rate: {{rate}}</p>  
+              </a>
+              {{/each}}
+            </div>
+            {{else}}
+              <h3 style="color: #666; text-align: center; margin-top: 10px;">There are currently no items.</h3>
+            {{/if}}
+          </div>
+          <div id="usageHistoryList">
+            {{#if historyExist}}
+            <div class="list card usageHistoryCard">
+              {{#each usage}}
+                <a href="http://localhost:3000/bookings/{{id}}" class="item item-icon-right">
+                  {{> ionIcon icon='ios-arrow-right'}}
+                  <h2 class="input-label">Booking: {{id}}</h2>
+                  <p style="color: #666;">{{noOfItems}} item(s)</p>       
+                  <p style="color: #666;">{{total}}</p>    
+                  <p style="color: #666;">{{createdAt}}</p>   
+                </a>
+              {{/each}}
+            </div>
+            {{else}}
+              <h3 style="color: #666; text-align: center; margin-top: 10px;">There is currently no usage history.</h3>
+            {{/if}}
+          </div>
+        </div>
+      </div>  
+    {{/ionContent}}
+  {{/ionView}}
+</template>

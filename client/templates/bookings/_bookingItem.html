@@ -1,0 +1,29 @@
+<template name="_bookingItem">
+  {{#with booking}}
+    {{#ionItem path=../path}}
+      <h2>{{customerName}} {{customerCompany}}</h2>
+      {{#if void}}
+      <h2>
+        Quickbooks Id: <span style="text-decoration: line-through;">{{quickbooksInvoiceId}}</span> <span style="color: red;">VOID</span>
+      </h2>
+      {{else}}
+      <h2>
+        Quickbooks Id: {{quickbooksInvoiceId}}
+      </h2>
+      {{/if}}
+      <br/>
+      {{#each dateGroups}}
+      <h2>
+      {{startDate}} - {{endDate}}
+      </h2>
+      {{/each}}
+      <br/>
+      <p>
+        {{noOfItems}} item(s) @ {{total}}
+      </p>
+      <p>
+        Created on: {{createdAt}}
+      </p>
+    {{/ionItem}}
+  {{/with}}
+</template>

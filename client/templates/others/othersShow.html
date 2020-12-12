@@ -1,0 +1,543 @@
+<template name="othersShow">
+
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button-positive" text=false}}
+  {{/contentFor}}
+  
+  <a class="button button-positive button-clear" href="/others/{{otherId}}/logs" style="float:right; z-index: 5000;">See Log</a>
+
+  {{#if needUpdate}}
+  <a href="http://192.168.1.176:5000/sync-others-invoice?id={{otherId}}" target="_blank" class="button button-dark button-clear" style="float:right; z-index: 5000;">Sync Invoice to QB</a>
+  {{/if}}
+  <a href="http://192.168.1.176:5000/generateOtherPDF/?otherId={{otherId}}" target="_blank" class="button button-dark button-clear" style="float:right; z-index: 5000;">Save PDF</a>
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title" style="">Create Invoice</h1>
+  {{/contentFor}}
+  
+  {{#if void}}
+  <div class="bar bar-subheader bar-stable" style="background: #374140;">
+    <h2 class="title" style="color: white;">invoice voided</h2>
+  </div>
+  {{else}}
+  <div class="bar bar-subheader bar-stable" style="background-color: #2980B9; color: white; ">
+    <h2 class="title" style="color: white;">This is a normal invoice</h2>
+  </div>
+  {{/if}}
+
+  {{#if otherUpdateSyncing}}
+  <div class="bar bar-subheader bar-stable" style="background-color: #2C3E50; border-color: #2C3E50; margin-top: 42px;" id="syncOthersWithQuickBooks">
+    <h2 class="title" style="color: white;">Syncing</h2>
+  </div>
+  {{/if}}
+
+  {{#if otherUpdateError}}
+  <div class="bar bar-subheader bar-stable" style="background-color: white; border-color: #d32727; margin-top: 42px;" id="syncOthersWithQuickBooks">
+    <h2 class="title" style="color: #d32727;">Error - {{errorStatus}} - Sync again (click)</h2>
+  </div>
+  {{/if}}
+
+
+  {{#ionView}}
+    {{#ionContent id="mainContent"}}
+    {{#if Template.subscriptionsReady}}
+      {{#if void}}
+      <div class="row" style="margin-top: 64px;">
+        <div class="col" style="padding: 0px 15px 0px 15px;">
+          <h3 style="margin-bottom: 0px;">Invoice Number</h3>
+          <h4 style="color: #666;">{{quickbooksInvoiceId}}</h4>
+        </div>
+        <div class="col" style="padding: 0px 15px 0px 15px;">
+          <div style="">
+            <h3 style="margin-bottom: 0px;">Project Name</h3>
+            <div id="showProjectName">
+            <h4 style="color: #666;">{{projectName}} {{#unless void}}<span style="font-size: 15px; text-decoration: underline;" id="editProjectName">Edit</span>{{/unless}}</h4>
+            </div>
+            <div id="showProjectNameInput" style="display: none;">
+            <button class="button button-stable" id="saveProjectName" style="height: 37.5px; min-height: 0px; margin-top: -1px; line-height: 38px;">Save</button><button class="button button-clear button-positive" style="height: 38px; min-height: 0px; margin-top: -1px; line-height: 38px;" id="cancelProjectName">
+              Cancel
+            </button><label class="item item-input" style="float: left;"><input type="text" placeholder="Project Name" style="height: 25px;" id="projectNameInput" value="{{projectName}}"></label>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{else}}
+        {{#if needUpdate}}
+          <div class="row" style="margin-top: 64px;">
+            <div class="col" style="padding: 0px 15px 0px 15px;">
+              <h3 style="margin-bottom: 0px;">Invoice Number</h3>
+              <h4 style="color: #666;">{{quickbooksInvoiceId}}</h4>
+              {{#if needtoauthenticate}}
+                <a class="button button-clear button-positive" style="padding-left: 0rem;" href="/home">Reauthenticate</a>
+              {{/if}}
+            </div>
+            <div class="col" style="padding: 0px 15px 0px 15px;">
+              <div style="">
+                <h3 style="margin-bottom: 0px;">Project Name</h3>
+                <div id="showProjectName">
+                <h4 style="color: #666;">{{projectName}} {{#unless void}}<span style="font-size: 15px; text-decoration: underline;" id="editProjectName">Edit</span>{{/unless}}</h4>
+                </div>
+                <div id="showProjectNameInput" style="display: none;">
+                <button class="button button-stable" id="saveProjectName" style="height: 37.5px; min-height: 0px; margin-top: -1px; line-height: 38px;">Save</button><button class="button button-clear button-positive" style="height: 38px; min-height: 0px; margin-top: -1px; line-height: 38px;" id="cancelProjectName">
+                  Cancel
+                </button><label class="item item-input" style="float: left;"><input type="text" placeholder="Project Name" style="height: 25px;" id="projectNameInput" value="{{projectName}}"></label>
+                </div>
+              </div>
+            </div>
+          </div>
+        {{else}}
+          <div class="row" style="margin-top: 64px;">
+            <div class="col" style="padding: 0px 15px 0px 15px;">
+              <h3 style="margin-bottom: 0px;">Invoice Number</h3>
+              <h4 style="color: #666;">{{quickbooksInvoiceId}}</h4>
+              {{#if needtoauthenticate}}
+                <a class="button button-clear button-positive" style="padding-left: 0rem;" href="/home">Reauthenticate</a>
+              {{/if}}
+            </div>
+            <div class="col" style="padding: 0px 15px 0px 15px;">
+              <div style="">
+                <h3 style="margin-bottom: 0px;">Project Name</h3>
+                <div id="showProjectName">
+                <h4 style="color: #666;">{{projectName}} {{#unless void}}<span style="font-size: 15px; text-decoration: underline;" id="editProjectName">Edit</span>{{/unless}}</h4>
+                </div>
+                <div id="showProjectNameInput" style="display: none;">
+                <button class="button button-stable" id="saveProjectName" style="height: 37.5px; min-height: 0px; margin-top: -1px; line-height: 38px;">Save</button><button class="button button-clear button-positive" style="height: 38px; min-height: 0px; margin-top: -1px; line-height: 38px;" id="cancelProjectName">
+                  Cancel
+                </button><label class="item item-input" style="float: left;"><input type="text" placeholder="Project Name" style="height: 25px;" id="projectNameInput" value="{{projectName}}"></label>
+                </div>
+              </div>
+            </div>
+          </div>
+        {{/if}}
+      {{/if}}
+      <div class="row">
+        <div class="col-50" style="padding: 15px;">
+      <div class="list">
+        <div class="item item-divider" style="background-color: #374140; color: white; border-color: #374140;">
+            Administrative Details
+        </div>
+        {{#with other}}
+        <div class="item">
+          Created By
+          <p>{{otherCreatedBy}} - {{otherCreatedAt}}</p>
+        </div>
+        <div class="item">
+          All Involved Users
+          {{#each involvedUsers}}
+            <p>{{this}}</p>
+          {{/each}}
+        </div>
+        {{/with}}
+      </div>
+    </div>
+    <div class="col-50" style="padding: 15px;">
+      <div class="list">
+          <div class="item item-divider" style="background-color: #36175E; color: white; border-color: #36175E;">
+              Customer Details
+          </div>
+          {{#with other}}
+            <div class="item" id="customerName">
+              Name
+              <div id="showCustomerName">
+                {{#if customerName}}
+                <h2 style="margin-bottom: 20px;">{{customerName}}</h2>
+                {{else}}
+                <h2 style="margin-bottom: 20px;">Nil</h2>
+                {{/if}}
+                {{#unless void}}<button class="button button-stable" id="editCustomerName">Edit Customer Name</button>{{/unless}}
+                <button class="button button-clear button-positive goToCustomer" id="{{customerId}}">Go to Customer</button>
+
+               <!-- <span style="font-size: 15px; text-decoration: underline;" id="editCustomerName">Edit</span><span style="font-size: 15px; text-decoration: underline;" id="{{customerId}}" class="goToCustomer">Go to Customer</span> -->
+              </div>
+              <!-- <div id="selectCustomerName" class="control-group" style="width: 100%; display: none;">
+                <select id="customerSearch2" class="contacts" placeholder="Pick some people..."></select>
+                <button class="button button-stable" id="saveCustomerName">Save</button> <button class="button button-clear button-positive" id="cancelCustomerName">Cancel</button>
+              </div> -->
+              <div class="form-group has-success control-group" id="selectCustomerName" style="width: 100%; display: none; margin-bottom: 0px;">
+                <input id="customerSearch2" type="text" class="form-control" placeholder="Search by name" value="{{searchCustomerQuery}}" style="width: 100%; border: 1px solid #ddd; padding: 5px; margin: 10px 0px 0px 0px;">
+                <input id="customerNumberSearch2" type="text" class="form-control" placeholder="Search by number" value="{{searchCustomerNumberQuery}}" style="width: 100%; border: 1px solid #ddd; padding: 5px; margin: 10px 0px 0px 0px;">
+                {{#if searchedCustomers}}
+                {{#ionList}}
+                  {{#each searchedCustomers}}
+                  <div class="item searchedCustomer" id="{{_id}}">
+                    <h2 id="{{_id}}">{{name}}</h2>
+                    <p style='color: #666;'>{{contact}}</p>
+                    <p style='color: #666;'>{{company}}</p>
+                  </div>
+                  {{/each}}
+                {{/ionList}}
+                {{/if}}
+                <!-- <button class="button button-stable" id="saveCustomerName">Save</button>  --><button class="button button-clear button-positive" id="cancelCustomerName">Cancel</button>
+              </div>
+            </div>
+            <div class="item">
+              Company 
+              <p>{{customerCompany}}</p>
+            </div>
+            <div class="item">
+              IC Status
+              {{#if icStatus}}
+                {{#if ic}}
+                  <p style="color: #666;">{{ic}}</p>
+                {{else}}
+                <p style="color: #666;">IC not entered into profile</p>
+                {{/if}}
+                <p style="color: green;">OK</p>
+              {{else}}
+                {{#if ic}}
+                  <p style="color: #666;">{{ic}}</p>
+                {{else}}
+                <p style="color: #666;">IC not entered into profile</p>
+                {{/if}}
+                <p style="color: red;">NOT OK - Photo not taken</p>
+              {{/if}}
+            </div>
+            <div class="item">
+              Contact 
+              <p>{{customerNumber}}</p>
+              <p>{{customerEmail}}</p>
+            </div>
+            <div class="item">
+              Address 
+              <p style="text-overflow: ellipsis;overflow: hidden;white-space: normal;">{{customerAddress}}</p>
+            </div>
+          {{/with}}
+          </div>
+        </div>
+      </div>  
+      {{#each groups}}
+      <div class="row">
+        <div class="col" style="padding: 15px;">
+          <div class="list" style="margin-bottom: 0px; padding-bottom: 0px;">
+            <div class="item item-divider" style="background-color: #374140; color: white; border-color: #374140;">
+                Invoice Details
+                {{#unless void}}
+                <button class="button button-clear pull-right addOtherItem" id="{{id}}" style="color: white;">
+                  Add Line
+                </button>
+                {{/unless}}
+            </div>
+          </div>
+          <div class="list" style="padding: 0px; text-align: center;">
+            <div class="row" style="padding: 0px;">
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 25%;">
+                <div class="row" style="padding: 0px;">
+                  <div class="col">
+                    <strong>Item</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 25%;">
+                <div class="row" style="padding: 0px;">
+                  <div class="col">
+                    <strong>Category</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 15%;">
+                <div class="row" style="padding: 0px;">
+                  <div class="col">
+                    <strong>Quantity</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%">
+                <div class="row" style="padding: 0px;">
+                  <div class="col">
+                    <strong>Remove</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 25%;">
+                <div class="row" style="padding: 0px;">
+                  <div class="col" style="border-bottom: 1px solid #dddddd;">
+                    <strong>Cost</strong>
+                  </div>
+                </div>
+                <div class="row" style="padding: 0px; margin-top: 0px;">
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+                    Price
+                  </div>
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+                    Discount
+                  </div>
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+                    Sub Amt
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{#each items}}
+            <div class="row priceChange_{{id}}" style="padding: 0px;">
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 25%; background-color: white;">
+                <div class="row" style="padding: 0px; margin-top: 0px;">
+                  <div class="col itemCol_{{id}}" style="border: 1px solid #dddddd; padding: 5px;  background-color: white">
+                    <div class="row itemShow_{{id}}" style="text-align: center; padding: 0px;">
+                      <p class="itemShow_{{id}}" style="margin: 0px; height: 50%; width: 100%; padding: 0px;">{{item}}</p>
+                    </div>
+                    {{#unless void}}
+                    <div class="row" style="text-align: center;">
+                      <p class="itemShow_{{id}} editItem" style="margin: 0px; height: 50%; text-decoration: underline; width: 100%;" id="{{id}}">Edit</p>
+                    </div>
+                    {{/unless}}
+                    <input class="itemEdit_{{id}}" type="text" name="item" id="item_{{id}}" style="border: 1px solid black; width: 100%; padding: 5px; display: none;" value="{{item}}"/>
+                    <button class="button button-stable button-small itemEdit_{{id}} saveItem" id="item_{{id}}" style="width: 100%; display: none;">Save</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 25%;">
+               <div class="row" style="padding: 0px; margin-top: 0px;">
+                  <div class="col quantityCol_{{id}}" style="border: 1px solid #dddddd; padding: 5px; background-color: white">
+                      {{#if void}}
+                      <select class="ion-input-select categorySelect" style="margin-top: 0px; margin-bottom: 10px; width: 100%;" id="category_{{id}}" disabled>
+                        <option value="selectCategory">Select Category</option>
+                        <option value="SALES" {{salesSelected}}>Sales</option>
+                        <option value="Service and Replacement" {{srSelected}}>Service and Replacement</option>
+                        <option value="Services" {{sSelected}}>Services</option>
+                      </select>
+                      {{else}}
+                      <select class="ion-input-select categorySelect" style="margin-top: 0px; margin-bottom: 10px; width: 100%;" id="category_{{id}}">
+                        <option value="selectCategory">Select Category</option>
+                        <option value="SALES" {{salesSelected}}>Sales</option>
+                        <option value="Service and Replacement" {{srSelected}}>Service and Replacement</option>
+                        <option value="Services" {{sSelected}}>Services</option>
+                      </select>
+                      {{/if}}
+                  </div>
+                </div> 
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 15%;">
+               <div class="row" style="padding: 0px; margin-top: 0px;">
+                  <div class="col quantityCol_{{id}}" style="border: 1px solid #dddddd; padding: 5px; height: 52px; background-color: white">
+                    <div class="row quantityShow_{{id}}" style="text-align: center; padding: 0px;">
+                      <p class="quantityShow_{{id}}" style="margin: 0px; height: 50%; width: 100%; padding: 0px;">{{quantity}}</p>
+                    </div>
+                    {{#unless void}}
+                    <div class="row" style="text-align: center;">
+                      <p class="quantityShow_{{id}} editQuantity" style="margin: 0px; height: 50%; text-decoration: underline; width: 100%;" id="{{id}}">Edit</p>
+                    </div>
+                    {{/unless}}
+                    <input class="quantityEdit_{{id}}" type="text" name="quantity" id="quantity_{{id}}" style="border: 1px solid black; width: 100%; height: 40px; padding: 5px; display: none;" value="{{quantity}}"/>
+                    <button class="button button-stable button-small quantityEdit_{{id}} saveQuantity" id="quantity_{{id}}" style="width: 100%; display: none;">Save</button>
+                  </div>
+                </div>
+              </div> 
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%;">
+                <div class="row" style="padding: 0px; margin-top: 0px;">
+                  <div class="col priceChange_{{id}}" style="border: 1px solid #dddddd; padding: 5px; height: 52px; background-color: white">
+                    {{#unless void}}
+                    <button class="button button-clear button-positive remove" id="{{id}}" style="margin-top: -3px;">
+                      {{> ionIcon icon='ios-close-empty'}}
+                    </button>
+                    {{/unless}}
+                  </div>
+                </div>
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 25%;">
+                <div class="row" style="padding: 0px; margin-top: 0px;">
+                  <div class="col priceChange_{{id}}" style="border: 1px solid #dddddd; padding: 5px; height: 52px;">
+                    <p class="priceShow_{{id}}" style="margin: 0px; height: 50%;">{{price}}</p>
+                    {{#unless void}}
+                    <p class="priceShow_{{id}} editPrice" style="margin: 0px; height: 50%; text-decoration: underline;" id="{{id}}">Edit</p>
+                    {{/unless}}
+                    <input class="priceEdit_{{id}}" type="number" name="price" id="price_{{id}}" style="border: 1px solid black; width: 100%; height: 40px; padding: 5px; display: none;"/>
+                    <button class="button button-stable button-small priceEdit_{{id}} savePrice" id="{{id}}" style="width: 100%; display: none;">Save</button>
+                  </div>
+                  <div class="col priceChange_{{id}}" style="border: 1px solid #dddddd; padding: 5px; height: 52px;">
+                    <p class="discountShow_{{id}}" style="margin: 0px; height: 50%;">{{discount}}</p>
+                    {{#unless void}}
+                    <p class="discountShow_{{id}} editDiscount" style="margin: 0px; height: 50%; text-decoration: underline;" id="{{id}}">Edit</p>
+                    {{/unless}}
+                    <input class="discountEdit_{{id}}" type="number" name="discount" id="discount_{{id}}" style="border: 1px solid black; width: 100%; height: 40px; padding: 5px; display: none;"/>
+                    <button class="button button-stable button-small discountEdit_{{id}} saveDiscount" id="{{id}}" style="width: 100%; display: none;">Save</button>
+                  </div>
+                  <div class="col priceChange_{{id}}" style="border: 1px solid #dddddd; padding: 5px; height: 52px;">
+                    <p style="margin: 0px; height: 100%; margin-top: 10px;">{{subAmount}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{/each}}
+            <div class="row" style="padding: 0px;">
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 75%">
+                
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 25%;">
+                <div class="row" style="padding: 0px; margin-top: 0px;">
+                  <div class="col-33" style="border: 1px solid #dddddd; padding: 5px;">
+                    Sub Discount: 
+                  </div>
+                  <div class="col-33" style="border: 1px solid #dddddd; padding: 5px;">
+                    {{subDiscount}}
+                  </div>
+                  <div class="col-33" style="border: 1px solid #dddddd; padding: 5px;">
+                    {{totalSubTotal}}
+                  </div>
+                </div>
+              </div>
+            </div> 
+            <div class="row" style="padding: 0px;">
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 75%">
+                
+              </div>
+              <div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 25%;">
+                <div class="row" style="padding: 0px; margin-top: 0px;">
+                  <div class="col-66" style="border: 1px solid #dddddd; padding: 5px;">
+                    Sub Total: 
+                  </div>
+                  <div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+                    {{subTotal}}
+                  </div>
+                </div>
+              </div>
+            </div>  
+             
+          </div>
+        </div>
+      </div>
+      {{/each}}
+      {{#with other}}
+      <div class="row">
+        <div class="col-33" style="padding: 15px;">
+          <div class="list">
+            <div class="item item-divider" style="background-color: #468966; color: white; border-color: #468966; text-align: center;">
+                Cost Breakdown
+            </div>
+            <div class="item" style="text-align:center; height: 150px;">
+              <p style="color: #468966; margin-top: 15px;">Sub Total: {{finalSubTotal}}</p>
+              <p style="color: #468966; margin-top: 15px;">GST: {{gst}}</p>
+              <p style="color: #468966; margin-top: 15px;">Total: {{finalTotal}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-33" style="padding: 15px;">
+          <div class="list">
+            <div class="item item-divider" style="background-color: #2980B9; color: white; border-color: #2980B9; text-align: center;">
+                Payment
+            </div>
+            {{#if paymentExists}}
+              <div class="item" style="text-align:center; height: 150px;">
+                <p style="color: #2980B9; font-size: 40px; line-height: 40px; margin-top: 38px;">Nil</p>
+              </div>
+            {{else}}
+            {{#each payment}}
+            <div class="item">
+               <h2 style="white-space: normal;">{{amount}}</h2>
+               {{#if serialNoExists}}
+               <p><span style="color:#2980B9;">{{type}}</span></p>
+               <p>{{serialNo}}</p>
+               <p>{{status}} {{#unless void}}<span style="float:right; z-index: 2000;" class="removePayment" id="{{id}}">Remove</span>{{/unless}}</p>
+               {{else}}
+               <p><span style="color:#2980B9;">{{type}}</span></p>
+               <p>{{status}}{{#unless void}}<span style="float:right; z-index: 2000;" class="removePayment" id="{{id}}">Remove</span>{{/unless}}</p>
+               {{/if}}
+            </div>
+            {{/each}}
+            {{/if}}
+          </div>
+        </div>
+        <div class="col-33" style="padding: 15px;">
+          <div class="list">
+            <div class="item item-divider" style="background-color: #E74C3C; color: white; border-color: #E74C3C; text-align: center;">
+                Balance Due
+            </div>
+            <div class="item" style="text-align:center; height: 150px;">
+              <p style="color: #E74C3C; font-size: 40px; line-height: 40px; margin-top: 38px;">{{balanceDue}}</p>
+              {{#if zeroTotal}}
+              {{#unless void}}
+              <a href="/others/{{otherId}}/recordPayment" class="button button-small button-stable" style="margin-top: 8px;" id="recordPayment"> 
+                Record Payment
+              </a>
+              {{/unless}}
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </div> 
+      {{/with}}
+      <div class="row">
+        <div class="col-50" style="padding: 15px;">
+          <div class="list">
+            <div class="item item-divider" style="background-color: #374140; color: white; border-color: #374140;">
+                General Remarks
+            </div>
+            {{#each otherRemark}}
+              <li class="item item-checkbox {{remarkChecked}} remark" id="{{id}}">
+                 <label class="checkbox" style="width: 85%;">
+                   {{#if checkboxChecked}}
+                    <input type="checkbox" checked>
+                   {{else}}
+                    <input type="checkbox">
+                   {{/if}}
+                 </label>
+                 <h2 style="white-space: normal;">#{{remarkId}} - {{remark}}</h2>
+                 <p>{{createdBy}} - {{createdAt}} <span style="float:right; z-index: 2000;" class="removeRemark" id="{{id}}">Remove</span></p>
+              </li>
+            {{/each}}
+            <div class="item">
+              <textarea rows="4" placeholder="Type remarks here" id="remark" style="width: 100%;"></textarea>
+              <button class="button button-block button-stable" id="addRemark" {{addRemarkDisabled}}>
+                Add Remark
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-50" style="padding: 15px;">
+            <div class="list">
+              <div class="item item-divider" style="background-color: #468966; color: white; border-color: #468966; text-align: center;">
+                Customer Sign Out
+              </div>
+              {{#if customerSignOutExist}}
+              {{#each customerSignOut}}
+                <li class="item remarkSignOut" id="{{id}}">
+                   <h2 style="white-space: normal;">#{{remarkId}} - {{customerSignOutRemark}}
+                   {{#if customerSignOutAcknowledged}}
+                      <a style="float:right; color: #468966;" href="/others/{{otherId}}/viewCustomerSignature" class="viewOtherCustomerSignature" id="{{id}}">Acknowledged</a>
+                     {{else}}
+                      <span style="float:right; color: #DE4F4F;">Unacknowledged</span>
+                     {{/if}}
+                   </h2>
+                   <p>{{createdBy}} - {{createdAt}} 
+                   <span data-ion-modal="viewOtherCustomerSignOut" style="float:right; z-index: 2000;">
+                     View Items
+                   </span>
+                   </p>
+                   {{#if signed}}
+                   <p>Signed by {{signedBy}} - {{signedAt}}</p>
+                   {{/if}}
+                </li>
+              {{/each}}
+              {{else}}
+                <li class="item" style="text-align:center;">
+                   <p style="color: #374140; font-size: 40px; line-height: 40px;">Nil</p>
+                </li>
+              {{/if}}
+              <div class="item">
+                <a class="button button-block button-stable" style="background-color:#468966; color: white;" id="signRemark" href="/others/{{otherId}}/customerSign" {{customerSignOutAbled}}>
+                  Sign Remarks
+                </a>
+              </div>
+            </div>
+          </div>
+      </div> 
+      {{#unless void}}
+      <div class="row" style="height: 200px;">
+        <div class="col" style="height: 100%; padding: 15px;">
+          <button class="button button-block button-stable" style="height: 150px; font-size: 2em;" id="cancelOther" data-action="showDeleteConfirm">
+            Cancel Invoice
+          </button>
+        </div>
+      </div>
+      {{/unless}}
+
+      {{else}}
+      <div class="row">
+        <div class="col">
+          Loading...
+        </div>
+      </div>
+      {{/if}}
+    {{/ionContent}}
+  {{/ionView}}
+</template>

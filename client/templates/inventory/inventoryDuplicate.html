@@ -1,0 +1,41 @@
+<template name="inventoryDuplicate">
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Inventory Duplicate</h1>
+  {{/contentFor}}
+
+  {{#ionView}}
+    {{#ionContent}}
+      {{#if Template.subscriptionsReady}}
+      <div class="row" style="padding: 0px;">
+        <div class="col-50">
+        {{#ionList}}
+        {{#each duplicates}}
+          <div class="item item-duplicate">
+            <p>{{item}} - {{count}}</p>
+          </div>
+        {{/each}}
+        {{/ionList}}
+        </div>
+        <div class="col-50">
+        {{#ionList}}
+        {{#each duplicateLog}}
+          <div class="item">
+            <p>{{content}}</p>
+            <p>{{dateTime}}</p>
+          </div>
+        {{/each}}
+        {{/ionList}}
+        </div>
+      </div>
+      {{else}}
+        <div class="row">
+          <div class="col">
+            Loading...
+          </div>
+        </div>
+      {{/if}}
+    {{/ionContent}}
+  {{/ionView}}
+
+</template>

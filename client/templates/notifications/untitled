@@ -1,0 +1,79 @@
+'click #syncWithQuickBooks': function(event, template) {
+    document.getElementById("syncTitle").innerHTML = "SYNCING";
+    $("#syncWithQuickBooks").css("background", "white");
+    $("#syncTitle").css("color", "#2C3E50");
+
+    var booking = Bookings.findOne({_id: Router.current().params._id});
+    //check customer first
+    if(booking.customerId == 0 || booking.customerId == null) {
+      IonPopup.alert({title: 'NO CUSTOMER FOUND', template: 'Need customer to generate QuickBooks invoice id.'});
+    } else {
+      var template;
+      if(booking.quickbooksInvoiceQueryId == "Pending") {
+        template = 'You will be creating a new invoice in QuickBooks. Are you <strong>really</strong> sure?';
+        IonPopup.confirm({
+          title: 'SYNC WITH QUICKBOOKS',
+          template: template,
+          onOk: function() {
+            var quickbooksAttributes = {
+              _id: Router.current().params._id,
+              quickbooksInvoiceQueryId: booking.quickbooksInvoiceQueryId
+            };
+
+            Meteor.call('updateQuickbooksInvoice', quickbooksAttributes, function(error, result) {
+              console.log(result);
+            });
+          },
+          onCancel: function() {
+          }
+        });
+      } else {
+        var quickbooksAttributes = {
+          _id: Router.current().params._id,
+          quickbooksInvoiceQueryId: booking.quickbooksInvoiceQueryId
+        };
+
+        Meteor.call('updateQuickbooksInvoice', quickbooksAttributes, function(error, result) {
+          console.log(result);
+        });
+      }
+    }
+  },
+
+  'click #syncWithQuickBooks': function(event, template) {
+    var booking = Bookings.findOne({_id: Router.current().params._id});
+    //check customer first
+    if(booking.customerId == 0 || booking.customerId == null) {
+      IonPopup.alert({title: 'NO CUSTOMER FOUND', template: 'Need customer to generate QuickBooks invoice id.'});
+    } else {
+      var template;
+      if(booking.quickbooksInvoiceQueryId == "Pending") {
+        template = 'You will be creating a new invoice in QuickBooks. Are you <strong>really</strong> sure?';
+        IonPopup.confirm({
+          title: 'SYNC WITH QUICKBOOKS',
+          template: template,
+          onOk: function() {
+            var quickbooksAttributes = {
+              _id: Router.current().params._id,
+              quickbooksInvoiceQueryId: booking.quickbooksInvoiceQueryId
+            };
+
+            Meteor.call('updateQuickbooksInvoice', quickbooksAttributes, function(error, result) {
+              console.log(result);
+            });
+          },
+          onCancel: function() {
+          }
+        });
+      } else {
+        var quickbooksAttributes = {
+          _id: Router.current().params._id,
+          quickbooksInvoiceQueryId: booking.quickbooksInvoiceQueryId
+        };
+
+        Meteor.call('updateQuickbooksInvoice', quickbooksAttributes, function(error, result) {
+          console.log(result);
+        });
+      }
+    }
+  },

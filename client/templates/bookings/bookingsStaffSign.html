@@ -1,0 +1,33 @@
+<template name="bookingsStaffSign">
+{{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button-positive" text=false}}
+  {{/contentFor}}
+  
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">STAFF SIGN IN</h1>
+  {{/contentFor}}
+  
+
+  <button class="button button-clear pull-right button-positive" id="submit" style="float:right; z-index: 5000;">
+    Submit
+  </button>
+
+  <button class="button button-clear pull-right button-dark" id="clear" style="float:right; z-index: 5000;">
+    Clear
+  </button>
+
+   
+
+  {{#ionView}}
+    {{#ionContent}}
+        <label class="item item-input">
+          <input type="text" placeholder="e.g John Doe" id="name">
+        </label>
+        <div id="signature-pad" class="m-signature-pad">
+          <div class="m-signature-pad--body">
+            <canvas style="width: 600; height: 600;"></canvas>
+          </div>
+        </div>
+    {{/ionContent}}
+  {{/ionView}}
+</template>   

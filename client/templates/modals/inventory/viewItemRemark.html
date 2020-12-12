@@ -1,0 +1,21 @@
+<template name="viewItemRemark">
+  {{#ionModal title="Inventory Item Remark"}}
+  <div class="list">
+    <ul class="list" id="checkboxList" style="padding-left: 0px; padding-right: 0px; margin-top: -2px;">
+      {{#each itemRemark}}
+      <li class="item item-checkbox {{remarkChecked}} remark" id="{{id}}_{{serialNo}}">
+         <label class="checkbox" style="width: 85%;">
+           {{#if checkboxChecked}}
+            <input type="checkbox" checked>
+           {{else}}
+            <input type="checkbox">
+           {{/if}}
+         </label>
+         <h2 style="white-space: normal;">Remark {{remarkId}}: {{remark}}</h2>
+         <p>{{createdBy}} - {{createdAt}} <span style="float:right; z-index: 2000;" class="removeRemark" id="{{id}}_{{serialNo}}">Remove</span></p>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+  {{/ionModal}}
+</template>

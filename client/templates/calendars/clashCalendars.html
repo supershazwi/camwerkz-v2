@@ -1,0 +1,21 @@
+<template name="clashCalendars">
+
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button-positive" text=false}}
+  {{/contentFor}}
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Clash Calendar</h1>
+  {{/contentFor}}
+
+  {{#ionView}}
+    {{#ionContent}}
+    <div class="row">
+      <div class="col" style="padding: 10px 15px 0px 15px;">
+        {{> fullcalendar class="myCalendars" defaultView='month' height="100%" events=events header=header firstDay="1"}}
+      </div>
+    </div>
+    {{/ionContent}}
+  {{/ionView}}
+
+</template>

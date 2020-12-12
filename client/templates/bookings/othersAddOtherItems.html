@@ -1,0 +1,207 @@
+<template name="othersAddOtherItems">
+
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button-positive" text=false}}
+  {{/contentFor}}
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Add Invoice Items</h1>
+  {{/contentFor}}
+
+  {{#ionView}}
+    {{#ionContent}}
+      <div class="row">
+        <div class="col">
+          <div class="list" style="height: 100%;">
+          {{#if previousStepExists}}
+          <div class="item" style="margin-bottom: 5px; border-color: white; padding: 0px;">
+            <button class="button button-positive" id="backButton">
+              <i class="icon ion-chevron-left" style="color: white;"></i>  Back to {{previousStep}}
+            </button>
+          </div>
+          {{/if}}
+          </div>
+        </div>
+      </div>
+      <div class="row" style="height: 100%;">
+        <div class="col-66" style="height: 100%;">
+          <div class="list" style="height: 100%;">
+          <!-- {{#if previousStepExists}}
+          <div class="item" style="margin-bottom: 5px; border-color: white; padding: 0px;">
+            <button class="button button-positive" id="backButton">
+              <i class="icon ion-chevron-left" style="color: white;"></i>  Back to {{previousStep}}
+            </button>
+          </div>
+          {{/if}}
+   -->      <div class="item item-input-inset" style="margin-bottom: 5px;">
+              <label class="item-input-wrapper">
+                {{> ionIcon icon="ios-search" class="placeholder-icon"}}
+                <input type="text" placeholder="Search Equipment" value="{{searchInventoryQuery}}">
+              </label>
+            </div>
+          <!-- <div class="row custom" id="categoryCol" style="height: 33.3%; padding-top: 0px; padding: 0px; margin-top:">
+            <div class="col" style="height: 100%;">
+              <div style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;">
+                  <div style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background: #468966; border: 5px solid #468966;" class="custom">
+                    <div style=" #position: relative; #top: -50%">
+                      <h1 style="color: white; margin-bottom: 0px;" id="custom">Custom</h1>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div> -->
+          <div class="row custom" id="categoryCol" style="height: 33.3%; padding-top: 0px; padding: 0px; margin-top:">
+           
+            <div class="col" style="height: 100%;">
+              <div style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;">
+                  <div style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background: #35203B; border: 5px solid #35203B;" class="category" id="Custom">
+                    <div style=" #position: relative; #top: -50%">
+                      <h1 style="color: white; margin-bottom: 0px;" id="Custom">Custom</h1>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+          {{#each categories}}
+          <div class="row categories" id="categoryCol" style="height: 33.3%; padding-top: 0px; padding: 0px; margin-top:">
+            {{#each this}} 
+            <div class="col" style="height: 100%;">
+              <div style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;">
+                  <div style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background: #272a32; border: 5px solid #272a32;" class="category" id="{{this}}">
+                    <div style=" #position: relative; #top: -50%">
+                      <h1 style="color: white; margin-bottom: 0px;" id="{{this}}">{{this}}</h1>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+          {{/each}}
+          
+          {{#each brands}}
+          <div class="row brands" id="brands" style="height: 33.3%; margin-top: 1px; padding: 0px;">
+            {{#each this}} 
+            <div class="col" style="height: 100%; padding: 0px;">
+              <div style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;">
+                  <div style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background: #272a32; border: 5px solid #272a32;" class="brand" id="{{this}}">
+                    <div style=" #position: relative; #top: -50%">
+                      <h1 style="color: white; margin-bottom: 0px;" id="{{this}}">{{this}}</h1>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+          {{/each}}  
+
+          <!-- <div class="equipments" style="display: none; padding-top: 0px; margin-top: -6px;">
+            <div class="list" style="padding: 0px;">
+              {{#if search}}
+              <li class="item item-checkbox" id="all_{{brandClicked}}_{{categoryClicked}}">
+                 <label class="checkbox">
+                   {{#if checkboxChecked}}
+                    <input type="checkbox" id="checkAll_{{brandClicked}}_{{categoryClicked}}_Checkbox" checked>
+                   {{else}}
+                    <input type="checkbox" id="checkAll_{{brandClicked}}_{{categoryClicked}}_Checkbox">
+                   {{/if}}
+                 </label>
+                 Add All {{brandClicked}} {{categoryClicked}}
+              </li>
+              {{/if}}
+              {{#each equipments}}
+              <li class="item item-checkbox" id="{{_id}}">
+                 <label class="checkbox">
+                   {{#if checkboxChecked}}
+                    <input type="checkbox" checked>
+                   {{else}}
+                    <input type="checkbox">
+                   {{/if}}
+                 </label>
+                 <strong>{{brand}}</strong> {{item}}
+              </li>
+              {{/each}}
+            </div>
+          </div> -->
+
+         <!--  {{#each equipments}}
+              <a href="#" class="item item-icon-right equipment" id="{{_id}}">
+                {{> ionIcon icon='ios-arrow-right' class="positive"}}
+                <h2 id="{{_id}}">{{brand}} {{item}}</h2>
+              </a>
+              {{/each}} -->
+
+          <div class="equipments" style="display: none; padding-top: 0px; margin-top: -6px;">
+            <div class="list" style="padding: 0px;">
+              {{#each equipments}}
+              <li class="item item-checkbox" id="{{_id}}">
+                 <label class="checkbox">
+                   {{#if checkboxChecked}}
+                    <input type="checkbox" checked>
+                   {{else}}
+                    <input type="checkbox">
+                   {{/if}}
+                 </label>
+                 <strong>{{brand}}</strong> {{item}}
+              </li>
+              {{/each}}
+            </div>
+          </div>
+          <div class="row customerPackages" style="height: 33.3%; margin-top: -5px;">
+            <div class="col" style="height: 100%;">
+              <div style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;" id="nil">
+                  <div style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background: #272a32; border: 5px solid #272a32;" class="customerPackage" id="nil">
+                    <div style=" #position: relative; #top: -50%" id="nil">
+                      <h1 style="color: white;" id="nil">No package</h1>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+          {{#each customerPackages}}
+          <div class="row customerPackages" style="height: 33.3%; margin-top: -5px;">
+            {{#each this}} 
+            <div class="col" style="height: 100%;">
+              <div style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;" id="{{id}}">
+                  <div style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background: #272a32; border: 5px solid #272a32;" class="customerPackage" id="{{id}}">
+                    <div style=" #position: relative; #top: -50%" id="{{id}}">
+                      <h1 style="color: white;" id="{{id}}">{{name}}</h1>
+                      <p style="color: white;" id="{{id}}">Rate: {{rate}}/day</p>
+                      <p style="color: white;" id="{{id}}">Quantity: {{quantity}}</p>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+          {{/each}} 
+        </div>
+        </div>
+        <div class="col-33" style="height: 100%; margin-top: 1px;">
+          <div class="list" style="padding: 0px;">
+              <li class="item" style="height: 52px; text-align: center; background: #468966; color: white;">
+                 <strong>Items Checked</strong>
+              </li>
+              {{#if itemsExist}}
+                {{#each items}}
+                <li class="item" id="{{id}}">
+                   <strong>{{brand}}</strong> {{item}}
+                </li>
+                {{/each}}
+              {{else}}
+              <li class="item">
+                 No items checked.
+              </li>
+              {{/if}}
+              {{#if itemsExist}}
+              <li class="item">
+              <button class="button button-block button-stable" id="addItems" style="background: #2980B9; color: white;">
+                  Add Items
+                </button>
+              </li>
+              {{/if}}
+            </div>
+        </div>
+      </div>
+    {{/ionContent}}
+  {{/ionView}}
+</template>

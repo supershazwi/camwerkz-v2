@@ -1,0 +1,28 @@
+<template name="newCustomer">
+  {{#ionModal title="Add New Customer"}}
+    <form>
+      	<div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label {{nameStatus}}" style="padding-bottom: 0px; width: 100%;">Name {{#if nameDuplicate}}- Please enter a unique name.{{/if}}</span>
+          <input type="text" class="form-control" id="name" placeholder="e.g John Smith" style="color: #666;">
+      	</div>
+      	<div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label" style="padding-bottom: 0px;">Company</span>
+          <input type="text" class="form-control" id="company" placeholder="e.g VideoEzy Pte. Ltd." style="color: #666;">
+      	</div>
+      	<div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label {{emailStatus}}" style="padding-bottom: 0px; width: 100%;">Email {{#if emailDuplicate}}- Please enter a unique email.{{/if}}</span>
+          <input type="email" class="form-control" id="email" placeholder="e.g john@videoezy.com" style="color: #666;">
+      	</div>
+      	<div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label" style="padding-bottom: 0px;">Contact</span>
+          <input type="text" class="form-control" id="contact" placeholder="Contact Number" style="color: #666;">
+      	</div>
+        <a class="button button-full button-balanced" style="margin-top: 0px;" id="addNewCustomer" {{isDisabled}}>
+          Add New Customer
+        </a>
+        <a class="button button-full button-positive" id="findAllQuickbooksCustomers" data-action="showConfirm">
+          Sync All QuickBooks Customers
+        </a>
+    </form>
+  {{/ionModal}}
+</template>

@@ -1,0 +1,33 @@
+<template name="readyBookingsTemplate">
+
+  {{#if Template.subscriptionsReady}}
+    <!-- This is displayed when all data is ready. -->
+    {{#if readyBookings}}
+      {{#each readyBookings}}
+      <li class="item invoice" id="{{invoiceId}}">
+         <h2 style="white-space: normal;">Invoice Id: {{quickbooksInvoiceId}}</h2>
+          {{#with bookingCustomer}}
+          <h2 style="white-space: normal;">{{name}} {{company}}</h2>
+          {{/with}}
+          {{#each displayDates}}
+            <div>
+              <br/>Group {{readyGroupId}}
+              {{#each dateArray}}
+                <p>{{readyPrintedDates}}</p>
+              {{/each}}
+            </div>
+            {{/each}}
+      </li>
+      {{/each}}
+      {{else}}
+      <li class="item" id="{{_id}}" style="text-align: center;">
+          <h2 style="white-space: normal; color: #468966; font-size: 40px; line-height: 40px;">{{> ionIcon icon='checkmark-circled'}}</h2>
+      </li>
+      {{/if}}
+  {{else}}
+    <li class="item" id="{{_id}}" style="text-align: center;">
+          Loading...
+      </li>
+  {{/if}}
+
+</template>

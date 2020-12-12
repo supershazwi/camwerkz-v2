@@ -1,0 +1,14 @@
+<template name="addBookingDates">
+  {{#ionModal customTemplate=true}}
+  <div class="bar bar-header bar-stable">
+    <h2 class="title">Add Booking Dates</h2>
+    <button data-dismiss="modal" class="button button-positive button-clear" id="close">Close</button>
+  </div>
+  <div class="content overflow-scroll" style="padding: 50px 5px 0px 5px;">
+   {{> fullcalendar options  }}
+   <button class="button button-block button-stable" id="saveDates">
+    Save Dates
+  </button>
+  </div>
+  {{/ionModal}}
+</template>

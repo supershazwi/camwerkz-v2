@@ -1,0 +1,314 @@
+<template name="customersShow">
+
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button-positive" text=false}}
+  {{/contentFor}}
+
+  
+  
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Customer Detail</h1>
+  {{/contentFor}}
+
+<a class="button button-positive button-clear" href="/customers/{{customerId}}/logs" style="float:right; z-index: 5000;">See Customer Log</a>
+{{#if quickbooksIdDoesNotExist}}
+  <a href="http://192.168.1.176:5000/sync-customer?id={{customerId}}" target="_blank" class="button button-dark button-clear" style="float:right; z-index: 5000;">Sync Customer to QB</a>
+  {{/if}}
+  
+  
+  {{#ionView}}
+    {{#ionContent}}
+    {{#if Template.subscriptionsReady}}
+      <div class="row">
+        <div class="col">
+          <div class="card" style="margin-bottom: 0px;">
+            <div class="item item-text-wrap" style="text-align:center;">
+              {{#with customer}}
+              {{#if markAsRed}}
+                <h2 style="font-weight: bold;color:red">{{name}}</h2>
+                {{#if remarks}}
+                  <small style="color:#cecece">( {{remarks}} )</small>
+                {{/if}} 
+              {{else}}
+              <h2 style="font-weight: bold; ">{{name}}</h2>
+              {{/if}}
+              <p>{{company}}</p>
+              <p>{{ic}}</p>
+              <p>{{email}}</p>
+              <p>{{contact}}</p>
+              <p>-</p>
+              <p>Quickbooks Id: {{quickbooksId}}</p>
+              <p>Total Spent: {{moneySpent}}</p>
+              <p>Balance: {{moneyOwed}}</p>
+              <p>Total Bookings: {{totalBookings}}</p>
+              {{#if financialStatusOk}}
+              <p>Financial Status: <span style="color: green;">OK</span></p>
+              {{else}}
+              <p>Financial Status: <span style="color: red;">NOT OK</span></p>
+              {{/if}}
+              <p>IC Status: {{#if icStatus}}<span style="color: green;">OK</span>{{else}}<span style="color: red;">NOT OK</span>{{/if}}</p>
+              <p>Address: {{address}}</p>
+              <br/>
+              <div class="button-bar">
+                <a href="#" id="makeBooking" class="button">Add Booking</a>
+                <a href="#" id="makeQuotation" class="button">Add Quotation</a>
+                <a href="#" id="makeOthers" class="button">Add Others</a>
+              </div>
+              <div class="button-bar">
+                <a href="/customers/{{_id}}/addPackage" class="button">Add Package</a>
+                <a href="/customers/{{_id}}/addPrivilege" class="button">Add Privilege</a>
+                <a href="#" id="uploadImage" data-action="selectImageType" class="button">Add Image</a>  
+              </div>
+              <div class="button-bar">
+                <button value="{{_id}}" class="button delete-cust">Delete</button>
+                <button value="{{_id}}" class="button mark-as-red">Status</button>
+                <a href="/customers/{{_id}}/editDetails" class="button">Edit Details</a>
+              </div>
+              {{/with}}
+            </div>
+          </div>
+          <div class="row" style="margin-bottom: -20px;">
+            <div class="col">
+              <button class="button button-block button-positive" id="bookings">
+                Bookings
+              </button>
+            </div>
+            <div class="col">
+              <button class="button button-block button-outline" id="quotations">
+                Quotations
+              </button>
+            </div>
+            <div class="col">
+              <button class="button button-block button-outline" id="others">
+                Others
+              </button>
+            </div>
+            <div class="col">
+              <button class="button button-block button-outline" id="packages">
+                Packages
+              </button>
+            </div>
+            <div class="col">
+              <button class="button button-block button-outline" id="privileges">
+                Privileges
+              </button>
+            </div>
+            <div class="col">
+              <button class="button button-block button-outline" id="images">
+                Images
+              </button>
+            </div>
+          </div>
+          <div id="bookingsList">
+            {{#if bookingsExist}}
+            {{#each bookings}}
+            <div class="list card">
+              
+                <div class="row">
+                  <div class="col-lg-1">
+                    <a class="item">
+                    {{index}}. 
+                    </a>
+                  </div>
+                  <div class="col-lg-11">
+                    <a class="item" href="/bookings/{{_id}}" id="{{_id}}">
+                      
+                      {{#with bookingCustomer}}
+                      <h2>{{name}} {{company}}</h2>
+                      {{/with}}
+                        <!-- {{#if void}}
+                        <h2>
+                          Quickbooks Id: <span style="text-decoration: line-through;">{{quickbooksInvoiceId}}</span> <span style="color: red;">VOID</span>
+                        </h2>
+                        {{else}}
+                        <h2>
+                          Quickbooks Id: {{quickbooksInvoiceId}}
+                        </h2>
+                        {{/if}} -->
+                        <h2>
+                          Quickbooks Id: <span style="color: red;">{{quickbooksInvoiceId2}}</span>
+                        </h2>
+                        <br/>
+
+                        {{#if datesExist}}
+                          {{#each dates}}
+                            Group {{dateGroupId}}
+                            {{#each dateArray}}
+                              <h2 style="font-weight: bold;">{{startDate}}
+                              {{#if gotEndDate}}
+                              - {{endDate}}
+                              {{/if}}
+                              </h2>
+                            {{/each}}
+                          {{/each}}
+                        {{else}}
+                          <h2>No dates selected.</h2>
+                        {{/if}}
+
+                      </a>
+                  </div>
+                </div>
+
+            </div>
+            
+              {{/each}}
+            {{else}}
+              <h3 style="color: #666; text-align: center; margin-top: 10px;">There are currently no bookings.</h3>
+            {{/if}}
+          </div>
+          <div id="quotationsList" style="display: none;">
+            {{#if quotationsExist}}
+            <div class="list card">
+              {{#each quotations}}
+                <a class="item" href="/bookings/{{_id}}" id="{{_id}}">
+                {{#with bookingCustomer}}
+                <h2>{{name}} {{company}}</h2>
+                {{/with}}
+                  <!-- {{#if void}}
+                  <h2>
+                    Quickbooks Id: <span style="text-decoration: line-through;">{{quickbooksInvoiceId}}</span> <span style="color: red;">VOID</span>
+                  </h2>
+                  {{else}}
+                  <h2>
+                    Quickbooks Id: {{quickbooksInvoiceId}}
+                  </h2>
+                  {{/if}} -->
+                  <h2>
+                    Quickbooks Id: {{quickbooksInvoiceId2}}
+                  </h2>
+                  <br/>
+
+                  {{#if datesExist}}
+                    {{#each dates}}
+                      Group {{dateGroupId}}
+                      {{#each dateArray}}
+                        <h2>{{startDate}}
+                        {{#if gotEndDate}}
+                        - {{endDate}}
+                        {{/if}}
+                        </h2>
+                      {{/each}}
+                    {{/each}}
+                  {{else}}
+                    <h2>No dates selected.</h2>
+                  {{/if}}
+
+                </a>
+              {{/each}}
+            </div>
+            {{else}}
+                <h3 style="color: #666; text-align: center; margin-top: 10px;">There are currently no quotations.</h3>
+            {{/if}}
+          </div>
+          <div id="othersList" style="display: none;">
+            {{#if othersExist}}
+            <div class="list card">
+              {{#each othersInvoices}}
+                <a class="item" href="/others/{{_id}}" id="{{_id}}">
+                <h2>{{customerName}} {{customerCompany}}</h2>
+                  {{#if void}}
+                  <h2>
+                    Quickbooks Id: <span style="text-decoration: line-through;">{{quickbooksInvoiceId}}</span> <span style="color: red;">VOID</span>
+                  </h2>
+                  {{else}}
+                  <h2>
+                    Quickbooks Id: {{quickbooksInvoiceId}}
+                  </h2>
+                  {{/if}}
+                  <br/>
+                  <p>
+                    Created on: {{createdAt}}
+                  </p>
+                </a>
+              {{/each}}
+            </div>
+            {{else}}
+                <h3 style="color: #666; text-align: center; margin-top: 10px;">There are currently no others invoices.</h3>
+            {{/if}}
+          </div>
+          <div id="packagesList" style="display: none;">
+            {{#if customerPackageExist}}
+              <div class="list card">
+                {{#each customerPackage}}
+                <a href="/customerpackages/{{_id}}" id="{{_id}}" class="item item-icon-right">
+                  {{> ionIcon icon='ios-arrow-right'}}
+                  <h2 class="input-label">{{name}}</h2>
+                  <p style="color: #666;white-space: normal;">{{details}}</p>  
+                  <p style="color: #666;">{{noOfItems}} item(s)</p>  
+                </a>
+                {{/each}}
+              </div>
+              {{else}}
+              <h3 style="color: #666; text-align: center; margin-top: 10px;">There are currently no packages.</h3>
+            {{/if}}
+          </div>
+          <div id="privilegesList" style="display: none;">
+            {{#if privilegesExist}}
+              <div class="list card">
+                {{#each privilege}}
+                <a href="/privileges/{{_id}}" id="{{_id}}" class="item item-icon-right">
+                  {{> ionIcon icon='ios-arrow-right'}}
+                  <h2 class="input-label">{{name}}</h2>
+                  <p style="color: #666;white-space: normal;">{{details}}</p>  
+                </a>
+                {{/each}}
+              </div>
+              {{else}}
+              <h3 style="color: #666; text-align: center; margin-top: 10px;">There are currently no privileges.</h3>
+            {{/if}}
+          </div>
+          <div id="imagesList" style="display: none;">
+            {{#if imagesExist}}
+            <div class="row">
+              {{#each image}}
+                {{#if imageisic}}
+                <div class="col-20">
+                  <div class="list card" style="margin: 10px 5px; padding: 0px;">
+                    <div class="item item-divider item-positive">
+                      {{this.type}}
+                    </div>
+                    <div class="item item-image">
+                      <a href="{{this.data}}" class="swipebox" title=""><img src="{{this.data}}" alt="..." style="width: 100%;"></a>
+                    </div>
+                    <a class="item item-icon removeImage" id="{{this.data}}" href="#" style="text-align: center; color: #666;">
+                      {{> ionIcon icon='ios-trash-outline'}} Remove
+                    </a>
+                  </div>
+                </div>
+                {{/if}}
+              {{/each}}
+              {{#each image}}
+                {{#if others}}
+                <div class="col-20">
+                  <div class="list card" style="margin: 10px 5px; padding: 0px;">
+                    <div class="item item-divider">
+                      {{this.type}}
+                    </div>
+                    <div class="item item-image">
+                      <a href="{{this.data}}" class="swipebox" title=""><img src="{{this.data}}" alt="..." style="width: 100%;"></a>
+                    </div>
+                    <a class="item item-icon removeImage" id="{{this.data}}" href="#" style="text-align: center; color: #666;">
+                      {{> ionIcon icon='ios-trash-outline'}} Remove
+                    </a>
+                  </div>
+                </div>
+                {{/if}}
+              {{/each}}
+            </div>
+              {{else}}
+              <h3 style="color: #666; text-align: center; margin-top: 10px;">There are currently no images.</h3>
+              
+            {{/if}}
+          </div>
+        </div>
+      </div>  
+    {{else}}
+    <div class="row">
+      <div class="col">
+        Loading...
+      </div>
+    </div>
+    {{/if}}
+    {{/ionContent}}
+  {{/ionView}}
+</template>

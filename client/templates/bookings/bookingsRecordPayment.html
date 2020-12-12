@@ -1,0 +1,141 @@
+<template name="bookingsRecordPayment">
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button-positive" text=false}}
+  {{/contentFor}}
+  
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Choose Payment Type</h1>
+  {{/contentFor}}
+  
+  {{#ionView}}
+    {{#ionContent}}
+    {{#if Template.subscriptionsReady}}
+    <div id="choosePaymentType" style="height: 100%;">
+    <div class="row " style="height: 33%;">
+      <div class="col" style="height: 100%;">
+        <div style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;">
+            <div id="Nets" class="status" style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background: #374140; border: 5px solid #374140;">
+              <div style=" #position: relative; #top: -50%; margin-top: 14px;">
+                <img src="/images/nets.png"/>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="col" style="height: 100%;">
+        <div style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;">
+            <div id="Unionpay" class="status" style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background: #374140; border: 5px solid #374140;">
+              <div style=" #position: relative; #top: -50%; margin-top: 14px;">
+                <img src="/images/unionpay.png"/>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="row " style="height: 33%;">
+      <div class="col" style="height: 100%;">
+        <div style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;">
+            <div id="Visa" class="status" style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background: #374140; border: 5px solid #374140;">
+              <div style=" #position: relative; #top: -50%; margin-top: 14px;">
+                <img src="/images/visa.png"/>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="col" style="height: 100%;">
+        <div style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;">
+            <div id="Mastercard" class="status" style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background: #374140; border: 5px solid #374140;">
+              <div style=" #position: relative; #top: -50%; margin-top: 14px;">
+                <img src="/images/mastercard.png"/>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="row " style="height: 33%;">
+      <div class="col" style="height: 100%;">
+        <div style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;">
+            <div id="Cash" class="status" style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background: #374140; border: 5px solid #374140;">
+              <div style="position: relative;top: -50%;">
+                <h1 style="color: white; margin-bottom: 0px;" id="Cash">CASH</h1>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="col" style="height: 100%;">
+        <div style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;">
+            <div id="Cheque" class="status" style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background: #374140; border: 5px solid #374140;">
+              <div style=" #position: relative; #top: -50%;">
+                <h1 style="color: white; margin-bottom: 0px;" id="Cheque">Cheque</h1>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="row " style="height: 33%;">
+      <div class="col" style="height: 100%;">
+        <div style="display: table; height: 100%; width: 100%; text-align: center; #position: relative; overflow: hidden;">
+            <div id="bankTransfer" class="status" style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; background: #374140; border: 5px solid #374140;">
+              <div style="position: relative;top: -50%;">
+                <h1 style="color: white; margin-bottom: 0px;" id="bankTransfer">BANK TRANSFER</h1>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div id="enterPaymentAmount" style="display: none;">
+      <div class="row" style="margin-top: 55px;">
+        <div class="col" style="height: 100%; text-align: center;">
+          <p style="font-size: 24px;">Enter Amount</p>
+          <p style="font-size: 20px;">QuickBooks Id: {{quickbooksInvoiceId}}</p>
+          <input type="number" placeholder="0.00" id="amount" style="line-height: 65px; text-align:center; width: 100%; height: 65px; border-bottom: 1px solid black;" />
+          {{#if chequeClicked}}
+          <input type="text" placeholder="Cheque Serial Number" id="chequeSerialNo" style="line-height: 65px; text-align:center; width: 100%; height: 65px; border-bottom: 1px solid black;"/>
+          {{/if}}
+
+          {{#if bankTransferClicked}}
+          <input type="text" placeholder="Acknowledgement No" id="bankTransferNo" style="line-height: 65px; text-align:center; width: 100%; height: 65px; border-bottom: 1px solid black;"/>
+          {{/if}}
+
+          {{#if netsClicked}}
+          <input type="text" placeholder="NETS Receipt Number" id="netsReceiptNo" style="line-height: 65px; text-align:center; width: 100%; height: 65px; border-bottom: 1px solid black;"/>
+          {{/if}}
+
+          {{#if unionpayClicked}}
+          <input type="text" placeholder="UnionPay Receipt Number" id="unionpayReceiptNo" style="line-height: 65px; text-align:center; width: 100%; height: 65px; border-bottom: 1px solid black;"/>
+          {{/if}}
+
+          {{#if visaClicked}}
+          <input type="text" placeholder="VISA Receipt Number" id="visaReceiptNo" style="line-height: 65px; text-align:center; width: 100%; height: 65px; border-bottom: 1px solid black;"/>
+          {{/if}}
+
+          {{#if mastercardClicked}}
+          <input type="text" placeholder="MasterCard Receipt Number" id="mastercardReceiptNo" style="line-height: 65px; text-align:center; width: 100%; height: 65px; border-bottom: 1px solid black;"/>
+          {{/if}}
+
+
+          <button class="button button-block button-stable" disabled style="margin-top: 40px;">
+            Balance Due: {{balanceLeft}}
+          </button>
+          {{#if payDisabled}}
+          <button class="button button-block button-balanced" id="pay" disabled>
+            Record Payment
+          </button> 
+          {{else}}
+          <button class="button button-block button-balanced" id="pay">
+            Record Payment
+          </button> 
+          {{/if}}
+          </div>
+      </div>
+    </div>
+    {{else}}
+    <div class="row">
+      <div class="col">
+        Loading...
+      </div>
+    </div>
+    {{/if}}
+    {{/ionContent}}
+  {{/ionView}}
+</template>   

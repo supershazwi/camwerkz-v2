@@ -1,0 +1,14 @@
+<template name="bookingLog">
+  {{#ionModal title="Booking Log"}}
+    <form>
+      <div class="content overflow-scroll">
+      {{#each logs}}
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label {{itemStatus}}" style="padding-bottom: 0px; width: 100%;">{{content}}</span>
+          <input type="text" class="form-control" id="item" value="{{owner}} - {{dateTime}}" style="color: #666; background-color: white; width: 100%;" disabled>
+        </div>
+      {{/each}}
+      </div>
+    </form>
+  {{/ionModal}}
+</template>

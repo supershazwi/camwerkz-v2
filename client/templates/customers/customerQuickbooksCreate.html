@@ -1,0 +1,24 @@
+<template name="customersQuickbooksCreate">
+
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button-positive" text=false}}
+  {{/contentFor}}
+  
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Add Customer From Quickbooks</h1>
+  {{/contentFor}}
+  
+  {{#ionView}}
+    {{#ionContent}}
+      {{#ionList}}
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label" style="padding-bottom: 0px;">Quickbooks Id</span>
+          <input type="text" class="form-control" id="quickbooksId" placeholder="e.g 508" style="width: 100%;color: #666;" value="{{searchCustomerQuickbooksQuery}}">
+        </div>
+        <a class="button button-full button-balanced" style="margin-top: 0px;" id="addCustomerFromQuickbooks" {{isDisabled}}>
+          Add Customer From QuickBooks
+        </a>
+      {{/ionList}}
+    {{/ionContent}}
+  {{/ionView}}
+</template>

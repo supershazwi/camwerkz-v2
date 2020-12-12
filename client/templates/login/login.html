@@ -1,0 +1,27 @@
+<template name="login">
+
+  {{#ionView class="loginScreen"}}
+    {{#ionContent}}
+      <div class="row">
+        <div class="col-offset-33 col-33" style="text-align: center;">
+          <div class="list list-inset" style="background-color: black;"> 
+            <label class="item" style="border: transparent; background-color: black;">
+              <img style="width: 100%;" src="/images/camwerkz.jpeg">
+            </label>
+            <label class="item item-input">
+              <input type="text" id="username" placeholder="Username">
+            </label>
+            <label class="item item-input">
+              <input type="password" id="password" placeholder="Password">
+            </label>
+            <label class="item">
+              <button class="button button-block button-dark" style="margin:0px; background-color: #656870;" id="signIn">
+                Sign In
+              </button>
+            </label>
+          </div>
+        </div>
+      </div>
+    {{/ionContent}}
+  {{/ionView}}
+</template>

@@ -1,0 +1,26 @@
+<template name="inventoryItemAddRemark">
+
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button-positive" text=false}}
+  {{/contentFor}}
+  
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Add Item Remark</h1>
+  {{/contentFor}}
+  
+  {{#ionView}}
+    {{#ionContent}}
+      {{#ionList}}
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Remark</span>
+          <textarea rows="4" placeholder="Type remarks here" id="remark"></textarea>
+        </label>
+        <div class="button-bar">
+          <button class="button button-full button-stable button-large" style="margin-top: 1px;" id="addRemark" type="submit" {{isDisabled}}>
+          Add Remark
+        </button>
+        </div>
+      {{/ionList}}
+    {{/ionContent}}
+  {{/ionView}}
+</template>

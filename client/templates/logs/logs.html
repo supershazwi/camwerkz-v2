@@ -1,0 +1,75 @@
+<template name="logs">
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">My Logs</h1>
+  {{/contentFor}}
+
+  {{#ionView}}
+    {{#ionContent}}
+      {{#ionList}}
+        {{#each logs}}
+          {{#if booking}}
+            {{#ionItem path="bookLogs.show" buttonRight=true class="item-icon-right"}}
+              <p style="color:#2B3A42; text-overflow: ellipsis;overflow: hidden;white-space: normal;">{{content}}</p>
+              <p>{{createdAt}}</p>
+              {{> ionIcon icon="ios-arrow-forward" class="positive"}}
+            {{/ionItem}}
+          {{/if}}
+          {{#if quotation}}
+            {{#ionItem path="quotationLogs.show" buttonRight=true class="item-icon-right"}}
+              <p style="color:#2B3A42; text-overflow: ellipsis;overflow: hidden;white-space: normal;">{{content}}</p>
+              <p>{{createdAt}}</p>
+              {{> ionIcon icon="ios-arrow-forward" class="positive"}}
+            {{/ionItem}}
+          {{/if}}
+          {{#if other}}
+            {{#ionItem path="otherLogs.show" buttonRight=true class="item-icon-right"}}
+              <p style="color:#2B3A42; text-overflow: ellipsis;overflow: hidden;white-space: normal;">{{content}}</p>
+              <p>{{createdAt}}</p>
+              {{> ionIcon icon="ios-arrow-forward" class="positive"}}
+            {{/ionItem}}
+          {{/if}}
+          {{#if customer}}
+            {{#ionItem path="customerLogs.show" buttonRight=true class="item-icon-right"}}
+              <p style="color:#2B3A42; text-overflow: ellipsis;overflow: hidden;white-space: normal;">{{content}}</p>
+              <p>{{createdAt}}</p>
+              {{> ionIcon icon="ios-arrow-forward" class="positive"}}
+            {{/ionItem}}
+          {{/if}}
+          {{#if inventory}} 
+            {{#ionItem path="inventoryLogs.show" buttonRight=true class="item-icon-right"}}
+              <p style="color:#2B3A42; text-overflow: ellipsis;overflow: hidden;white-space: normal;">{{content}}</p>
+              <p>{{createdAt}}</p>
+              {{> ionIcon icon="ios-arrow-forward" class="positive"}}
+            {{/ionItem}}
+          {{/if}}
+          {{#if privilege}}
+            {{#ionItem path="privilegeLogs.show" buttonRight=true class="item-icon-right"}}
+              <p style="color:#2B3A42; text-overflow: ellipsis;overflow: hidden;white-space: normal;">{{content}}</p>
+              <p>{{createdAt}}</p>
+              {{> ionIcon icon="ios-arrow-forward" class="positive"}}
+            {{/ionItem}}
+          {{/if}}
+          {{#if customerPackage}}
+            {{#ionItem path="customerPackageLogs.show" buttonRight=true class="item-icon-right"}}
+              <p style="color:#2B3A42; text-overflow: ellipsis;overflow: hidden;white-space: normal;">{{content}}</p>
+              <p>{{createdAt}}</p>
+              {{> ionIcon icon="ios-arrow-forward" class="positive"}}
+            {{/ionItem}}
+          {{/if}}
+        {{/each}}
+        {{#if nextPath}}
+          {{#ionItem avatar=true class="loadMore"}}
+            <a class="load-more button button-clear button-positive" href="{{nextPath}}" onClick="IonNavigation.skipTransitions = true; return true;">Load more</a>
+          {{/ionItem}}
+          {{else}}
+      {{#unless ready}}
+        {{> spinner}}
+      {{/unless}}
+
+        {{/if}}
+      {{/ionList}}
+    {{/ionContent}}
+  {{/ionView}}
+
+</template>

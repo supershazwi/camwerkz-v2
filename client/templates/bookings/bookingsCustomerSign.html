@@ -1,0 +1,51 @@
+<template name="bookingsCustomerSign">
+{{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button-positive" text=false}}
+  {{/contentFor}}
+  
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">CUSTOMER SIGN OUT</h1>
+  {{/contentFor}}
+  
+
+  <button class="button button-clear pull-right button-positive" id="submit" style="float:right; z-index: 5000;">
+    Submit
+  </button>
+
+  <button class="button button-clear pull-right button-dark" id="clear" style="float:right; z-index: 5000;">
+    Clear
+  </button>
+
+   
+
+  {{#ionView}}
+    {{#ionContent}}
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Name</span>
+          <input type="text" placeholder="e.g John Doe" id="name">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">IC</span>
+          <input type="text" placeholder="e.g S1234567H" id="ic">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Number</span>
+          <input type="text" placeholder="e.g 91234567" id="number">
+        </label>
+        <label class="item checkbox">
+          <input type="checkbox" id="checkbox" style="float: left; margin-right: 10px;"/>
+          <span style="text-overflow: ellipsis;overflow: hidden;white-space: normal; color: #DE4F4F;">Equipment collected in Order & Good Condition. As an individual or a representative of the company who sent me to collect the equipment, I agree to abide by the Terms & Conditions stated by Camwerkz.</span>
+        </label>
+        {{#unless checkboxClicked}}
+        <div style="height: 1000px; color: red;">
+
+        </div>
+        {{/unless}}
+        <div id="signature-pad" class="m-signature-pad">
+          <div class="m-signature-pad--body">
+            <canvas style="width: 600; height: 600;"></canvas>
+          </div>
+        </div>
+    {{/ionContent}}
+  {{/ionView}}
+</template>   

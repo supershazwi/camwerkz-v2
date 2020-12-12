@@ -1,0 +1,60 @@
+<template name="customersCreate">
+
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button-positive" text=false}}
+  {{/contentFor}}
+  
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Add Customer</h1>
+  {{/contentFor}}
+  
+  {{#ionView}}
+    {{#ionContent}}
+    {{#if Template.subscriptionsReady}}
+      {{#ionList}}
+        <div class="form-group" style="{{ifnotok}} padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label {{nameStatus}}" style="padding-bottom: 0px; width: 100%;">First Name {{#if firstNameMax}}(max length 25 chars){{/if}}</span>
+          <input type="text" class="form-control" id="firstName" placeholder="e.g First Name" style="width: 100%;color: #666;" maxlength="25">
+        </div>
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label {{nameStatus}}" style="padding-bottom: 0px; width: 100%;">Middle Name {{#if middleNameMax}}(max length 25 chars){{/if}}</span>
+          <input type="text" class="form-control" id="middleName" placeholder="e.g Middle Name" style="width: 100%;color: #666;" maxlength="25">
+        </div>
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label {{nameStatus}}" style="padding-bottom: 0px; width: 100%;">Last Name {{#if lastNameMax}}(max length 25 chars){{/if}}</span>
+          <input type="text" class="form-control" id="lastName" placeholder="e.g Last Name" style="width: 100%;color: #666;" maxlength="25">
+        </div>
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label" style="padding-bottom: 0px;">IC Number</span>
+          <input type="text" class="form-control" id="ic" placeholder="e.g S123XXXXG" style="width: 100%;color: #666;">
+        </div>
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label" style="padding-bottom: 0px;">Company</span>
+          <input type="text" class="form-control" id="company" placeholder="e.g VideoEzy Pte. Ltd." style="width: 100%;color: #666;">
+        </div>
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label {{emailStatus}}" style="padding-bottom: 0px; width: 100%;">Email {{#if emailMax}}(max length 100 chars){{/if}} {{#if emailDuplicate}}- Please enter a unique email.{{/if}}</span>
+          <input type="email" class="form-control" id="email" placeholder="e.g john@videoezy.com" style="width: 100%;color: #666;" maxlength="100">
+        </div>
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label" style="padding-bottom: 0px;">Contact {{#if contactMax}}(max length 21 chars){{/if}}</span>
+          <input type="text" class="form-control" id="contact" placeholder="Contact Number" style="width: 100%;color: #666;" maxlength="21">
+        </div>
+        <div class="form-group" style="padding: 5px 15px 5px 15px; border-bottom: 1px solid #dddddd;">
+          <span class="input-label" style="padding-bottom: 0px;">Address</span>
+          <textarea rows="4" placeholder="Address here" id="address" style="width: 100%; color: #666;"></textarea>
+        </div>
+        <a class="button button-full button-balanced" style="margin-top: 0px;" id="addNewCustomer" {{isDisabled}}>
+          Add New Customer
+        </a>
+      {{/ionList}}
+    {{else}}
+    <div class="row">
+      <div class="col">
+        Loading...
+      </div>
+    </div>
+    {{/if}}
+    {{/ionContent}}
+  {{/ionView}}
+</template>

@@ -1,0 +1,825 @@
+<template name="makeBooking">
+
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button-positive" text=false}}
+  {{/contentFor}}
+  
+  {{#contentFor "headerButtonRight"}}
+    <button class="button button-positive button-clear" data-ion-modal="bookingLog">See Booking Log</button>
+  {{/contentFor}}
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Make Booking</h1>
+  {{/contentFor}}
+  
+  {{#ionView}}
+    {{#ionContent}}
+    <form>
+      <div class="row">
+      	<div class="col" style="padding: 15px 15px 0px 15px;">
+      		<h3 style="margin-bottom: 0px;">Invoice Number: 2139018</h3>
+      	</div>
+      </div>
+      <div class="row">
+        <div class="col-50" style="padding: 15px;">
+			<div class="list">
+				<div class="item item-divider">
+				    Administrative Details
+				</div>
+				<div class="item">
+					Booked By
+					<p>Kamis - {{dateTime}}</p>
+				</div>
+				<div class="item">
+					Packed By
+					<p>Desmond - {{dateTime}}</p>
+				</div>
+				<div class="item">
+					Served By
+					<p>Jason - {{dateTime}}</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-50" style="padding: 15px;">
+			<div class="list">
+				<div class="item item-divider">
+				    Customer Details
+				</div>
+				{{#with customer}}
+				<div class="item">
+					Name
+					<p>{{name}}</p>
+				</div>
+				<div class="item">
+					Company 
+					<p>{{company}}</p>
+				</div>
+				<div class="item">
+					Date 
+					<input type="date" />
+				</div>
+				<div class="item">
+					<span style="display: block;">Date Range</span>
+					<div style="width: 50%; float: left;">
+						<label class="item item-input" style="border-color: white; padding: 0px; color: #666;">
+						    <i class="icon">From</i>
+						    <input type="date" style="margin-left: 5px;" />
+						</label>
+					</div>
+					<div style="width: 50%; float: right;">
+						<label class="item item-input" style="border-color: white; padding: 0px; color: #666;">
+						    <i class="icon">To</i>
+						    <input type="date" style="margin-left: 5px;" />
+						</label>
+					</div>
+				</div>
+				{{/with}}
+			</div>
+        </div>
+      </div>  
+      <div class="row">
+      	<div class="col" style="padding: 15px;">
+      		<div class="list" style="margin-bottom: 0px; padding-bottom: 0px;">
+				<div class="item item-divider">
+				    Equipment Details
+				    <button class="button button-clear pull-right button-positive" id="addBookingItem" data-ion-modal="addBookingItem">
+				      Add Equipment
+				    </button>
+				</div>
+			</div>
+			<div class="list" style="padding: 0px; text-align: center;">
+				<div class="row" style="padding: 0px;">
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%;">
+						<div class="row" style="padding: 0px;">
+							<div class="col" style="border-bottom: 1px solid #dddddd;">
+								<strong>Check</strong>
+							</div>
+						</div>
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								Out
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								Back
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%;">
+						<div class="row" style="padding: 0px;">
+							<div class="col">
+								<strong>Category</strong>
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%;">
+						<div class="row" style="padding: 0px;">
+							<div class="col">
+								<strong>Item</strong>
+							</div>
+						</div>
+					</div>
+					<div class="col" style="border: 1px solid #dddddd; padding: 0px;">
+						<div class="row" style="padding: 0px;">
+							<div class="col" style="border-bottom: 1px solid #dddddd;">
+								<strong>Quantity</strong>
+							</div>
+						</div>
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								Booked
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								Total
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								Add
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								Minus
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								Remove
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 25%;">
+						<div class="row" style="padding: 0px;">
+							<div class="col" style="border-bottom: 1px solid #dddddd;">
+								<strong>Rental Cost</strong>
+							</div>
+						</div>
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								Rate
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								Days
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								Sub Amt
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								Discount
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 5%;">
+						<div class="row" style="padding: 0px;">
+							<div class="col">
+								<strong>Status</strong>
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 5%;">
+						<div class="row" style="padding: 0px;">
+							<div class="col" style="border-bottom: 1px solid #dddddd;">
+								<strong>Clash</strong>
+							</div>
+						</div>
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="padding: 5px;">
+								Date
+							</div>	
+						</div>
+					</div>
+				</div>
+				<div class="row" style="padding: 0px;">
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox" class="itemCheckbox" id="item_1_out">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox" class="itemCheckbox" id="item_1_back">
+							     </label>
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+						</div>
+					</div>
+					<div class="col" style="border: 1px solid #dddddd; padding: 0px;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 25%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 5%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 5%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row" style="padding: 0px;">
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox" class="itemCheckbox" id="item_2_out">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox" class="itemCheckbox" id="item_2_back">
+							     </label>
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+						</div>
+					</div>
+					<div class="col" style="border: 1px solid #dddddd; padding: 0px;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 25%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 5%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 5%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row" style="padding: 0px;">
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox" class="itemCheckbox" id="item_3_out">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox" class="itemCheckbox" id="item_3_back">
+							     </label>
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+						</div>
+					</div>
+					<div class="col" style="border: 1px solid #dddddd; padding: 0px;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 25%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 5%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 5%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row" style="padding: 0px;">
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox" class="itemCheckbox" id="item_4_out">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox" class="itemCheckbox" id="item_4_back">
+							     </label>
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+						</div>
+					</div>
+					<div class="col" style="border: 1px solid #dddddd; padding: 0px;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 25%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 5%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 5%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row" style="padding: 0px;">
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox" class="itemCheckbox" id="item_5_out">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox" class="itemCheckbox" id="item_5_back">
+							     </label>
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+						</div>
+					</div>
+					<div class="col" style="border: 1px solid #dddddd; padding: 0px;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 25%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 5%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 5%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								<label class="checkbox invisible" style="padding: 7px 7px 0px 7px;">
+							       <input type="checkbox">
+							     </label>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row" style="padding: 0px;">
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 65%">
+						
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 25%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col-50" style="border: 1px solid #dddddd; padding: 5px;">
+								Sub Total: 
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								0.00
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								0.00
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%;">
+						
+					</div>
+				</div>	
+				<div class="row" style="padding: 0px;">
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 65%">
+						
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 25%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col-75" style="border: 1px solid #dddddd; padding: 5px;">
+								Total (GST): 
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								0.00
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%;">
+						
+					</div>
+				</div>	
+				<div class="row" style="padding: 0px;">
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 65%">
+						
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 25%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col-75" style="border: 1px solid #dddddd; padding: 5px;">
+								Payment: 
+							</div>
+							<div class="col" style="border: 1px solid #dddddd; padding: 5px;">
+								0.00
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%;">
+						
+					</div>
+				</div>	
+				<div class="row" style="padding: 0px;">
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 65%">
+						
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 25%;">
+						<div class="row" style="padding: 0px; margin-top: 0px;">
+							<div class="col-75" style="border: 3px solid green; padding: 5px;">
+								Balance Due: 
+							</div>
+							<div class="col" style="border: 3px solid green; padding: 5px;">
+								0.00
+							</div>
+						</div>
+					</div>
+					<div class="col2" style="border: 1px solid #dddddd; padding: 0px; width: 10%;">
+						
+					</div>
+				</div>	
+			</div>
+      	</div>
+      </div>
+      <div class="row">
+		<div class="col-50" style="padding: 15px;">
+			<div class="list">
+				<div class="item item-divider">
+				    Remarks
+				</div>
+				<div class="item">
+					<textarea rows="4" placeholder="Type remarks here"></textarea>
+					<button class="button button-block button-balanced">
+					  Add Remark
+					</button>
+				</div>
+			</div>
+        </div>
+      </div>  
+      <div class="row" style="height: 200px;">
+			<div class="col" style="height: 100%; padding: 15px;">
+				<button class="button button-block button-royal" style="height: 150px; font-size: 2em;">
+				  Ignore Clash
+				</button>
+			</div>
+			<div class="col" style="height: 100%; padding: 15px;">
+				<button class="button button-block button-positive" style="height: 150px; font-size: 2em;">
+				  Cancel Booking
+				</button>
+			</div>
+			<div class="col" style="height: 100%; padding: 15px;">
+				<button class="button button-block button-balanced" style="height: 150px; font-size: 2em;">
+				  Save Booking
+				</button>
+			</div>
+		</div>
+    </form>
+    {{/ionContent}}
+  {{/ionView}}
+</template>
