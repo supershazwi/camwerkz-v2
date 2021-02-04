@@ -11,9 +11,9 @@
   <a class="button button-positive button-clear" href="/bookings/{{bookingId}}/logs" style="float:right; z-index: 5000;">See Quotation Log</a>
   {{/if}}
   {{#if syncInvoiceToQb}}
-  <a href="http://192.168.1.176:5000/sync-invoice?id={{bookingId}}" target="_blank" class="button button-dark button-clear" style="float:right; z-index: 5000;">Sync Invoice to QB</a>
+  <a href="http://192.168.1.177:5000/sync-invoice?id={{bookingId}}" target="_blank" class="button button-dark button-clear" style="float:right; z-index: 5000;">Sync Invoice to QB</a>
   {{/if}}
-  <a href="http://192.168.1.176:5000/generatePDF/?bookingId={{bookingId}}" target="_blank" class="button button-dark button-clear" style="float:right; z-index: 5000;">Save PDF</a>
+  <a href="http://192.168.1.177:5000/generatePDF/?bookingId={{bookingId}}" target="_blank" class="button button-dark button-clear" style="float:right; z-index: 5000;">Save PDF</a>
 
   {{#contentFor "headerTitle"}}
     {{#if thisIsBooking}}

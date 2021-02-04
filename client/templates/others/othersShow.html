@@ -7,9 +7,9 @@
   <a class="button button-positive button-clear" href="/others/{{otherId}}/logs" style="float:right; z-index: 5000;">See Log</a>
 
   {{#if needUpdate}}
-  <a href="http://192.168.1.176:5000/sync-others-invoice?id={{otherId}}" target="_blank" class="button button-dark button-clear" style="float:right; z-index: 5000;">Sync Invoice to QB</a>
+  <a href="http://192.168.1.177:5000/sync-others-invoice?id={{otherId}}" target="_blank" class="button button-dark button-clear" style="float:right; z-index: 5000;">Sync Invoice to QB</a>
   {{/if}}
-  <a href="http://192.168.1.176:5000/generateOtherPDF/?otherId={{otherId}}" target="_blank" class="button button-dark button-clear" style="float:right; z-index: 5000;">Save PDF</a>
+  <a href="http://192.168.1.177:5000/generateOtherPDF/?otherId={{otherId}}" target="_blank" class="button button-dark button-clear" style="float:right; z-index: 5000;">Save PDF</a>
 
   {{#contentFor "headerTitle"}}
     <h1 class="title" style="">Create Invoice</h1>

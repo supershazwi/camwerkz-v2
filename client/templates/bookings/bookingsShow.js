@@ -2354,7 +2354,7 @@ Template.bookingsShow.events({
 
                 console.log("before window open");
 
-                window.open('http://192.168.1.176:5000/void-invoice?id='+bookingStatus.quickbooksInvoiceQueryId, '_blank');
+                window.open('http://192.168.1.177:5000/void-invoice?id='+bookingStatus.quickbooksInvoiceQueryId, '_blank');
               });
             }
           });
@@ -2406,7 +2406,7 @@ Template.bookingsShow.events({
               Meteor.call("insertLog", attributes);
               Meteor.call("insertUniversalLog", attributes);
 
-              window.open('http://192.168.1.176:5000/void-invoice?id='+bookingStatus.quickbooksInvoiceQueryId, '_blank');
+              window.open('http://192.168.1.177:5000/void-invoice?id='+bookingStatus.quickbooksInvoiceQueryId, '_blank');
             });
           }
         }

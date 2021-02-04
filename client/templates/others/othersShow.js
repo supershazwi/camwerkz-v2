@@ -1149,7 +1149,7 @@ Template.othersShow.events({
                 Meteor.call("insertOtherLog", attributes);
                 Meteor.call("insertUniversalLog", attributes);
 
-                window.open('http://192.168.1.176:5000/void-other-invoice?id='+other.quickbooksInvoiceQueryId, '_blank');
+                window.open('http://192.168.1.177:5000/void-other-invoice?id='+other.quickbooksInvoiceQueryId, '_blank');
               });
 
               Meteor.setTimeout(function(){
